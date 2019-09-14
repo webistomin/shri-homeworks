@@ -77,6 +77,8 @@ app.get('/api/repos/:repositoryId/', (req, res) => {
   const dir = `${directoryPath}/${repositoryId}`;
   let result = [];
   
+  cp.execSync('git checkout master', {cwd: dir});
+  
   if (fs.existsSync(dir)) {
     const readDirSync = (dir) => {
       const files = fs.readdirSync(dir).map(file => path.join(dir, file));
