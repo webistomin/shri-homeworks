@@ -1,0 +1,18 @@
+{
+  "name": "shri-git-client",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js --path=/Users/webistomin/Desktop/Projects/shri-homeworks/01-nodejs/repos"
+  },
+  "author": "webistomin",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "yargs": "^14.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.2"
+  }
+}
