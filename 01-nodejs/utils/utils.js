@@ -32,29 +32,34 @@ exports.isCommandValid = (command, cwd) => {
 };
 
 exports.getAllFilesInsideFolder = (dir) => {
-  let result = [];
-  const files = fs.readdirSync(dir).map(file => path.join(dir, file));
   
-  files.forEach((file) => {
-    if (fs.statSync(file).isDirectory() && file.slice(file.lastIndexOf('/') + 1 , file.length) !== '.git') {
-      if (fs.readdirSync(`${file}/`).map(file => file).includes('.git')) {
-        result.push(file.slice(file.lastIndexOf('/') + 1 , file.length));
+  if (fs.existsSync(dir)) {
+    let result = [];
+    const files = fs.readdirSync(dir).map(file => path.posix.join(dir, file));
+  
+    files.forEach((file) => {
+      if (fs.statSync(file).isDirectory() && file.slice(file.lastIndexOf('/') + 1 , file.length) !== '.git') {
+        if (fs.readdirSync(`${file}/`).map(file => file).includes('.git')) {
+          result.push(file.slice(file.lastIndexOf('/') + 1 , file.length));
+        }
       }
-    }
-  });
-  return result
+    });
+    return result
+  }
+  
+  return `Путь ${dir} не существует`
 };
 
-exports.deleteFolderRecursive = (path) => {
-  fs.readdirSync(path).forEach((file) => {
-    let curPath = path + "/" + file;
+exports.deleteFolderRecursive = (dir) => {
+  fs.readdirSync(dir).forEach((file) => {
+    let curPath = path.posix.join(dir, file);
     if(fs.lstatSync(curPath).isDirectory()) {
       module.exports.deleteFolderRecursive(curPath);
     } else {
       fs.unlinkSync(curPath);
     }
   });
-  fs.rmdirSync(path);
+  fs.rmdirSync(dir);
 };
 
 exports.getPaginatedData = (array, pageSize = 10, pageNumber) => {

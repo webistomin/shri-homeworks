@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
 });
 
 // get all repos inside folder
-app.get('/api/repos', (req, res) => {
+app.get('/api/repos/', (req, res) => {
   res.json({git_repos: utils.getAllFilesInsideFolder(directoryPath)});
 });
 
@@ -96,11 +96,10 @@ app.get('/api/repos/:repositoryId/', (req, res) => {
   const dir = `${directoryPath}/${repositoryId}`;
   let result = [];
   
-  cp.execSync('git checkout master', {cwd: dir});
-  
   if (fs.existsSync(dir)) {
+    cp.execSync('git checkout master', {cwd: dir});
     const readDirSync = (dir) => {
-      const files = fs.readdirSync(dir).map(file => path.join(dir, file));
+      const files = fs.readdirSync(dir).map(file => path.posix.join(dir, file));
       files.forEach((file) => {
         result.push(file.slice(file.lastIndexOf('/') + 1 , file.length));
       });
@@ -177,7 +176,7 @@ app.post('/api/repos/:repositoryId&:url([^/]*)', (req, res) => {
   
   const isCommandValid = utils.isCommandValid(`git ls-remote ${url}`, cwd);
   
-  if (fs.existsSync(path.join(cwd, repositoryId))) {
+  if (fs.existsSync(path.posix.join(cwd, repositoryId))) {
     res.status(404).send('Репозиторий уже существует. Удалите его во избежание конфликта.');
   } else if (isCommandValid) {
     cp.execSync(command, {cwd}, (err, stdout) => {
