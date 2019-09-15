@@ -12,6 +12,7 @@ app.listen(3000, () => {
     await showBanner('SHRI 2019', 'Simple node.js git client. Server available on localhost:3000');
   })();
 });
+app.use(express.json());
 
 const argv = yargs.argv;
 const directoryPath = argv.path;
@@ -163,8 +164,9 @@ app.get('/api/repos/:repositoryId/blob/:commitHash/:pathToFile([^/]*)', (req, re
 });
 
 // download repo
-app.post('/api/repos/:repositoryId&:url([^/]*)', (req, res) => {
-  const { repositoryId, url } = req.params;
+app.post('/api/repos/:repositoryId', (req, res) => {
+  const { url } = req.body;
+  const { repositoryId } = req.params;
   const command = `git clone ${url} ${repositoryId}`;
   const cwd = `${directoryPath}`;
   
