@@ -3,8 +3,8 @@ const yargs = require('yargs');
 const cp = require('child_process');
 const path = require('path');
 const fs = require('fs');
-const utils = require('./utils/utils');
 const showBanner = require('node-banner');
+const utils = require('./utils/utils');
 
 const app = express();
 app.listen(3000, () => {
@@ -35,10 +35,7 @@ app.get('/api/repos/:repositoryId/commits/:commitHash/:page?', (req, res) => {
   const isCommandValid = utils.isCommandValid(command, cwd);
   
   const getArrayOfCommits = () => {
-    let result = cp.execSync(
-      command,
-      {cwd},
-      (err, stdout) => {
+    let result = cp.execSync(command, {cwd}, (err, stdout) => {
         if (err) {
           throw err;
         }
@@ -151,10 +148,7 @@ app.get('/api/repos/:repositoryId/blob/:commitHash/:pathToFile([^/]*)', (req, re
   const isCommandValid = utils.isCommandValid(command, cwd);
   
   if (isCommandValid) {
-    const result = cp.execSync(
-      command,
-      {cwd},
-      (err, stdout) => {
+    const result = cp.execSync(command, {cwd}, (err, stdout) => {
         if (err) {
           throw err;
         }
