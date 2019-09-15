@@ -4,9 +4,14 @@ const cp = require('child_process');
 const path = require('path');
 const fs = require('fs');
 const utils = require('./utils/utils');
+const showBanner = require('node-banner');
 
 const app = express();
-app.listen(3000);
+app.listen(3000, () => {
+  (async () => {
+    await showBanner('SHRI 2019', 'Simple node.js git client. Server available on localhost:3000');
+  })();
+});
 
 const argv = yargs.argv;
 const directoryPath = argv.path;
@@ -22,8 +27,9 @@ app.get('/api/repos', (req, res) => {
 });
 
 // get array of commits
-app.get('/api/repos/:repositoryId/commits/:commitHash', (req, res) => {
+app.get('/api/repos/:repositoryId/commits/:commitHash/:page?', (req, res) => {
   const { repositoryId, commitHash } = req.params;
+  const [ page, paginateBy ] = req.params.page ? req.params.page.split('-') : [];
   const command = `git checkout ${commitHash} --quiet && git log --pretty=format:"%h%x09%an%x09%ad%x09%s" --full-history`;
   const cwd = `${directoryPath}/${repositoryId}`;
   const isCommandValid = utils.isCommandValid(command, cwd);
@@ -43,7 +49,20 @@ app.get('/api/repos/:repositoryId/commits/:commitHash', (req, res) => {
   };
   
   if (isCommandValid) {
-    res.json({commits: getArrayOfCommits()});
+    if (+page) {
+      if (page * paginateBy > Math.ceil((getArrayOfCommits().length + 1) / paginateBy) * paginateBy) {
+        res.status(404).send(`
+        Последняя страница: ${Math.ceil(getArrayOfCommits().length / paginateBy)}
+        Всего коммитов: ${getArrayOfCommits().length}
+        `);
+      } else {
+        res.json({commits: utils.getPaginatedData(getArrayOfCommits(), paginateBy, page)});
+      }
+    } else if (+page === 0) {
+      res.status(404).send(`Первая страница: 1`);
+    } else {
+      res.json({commits: getArrayOfCommits()});
+    }
   } else {
     res.status(404).send('Что-то пошло не так!');
   }
@@ -76,6 +95,8 @@ app.get('/api/repos/:repositoryId/', (req, res) => {
   const { repositoryId, commitHash } = req.params;
   const dir = `${directoryPath}/${repositoryId}`;
   let result = [];
+  
+  cp.execSync('git checkout master', {cwd: dir});
   
   if (fs.existsSync(dir)) {
     const readDirSync = (dir) => {

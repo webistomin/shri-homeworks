@@ -24,7 +24,7 @@ exports.getBeautifiedCommits = (array) => {
 
 exports.isCommandValid = (command, cwd) => {
   try {
-    cp.execSync(command, cwd ? {cwd: cwd} : '');
+    cp.execSync(command, cwd ? {cwd} : '');
     return true;
   } catch (err) {
     return false;
@@ -55,4 +55,9 @@ exports.deleteFolderRecursive = (path) => {
     }
   });
   fs.rmdirSync(path);
+};
+
+exports.getPaginatedData = (array, pageSize = 10, pageNumber) => {
+  --pageNumber;
+  return array.slice(pageNumber * pageSize, (pageNumber + 1) * pageSize);
 };
