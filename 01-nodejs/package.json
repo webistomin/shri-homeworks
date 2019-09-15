@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js --path=/Users/webistomin/Desktop/Projects/shri-homeworks/01-nodejs/repos"
+    "dev": "nodemon server.js --path=./repos"
   },
   "author": "webistomin",
   "license": "ISC",
