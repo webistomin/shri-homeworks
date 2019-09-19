@@ -1,0 +1,41 @@
+{
+  "options": {
+    "merge-default-rules": false,
+    "max-warnings": 50
+  },
+  "files": {
+    "include": "src/sass/**/*.sass",
+    "ignore": [
+      "src/sass/mixins/*.sass",
+    ]
+  },
+  "rules": {
+    "extends-before-mixins": 2,
+    "extends-before-declarations": 2,
+    "placeholder-in-extend": 2,
+    "no-warn": 1,
+    "no-debug": 1,
+    "no-ids": 2,
+    "no-important": 2,
+    "hex-notation": [
+      2,
+      {
+        "style": "lowercase"
+      }
+    ],
+    "hex-length": "long",
+    "indentation": [
+      2,
+      {
+        "size": 2
+      }
+    ],
+    "leading-zero": true,
+    "no-color-keywords": true,
+    "no-empty-rulesets": true,
+    "one-declaration-per-line": true,
+    "pseudo-element": true,
+    "url-quotes": true,
+    "zero-unit": false,
+  }
+}

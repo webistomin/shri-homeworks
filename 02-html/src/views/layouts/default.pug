@@ -1,0 +1,13 @@
+block variables
+
+doctype html
+html(lang='ru' dir='ltr')
+  include ../partials/head.pug
+  body
+    noscript У вас отключен JavaScript. Это пугает.
+    include ../partials/page-header.pug
+    main.page-content(role='main')
+      block content
+    include ../partials/page-footer.pug
+    script(src='js/vendors.min.js' defer)
+    script(src='js/bundle.min.js' defer)
