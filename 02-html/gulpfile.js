@@ -11,7 +11,7 @@ gulp.task('dev', (callback) => {
 
   runSequence(
     'clean:build',
-    ['sass', 'print:css', 'pug', 'copy:js:libs', 'copy:js:custom', 'copy:img', 'copy:fonts'],
+    ['sass', 'pug', 'copy:js:libs', 'copy:js:custom', 'copy:img', 'copy:fonts'],
     'svg:sprite',
     'img:resize',
     'img:webp',
@@ -26,7 +26,7 @@ gulp.task('build', (callback) => {
 
   runSequence(
     'clean:build',
-    ['sass:build', 'print:css', 'pug', 'js:build:libs', 'js:build:custom', 'img:build', 'copy:fonts'],
+    ['sass:build', 'pug', 'js:build:libs', 'js:build:custom', 'img:build', 'copy:fonts'],
     'svg:sprite',
     'img:resize',
     'img:webp',

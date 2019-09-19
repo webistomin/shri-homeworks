@@ -1,0 +1,29 @@
+.breadcrumbs
+  display: flex
+  flex-wrap: wrap
+  padding-top: 12px
+  padding-bottom: 8px
+  border-bottom: 1px solid #e5e5e5
+
+  +e('item')
+    &:not(:last-child)
+      position: relative
+      padding-right: 15px
+      margin-right: 15px
+
+      &::after
+        content: '/'
+        position: absolute
+        right: 0
+
+    &:last-child
+      .breadcrumbs__link
+        font-weight: 500
+        color: #000000
+
+  +e('link')
+    color: #7f8285
+    transition: all 0.1s ease-in-out
+
+    &:hover
+      color: #1774e9

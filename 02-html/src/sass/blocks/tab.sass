@@ -1,0 +1,45 @@
+.tab
+  font-weight: 500
+  display: inline-flex
+  align-items: center
+
+  +m('color')
+    +m('grey')
+      color: #7f8285
+
+  +m('text')
+    +m('uppercase')
+      text-transform: uppercase
+      font-size: 16px
+      line-height: 20px
+
+  +e('name')
+    display: inline-block
+    position: relative
+    +text-overflow()
+    max-width: 120px
+
+    +m('current')
+      color: #000000
+
+      &::after
+        content: ''
+        position: absolute
+        width: 100%
+        height: 3px
+        background-color: #ff4f49
+        bottom: 0
+        left: 0
+
+    +m('space')
+      +m('s')
+        padding: 10px 0
+
+      +m('m')
+        padding: 19px 0
+
+  +e('icon')
+    fill: currentColor
+    margin-left: 6px
+
+
