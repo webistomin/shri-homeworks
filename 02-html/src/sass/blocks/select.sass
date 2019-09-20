@@ -1,11 +1,17 @@
 .select
   display: inline-flex
   align-items: center
-  font-size: 20px
-  line-height: 28px
-  margin-left: 4px
-  color: #7f8285
+  +ts()
+
+  +m('color')
+    +m('grey')
+      color: var(--color-grey-7)
+
+      &:hover
+        color: var(--color-blue)
 
   +e('icon')
-    margin-left: 6px
     fill: currentColor
+
+    +m('right')
+      margin-left: 6px

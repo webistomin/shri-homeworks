@@ -2,10 +2,14 @@
   font-weight: 500
   display: inline-flex
   align-items: center
+  +ts()
 
   +m('color')
     +m('grey')
-      color: #7f8285
+      color: var(--color-grey-7)
+
+      &:hover
+        color: var(--color-black)
 
   +m('text')
     +m('uppercase')
@@ -16,8 +20,8 @@
   +e('name')
     display: inline-block
     position: relative
-    +text-overflow()
     max-width: 120px
+    +text-overflow()
 
     +m('current')
       color: #000000
@@ -40,6 +44,6 @@
 
   +e('icon')
     fill: currentColor
-    margin-left: 6px
 
-
+    +m('right')
+      margin-left: 6px

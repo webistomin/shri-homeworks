@@ -1,6 +1,13 @@
 .text
-  font-size: 14px
-  line-height: 20px
+
+  +m('size')
+    +m('l')
+      font-size: var(--font-size-l)
+      line-height: var(--line-height-l)
+
+    +m('xl')
+      font-size: var(--font-size-xl)
+      line-height: var(--line-height-xxl)
 
   +m('weight')
     +m('medium')
