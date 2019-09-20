@@ -22,6 +22,10 @@
   +e('table-row')
     position: relative
 
+    +media(1024px)
+      &:hover
+        background-color: var(--color-grey-1)
+
     &:first-child
       display: none
 
@@ -54,14 +58,6 @@
     &:nth-child(4)
       order: 4
 
-      &::before
-        content: 'by'
-        padding-right: 4px
-        font-size: 14px
-
-      &::after
-        content: ','
-
     &:nth-child(5)
       order: 5
 
@@ -79,6 +75,13 @@
         align-items: center
         justify-content: flex-end
 
+        svg
+          fill: #E5E5E5
+          +ts()
+
+        &:hover
+          svg
+            fill: var(--color-blue)
 
   +e('table-link')
     display: inline-flex
