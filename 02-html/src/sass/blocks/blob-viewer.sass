@@ -11,11 +11,12 @@
     overflow: hidden
 
   +e('title')
-    padding-top: 13px
-    padding-bottom: 9px
+    padding-top: 11px
+    padding-bottom: 11px
     display: inline-flex
     align-items: center
     font-weight: 400
+    +text-overflow()
 
   +e('heading')
     background-color: var(--color-grey-10)
@@ -51,10 +52,15 @@
       max-width: 1128px
 
   +e('icon')
+    fill: currentColor
+    flex-shrink: 0
+
     +m('left')
-      margin-right: 12px
+      margin-right: 8px
 
   +e('inner-container')
+    position: relative
+
     +m('flex')
       display: flex
 
@@ -64,6 +70,19 @@
       +m('align-center')
         align-items: center
 
+      +m('align-baseline')
+        align-items: baseline
+
+      +m('column')
+        flex-direction: column
+
+    +m('heading')
+      padding-bottom: 12px
+
+      +media(768px)
+        padding-bottom: 0
+        flex-direction: row
+
     +media(1024px)
       width: 97.6744186%
 
@@ -72,15 +91,18 @@
     align-items: center
     justify-content: center
 
+    &:hover
+      color: var(--color-blue)
+      border-color: var(--color-blue)
+
     +m('download')
       width: 38px
       height: 28px
       border-radius: var(--border-radius-3)
       border: 1px solid var(--color-grey-11)
 
-      &:hover
-        color: var(--color-blue)
-        border-color: var(--color-blue)
+    +m('share')
+      margin-left: auto
 
   +e('icon')
     fill: currentColor
@@ -96,6 +118,10 @@
   +e('col')
     display: flex
     align-items: center
+
+    +m('align-right')
+      +media(768px)
+        margin-left: auto
 
   +e('content-table-data')
     white-space: pre
@@ -126,6 +152,23 @@
     border-spacing: 0
     font-family: var(--monospace)
 
+    +m('no-margin')
+      margin: 0
+
+    +m('offset')
+      td:first-child
+        padding-left: 4.44444445%
+
+      td:last-child
+        padding-right: 4.44444445%
+
+      +media(1024px)
+        td:first-child
+          padding-left: 2.25%
+
+        td:last-child
+          padding-right: 2.25%
+
   +e('content-keyword')
     word-break: break-all
     white-space: normal
@@ -142,4 +185,71 @@
   +e('content-link')
     white-space: normal
     word-break: break-all
+
+  +e('state')
+    margin-right: 12px
+
+    +media(768px)
+      margin-right: 16px
+
+    +m('m')
+      padding-top: 11px
+      padding-bottom: 11px
+      color: var(--color-purple)
+
+    +m('add')
+      color: var(--color-green)
+
+    +m('delete')
+      color: var(--color-red-2)
+
+      +media(768px)
+        margin-right: 24px
+
+  +e('subheading')
+    padding-top: 4px
+    padding-bottom: 4px
+    background-color: var(--color-lightblue)
+
+  +e('stats')
+    font-size: var(--font-size-xxs)
+    line-height: var(--line-height-l)
+
+  +e('content-table-row')
+    +m('new')
+      background-color: var(--color-lightgreen)
+
+    +m('old')
+      background-color: var(--color-pink)
+
+  +e('actions')
+    display: none
+
+    +media(768px)
+      position: absolute
+      left: 50%
+      transform: translateX(-50%)
+      display: flex
+
+  +e('action')
+    font-size: 12px
+    line-height: 20px
+    display: inline-flex
+    align-items: center
+    font-family: var(--monospace)
+
+    &:hover
+      color: var(--color-blue)
+
+    +m('show-below')
+      margin-right: 32px
+
+      .blob-viewer__icon
+        transform: rotate(180deg)
+
+    +m('inactive')
+      pointer-events: none
+      color: var(--color-grey-6)
+
+
 
