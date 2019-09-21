@@ -2,30 +2,24 @@ html
   display: flex
 
 body
-  min-height: 100vh
+  min-height: calc(var(--vh) * 100)
   width: 100%
   display: flex
   flex-direction: column
   margin: 0
-  //font-size: $font-size-body
-  //line-height: $line-height-body
   font-family: var(--system-ui)
-  //color: $color-text
   font-weight: 400
   -webkit-font-smoothing: antialiased
   -moz-osx-font-smoothing: grayscale
   -webkit-text-size-adjust: none
 
-  @supports (min-height: calc(var(--vh) * 100))
-    min-height: calc(var(--vh) * 100)
-
 img
   max-width: 100%
   height: auto
 
-audio, canvas,
-iframe, svg, video, img
-  vertical-align: top
+//audio, canvas,
+//iframe, svg, video, img
+//  vertical-align: top
 
 ul
   padding: 0

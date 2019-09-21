@@ -1,5 +1,4 @@
 .source
-
   +e('tabs-list')
     display: flex
     overflow: auto
@@ -7,23 +6,22 @@
     overscroll-behavior-x: contain
     border-bottom: 1px solid var(--color-grey-3)
 
-
   +e('table')
     border-collapse: collapse
     border-spacing: 0
     display: flex
     flex-direction: column
 
-    tbody
-      display: inherit
-      flex-direction: inherit
-
     +media(768px)
       display: table
       width: 100%
 
-      tbody
-        display: table-row-group
+  +e('table-body')
+    display: inherit
+    flex-direction: inherit
+
+    +media(768px)
+      display: table-row-group
 
   +e('tab-item')
     &:not(:last-child)
@@ -142,7 +140,55 @@
       color: var(--color-grey-3)
 
   +e('table-icon')
-    fill: currentColor
-
     +m('left')
       margin-right: 8px
+
+  +e('files-name')
+    width: 100%
+    box-sizing: border-box
+    max-width: inherit
+    +text-overflow()
+    display: inline-block
+    padding: 17px 24px 17px 24px
+    font-size: 18px
+    line-height: 20px
+    font-weight: 500
+
+    &:hover
+      color: #1774e9
+
+  +e('files-item')
+    max-width: 160px
+    background: #FFFFFF
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15)
+    border-radius: 4px
+    position: relative
+    overflow: hidden
+
+    &::before
+      content: ''
+      position: absolute
+      left: 0
+      bottom: 0
+      background-color: #B8BEC3
+      height: 3px
+      width: 100%
+
+    +m('hot')
+      &::before
+        background-color: #9A77FF
+
+    +media(1024px)
+      max-width: 181px
+
+  +e('files-list')
+    margin-top: 10px
+    display: grid
+    grid-template-columns: repeat(auto-fill, minmax(160px,1fr))
+    grid-gap: 8px
+
+    +media(1024px)
+      margin-top: 22px
+      grid-template-columns: repeat(auto-fill, minmax(181px,1fr))
+      grid-gap: 18px
+

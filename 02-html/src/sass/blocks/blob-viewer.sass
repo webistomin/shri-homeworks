@@ -13,7 +13,7 @@
   +e('title')
     padding-top: 11px
     padding-bottom: 11px
-    display: inline-flex
+    display: inline-block
     align-items: center
     font-weight: 400
     +text-overflow()
@@ -52,7 +52,6 @@
       max-width: 1128px
 
   +e('icon')
-    fill: currentColor
     flex-shrink: 0
 
     +m('left')
@@ -118,6 +117,12 @@
   +e('col')
     display: flex
     align-items: center
+
+    +m('left')
+      max-width: 100%
+
+      +media(768px)
+        max-width: 80%
 
     +m('align-right')
       +media(768px)

@@ -16,15 +16,15 @@
         position: absolute
         right: 0
 
+    &:last-child .breadcrumbs__link
+      font-weight: 500
+      color: var(--color-black)
+
   +e('link')
     color: var(--color-grey-7)
 
     &:hover
       text-decoration: underline
-
-    +m('current')
-      font-weight: 500
-      color: var(--color-black)
 
     &:hover
       color: var(--color-blue)

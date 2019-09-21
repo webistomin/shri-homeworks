@@ -14,13 +14,71 @@
     display: flex
     align-items: baseline
 
-    +m('margin-bottom')
-      margin-bottom: 4px
+    +m('diff-page')
+      flex-direction: column
 
       +media(1024px)
-        margin-bottom: 10px
+        flex-direction: row
+        align-items: center
+        justify-content: space-between
 
+    &:not(:last-child)
+      margin-bottom: 4px
+
+    +media(1024px)
+      &:not(:last-child)
+        margin-bottom: 10px
 
   +e('select')
     margin-left: 4px
+
+  +e('actions')
+    width: 100%
+    display: flex
+    align-items: center
+    justify-content: space-between
+    order: 1
+    margin-bottom: 10px
+    flex-shrink: 0
+
+    +media(1024px)
+      order: 2
+      width: auto
+      margin-bottom: 0
+
+  +e('title')
+    +m('order')
+      +m('2')
+        order: 2
+
+      +media(1024px)
+        order: 1
+
+  +e('link')
+    font-size: 13px
+    line-height: 15px
+    display: inline-flex
+    align-items: center
+
+    +m('back')
+      color: var(--color-grey-7)
+
+      &:hover
+        color: var(--color-blue)
+
+      +media(1024px)
+        display: none
+
+    +m('show-commits')
+      padding: 6px 12px
+      background-color: var(--color-grey-4)
+      border-radius: 4px
+
+      &:hover
+        color: var(--color-white)
+        background-color: var(--color-blue)
+
+  +e('icon')
+    +m('left')
+      margin-right: 6px
 
