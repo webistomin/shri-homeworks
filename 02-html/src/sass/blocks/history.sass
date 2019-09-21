@@ -1,0 +1,85 @@
+.history
+  padding-top: 18px
+
+  +e('date')
+    display: inline-block
+    margin-bottom: 16px
+
+  +e('table')
+    width: 100%
+    border-spacing: 0
+    border-collapse: collapse
+
+  +e('commit-icon')
+    background-color: var(--color-lightblue-2)
+    width: 40px
+    height: 40px
+    border-radius: var(--border-radius-circle)
+    position: relative
+    background-image: url("../img/icons/icon-change.svg")
+    background-position: center
+    background-size: 16px 16px
+    background-repeat: no-repeat
+
+  +e('table-data')
+    padding: 0
+    vertical-align: top
+    padding-bottom: 16px
+
+
+    +m('icon')
+      width: 40px
+      position: relative
+
+      &::before
+        content: ''
+        position: absolute
+        width: 2px
+        top: 42px
+        height: calc(100% - 44px)
+        background-color: var(--color-grey-6)
+        border-radius: var(--border-radius-10)
+        +horizontal-center()
+
+    +m('info')
+      padding-left: 12px
+
+      +media(1024px)
+        width: 75.436046511%
+        box-sizing: border-box
+
+    +m('commit')
+      display: none
+
+      +media(1024px)
+        width: 19.622093%
+        display: table-cell
+
+  +e('subtitle')
+    line-height: var(--line-height-l)
+    margin-bottom: 2px
+
+  +e('message')
+    margin-bottom: 4px
+
+  +e('commit-link')
+    margin-right: 8px
+
+  +e('table-link')
+    display: flex
+    align-items: center
+    justify-content: center
+
+    +m('source')
+      color: var(--color-grey-7)
+
+      &:hover
+        color: var(--color-blue)
+
+  +e('table-row')
+    &:last-child .history__table-data_icon::before
+      display: none
+
+  +e('table-icon')
+    fill: currentColor
+
