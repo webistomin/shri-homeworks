@@ -6,6 +6,12 @@
       &:first-letter
         color: var(--color-red-2)
 
-  +m('name')
-    +m('hidden-mobile')
+  +m('hidden-mobile')
+    display: none
+
+    +media(768px)
+      display: inline-block
+
+  +m('hidden-tablet')
+    +media(768px)
       display: none

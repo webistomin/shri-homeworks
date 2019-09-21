@@ -1,19 +1,25 @@
 .subheader
   padding-bottom: 6px
 
+  +media(1024px)
+    padding-bottom: 8px
+
   +e('current')
     padding-top: 10px
 
-  +e('title')
-    font-size: 20px
-    line-height: 28px
+    +media(1024px)
+      padding-top: 12px
 
   +e('row')
     display: flex
     align-items: baseline
 
-    &:not(:last-child)
+    +m('margin-bottom')
       margin-bottom: 4px
+
+      +media(1024px)
+        margin-bottom: 10px
+
 
   +e('select')
     margin-left: 4px

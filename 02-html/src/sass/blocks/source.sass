@@ -7,6 +7,8 @@
     overscroll-behavior-x: contain
 
   +e('table')
+    border-collapse: collapse
+    border-spacing: 0
     border-top: 1px solid var(--color-grey-3)
     display: flex
     flex-direction: column
@@ -15,77 +17,130 @@
       display: inherit
       flex-direction: inherit
 
+    +media(768px)
+      display: table
+      width: 100%
+
+      tbody
+        display: table-row-group
+
   +e('tab-item')
     &:not(:last-child)
       margin-right: 32px
 
   +e('table-row')
-    position: relative
-
-    +media(1024px)
-      &:hover
-        background-color: var(--color-grey-1)
-
-    &:first-child
-      display: none
-
+    box-sizing: border-box
+    width: 100%
     display: flex
     flex-wrap: wrap
     padding: 12px 30px 12px 0
+    position: relative
+
+    +media(768px)
+      display: table-row
+      padding: 0
+
+    +media(1024px)
+      &:not(.source__table-row_heading):hover
+        background-color: var(--color-grey-1)
 
     &:not(:last-child)
       border-bottom: 1px solid var(--color-grey-3)
+
+    +m('mobile-hidden')
+      display: none
+
+      +media(768px)
+        display: table-row
+
+    +m('heading')
+      +media(768px)
+        padding-bottom: 8px
+        padding-top: 16px
 
   +e('table-data')
     padding: 0
     display: flex
     align-items: baseline
 
-    &:first-child
+    +m('source')
       width: 100%
       order: 1
 
-    &:nth-child(2)
+    +m('commit-hash')
       order: 3
       margin-right: 8px
 
-    &:nth-child(3)
+    +m('commit-msg')
       order: 2
       width: 100%
       margin-bottom: 10px
       margin-top: 10px
 
-    &:nth-child(4)
+    +m('commiter')
       order: 4
 
-    &:nth-child(5)
+    +m('date')
       order: 5
 
-    &:nth-child(6)
+    +m('mobile-link')
       position: absolute
       top: 0
       height: 100%
-      width: 60px
+      width: 30px
       right: 0
 
-      .source__table-link
-        width: 100%
-        height: 100%
-        display: flex
-        align-items: center
-        justify-content: flex-end
+    +media(768px)
+      display: table-cell
+      width: auto
+      padding-top: 12px
+      padding-bottom: 16px
 
-        svg
-          fill: #E5E5E5
-          +ts()
+      +m('tablet-text-right')
+        text-align: right
 
-        &:hover
-          svg
-            fill: var(--color-blue)
+      +m('commit-msg')
+        margin: 0
+
+      +m('mobile-link')
+        display: none
+
+    +media(1024px)
+      +m('source')
+        width: 17.5872093%
+
+      +m('commit-hash')
+        width: 18.75%
+
+      +m('commit-msg')
+        width: 34.593023255%
+
+      +m('commiter')
+        width: 20.348837209%
+
+      +m('date')
+        width: 7.558139534%
 
   +e('table-link')
     display: inline-flex
     align-items: center
 
-  +e('table-link-icon')
-    margin-right: 8px
+    +m('action-blue')
+      &:hover
+        color: var(--color-blue)
+
+    +m('full')
+      width: 100%
+      height: 100%
+      display: flex
+      align-items: center
+      justify-content: flex-end
+
+    +m('grey-icon')
+      color: var(--color-grey-3)
+
+  +e('table-icon')
+    fill: currentColor
+
+    +m('left')
+      margin-right: 8px

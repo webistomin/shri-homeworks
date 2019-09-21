@@ -3,3 +3,17 @@
   padding: 18px 0
   color: #7f8285
   border-top: 1px solid #f0f2f3
+
+  +e('container')
+    +media(768px)
+      display: flex
+
+  +e('col')
+    +m('right')
+      +media(768px)
+        margin-left: auto
+
+  +e('copyright')
+    +media(768px)
+      display: inline-block
+      margin-left: 32px

@@ -112,6 +112,7 @@ app.get('/api/repos/:repositoryId/', (req, res) => {
 });
 
 // get all files inside repo by commit hash
+// git ls-tree 2c0ef57a727e6c22a97335298bfb73d3441122ee /layouts
 app.get('/api/repos/:repositoryId/tree/:commitHash?/:path([^/]*)?', (req, res) => {
   const { repositoryId, commitHash, path } = req.params;
   let command = '';

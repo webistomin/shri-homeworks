@@ -2,7 +2,6 @@
   font-weight: 500
   display: inline-flex
   align-items: center
-  +ts()
 
   +m('color')
     +m('grey')
@@ -14,8 +13,6 @@
   +m('text')
     +m('uppercase')
       text-transform: uppercase
-      font-size: 16px
-      line-height: 20px
 
   +e('name')
     display: inline-block
@@ -24,14 +21,14 @@
     +text-overflow()
 
     +m('current')
-      color: #000000
+      color: var(--color-black)
 
       &::after
         content: ''
         position: absolute
         width: 100%
         height: 3px
-        background-color: #ff4f49
+        background-color: var(--color-red)
         bottom: 0
         left: 0
 
@@ -41,6 +38,9 @@
 
       +m('m')
         padding: 19px 0
+
+    +media(1024px)
+      max-width: 300px
 
   +e('icon')
     fill: currentColor
