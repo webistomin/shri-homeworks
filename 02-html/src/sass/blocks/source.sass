@@ -149,17 +149,20 @@
     max-width: inherit
     +text-overflow()
     display: inline-block
-    padding: 17px 24px 17px 24px
+    padding: 12px 24px 12px 24px
     font-size: 18px
     line-height: 20px
     font-weight: 500
 
     &:hover
-      color: #1774e9
+      color: var(--color-blue)
+
+    +media(1024px)
+      padding: 17px 24px 17px 24px
 
   +e('files-item')
     max-width: 160px
-    background: #FFFFFF
+    background-color: var(--color-white)
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.15)
     border-radius: 4px
     position: relative
@@ -170,13 +173,13 @@
       position: absolute
       left: 0
       bottom: 0
-      background-color: #B8BEC3
+      background-color: var(--color-grey-6)
       height: 3px
       width: 100%
 
     +m('hot')
       &::before
-        background-color: #9A77FF
+        background-color: var(--color-purple-2)
 
     +media(1024px)
       max-width: 181px

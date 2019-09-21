@@ -30,7 +30,6 @@
         "size": 2
       }
     ],
-    "leading-zero": true,
     "no-color-keywords": true,
     "no-empty-rulesets": true,
     "one-declaration-per-line": true,
