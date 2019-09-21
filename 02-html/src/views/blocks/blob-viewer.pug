@@ -1,0 +1,14 @@
+.blob-viewer
+  .blob-viewer__container.container
+    .blob-viewer__inner
+      .blob-viewer__heading
+        .blob-viewer__inner-container.container
+          h2.blob-viewer__title.title.text.text_size_l
+            svg(role='img' width='9' height='20').blob-viewer__icon.blob-viewer__icon_left
+              use(xlink:href='img/icons/sprite.svg#icon-document')
+            |  README.md
+      .blob-viewer__content
+        .blob-viewer__inner-container.container
+          h1.blob-viewer__content-title.blob-viewer__content-title_h1.text.text_size_xl Плагины и конфиги комбайна
+          p.blob-viewer__content-text.blob-viewer__content-text_margin-bottom.text.text_size_s Плагины - статически собираются в образ, любая модификация требует пересборки образа и перевыкатки сервиса. Перед перевыкаткой нужно не забыть поменять layers на новый, версию предыдущего layer можно посмотреть в сервисе. https://nanny.yandex-team.ru/ui/#/services/dashboards/
+          p.blob-viewer__content-text.text.text_size_s Конфиги - деплоятся динамически через deploy-configs.py, который запускается по крону на всех комбайнах. Скрипт generator.py и deploy-configs.py деплоятся динамически вместе с конфигами. Каталог configs poll-ится на измененние svn ревизии раз в минуту, поэтому задержка деплоя конфигов в комбайн должна быть не больше минуты с момента мерджа в транк.

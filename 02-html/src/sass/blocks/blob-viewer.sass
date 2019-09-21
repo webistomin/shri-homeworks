@@ -1,0 +1,53 @@
+.blob-viewer
+  margin-top: 12px
+  margin-bottom: 42px
+
+  +e('container')
+    box-sizing: border-box
+    width: 100%
+    border: 1px solid var(--color-grey-3)
+    border-top-left-radius: var(--border-radius-5)
+    border-top-right-radius: var(--border-radius-5)
+    overflow: hidden
+
+  +e('title')
+    display: inline-flex
+    align-items: center
+    font-weight: 400
+
+  +e('heading')
+    padding-top: 13px
+    padding-bottom: 9px
+    background-color: var(--color-grey-10)
+    border-bottom: 1px solid var(--color-grey-3)
+
+  +e('content')
+    padding: 0 8px 24px
+
+    +media(1024px)
+      padding: 0 16px 24px
+
+  +e('content-title')
+    +m('h1')
+      margin-top: 15px
+      margin-bottom: 10px
+
+      +media(1024px)
+        margin-top: 24px
+
+  +e('content-text')
+    font-size: var(--font-size-l)
+
+    +m('margin-bottom')
+      margin-bottom: 24px
+
+    +media(768px)
+      max-width: 1128px
+
+  +e('icon')
+    +m('left')
+      margin-right: 12px
+
+  +e('inner-container')
+    +media(1024px)
+      width: 97.6744186%
