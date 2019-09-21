@@ -11,21 +11,27 @@
     overflow: hidden
 
   +e('title')
+    padding-top: 13px
+    padding-bottom: 9px
     display: inline-flex
     align-items: center
     font-weight: 400
 
   +e('heading')
-    padding-top: 13px
-    padding-bottom: 9px
     background-color: var(--color-grey-10)
     border-bottom: 1px solid var(--color-grey-3)
 
   +e('content')
     padding: 0 8px 24px
 
+    +m('full')
+      padding: 0
+
     +media(1024px)
       padding: 0 16px 24px
+
+      +m('full')
+        padding: 0
 
   +e('content-title')
     +m('h1')
@@ -49,5 +55,91 @@
       margin-right: 12px
 
   +e('inner-container')
+    +m('flex')
+      display: flex
+
+      +m('space-between')
+        justify-content: space-between
+
+      +m('align-center')
+        align-items: center
+
     +media(1024px)
       width: 97.6744186%
+
+  +e('button')
+    display: flex
+    align-items: center
+    justify-content: center
+
+    +m('download')
+      width: 38px
+      height: 28px
+      border-radius: var(--border-radius-3)
+      border: 1px solid var(--color-grey-11)
+
+      &:hover
+        color: var(--color-blue)
+        border-color: var(--color-blue)
+
+  +e('icon')
+    fill: currentColor
+
+  +e('size')
+    padding-top: 13px
+    padding-bottom: 9px
+    padding-left: 4px
+    color: var(--color-grey-12)
+    font-size: var(--font-size-xs)
+    line-height: var(--line-height-m)
+
+  +e('col')
+    display: flex
+    align-items: center
+
+  +e('content-table-data')
+    white-space: pre
+    word-wrap: normal
+
+    +m('counter')
+      width: 1%
+      color: var(--color-grey-12)
+      text-align: right
+      padding: 0 12px 0 7px
+      vertical-align: top
+      user-select: none
+
+    +m('content')
+      padding: 0
+
+    +m('language')
+      +m('python')
+        color: var(--color-darkblue)
+
+  +e('content-table')
+    font-size: var(--font-size-xxs)
+    line-height: var(--line-height-m)
+    width: 100%
+    margin-top: 8px
+    margin-bottom: 8px
+    border-collapse: collapse
+    border-spacing: 0
+    font-family: var(--monospace)
+
+  +e('content-keyword')
+    word-break: break-all
+    white-space: normal
+
+    +m('bold')
+      font-weight: 700
+
+    +m('blue')
+      color: var(--color-blue)
+
+    +m('grey')
+      color: var(--color-grey-13)
+
+  +e('content-link')
+    white-space: normal
+    word-break: break-all
+
