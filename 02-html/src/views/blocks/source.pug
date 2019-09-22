@@ -2,20 +2,20 @@ section.source
   .source__container.container
     .source__heading
       if isStructureVisible
-        ul.source__tabs-list
-          li.source__tab-item
-            a(href='inner.html').source__tab.tab.tab_text_uppercase.tab_color_grey.text.text_size_m
+        ul.source__tabs-list.list
+          li.source__tab-item.list-item
+            a(href='inner.html').source__tab.tab.tab_text_uppercase.tab_color_grey.text.text_size_m.link
               span.tab__name.tab__name_current.tab__name_space_s Files
-          li.source__tab-item
-            a(href='branches.html').source__tab.tab.tab_text_uppercase.tab_color_grey.text.text_size_m
+          li.source__tab-item.list-item
+            a(href='branches.html').source__tab.tab.tab_text_uppercase.tab_color_grey.text.text_size_m.link
               span.tab__name.tab__name_space_s Branches
       if !isStructureVisible || isHistoryVisible
-        ul.source__tabs-list
-          li.source__tab-item
-            a(href='details.html').source__tab.tab.tab_text_uppercase.tab_color_grey.text.text_size_m
+        ul.source__tabs-list.list
+          li.source__tab-item.list-item
+            a(href='details.html').source__tab.tab.tab_text_uppercase.tab_color_grey.text.text_size_m.link
               span.tab__name.tab__name_current.tab__name_space_s Details
-          li.source__tab-item
-            a(href='history.html').source__tab.tab.tab_text_uppercase.tab_color_grey.text.text_size_m
+          li.source__tab-item.list-item
+            a(href='history.html').source__tab.tab.tab_text_uppercase.tab_color_grey.text.text_size_m.link
               span.tab__name.tab__name_space_s History
     if isStructureVisible
       table.source__table
@@ -33,63 +33,63 @@ section.source
               span Updated
           tr.source__table-row.text.text_size_l
             td.source__table-data.source__table-data_source
-              a(href='inner.html').source__table-link.source__table-link_action-blue.text.text_icon_folder.text_weight_medium
+              a(href='inner.html').source__table-link.source__table-link_action-blue.text.text_icon_folder.text_weight_medium.link
                 svg(role='img' width='12' height='9').source__table-icon.source__table-icon_left.icon
                   use(xlink:href='img/icons/sprite.svg#icon-folder')
                 | api
             td.source__table-data.source__table-data_commit-hash
-              a(href='#').source__table-link.text.link.link_color_blue r3248719
+              a(href='#').source__table-link.text.link.link_color_blue.link_hover_underline r3248719
             td.source__table-data.source__table-data_commit-msg
               span.source__table-text.text [vcs] move http to a
             td.source__table-data.source__table-data_commiter
-              a(href='#').source__table-link.text
+              a(href='#').source__table-link.text.link
                 span.name.name_hidden-tablet by Alexey Besedin,
                 span.name.name.name_first-letter.name_first-letter_red.name_hidden-mobile noxoomo
             td.source__table-data.source__table-data_date.source__table-data_tablet-text-right
               time.source__table-time 4s ago
             td.source__table-data.source__table-data_mobile-link
-              a(href='#').source__table-link.source__table-link_full.source__table-link_action-blue.source__table-link_grey-icon
+              a(href='#').source__table-link.source__table-link_full.source__table-link_action-blue.source__table-link_grey-icon.link
                 svg(role='img' width='10' height='19').source__table-icon.icon
                   use(xlink:href='img/icons/sprite.svg#icon-arrow-next')
           tr.source__table-row.text.text_size_l
             td.source__table-data.source__table-data_source
-              a(href='inner.html').source__table-link.source__table-link_action-blue.text.text_icon_folder.text_weight_medium
+              a(href='inner.html').source__table-link.source__table-link_action-blue.text.text_icon_folder.text_weight_medium.link
                 svg(role='img' width='12' height='9').source__table-icon.source__table-icon_left.icon
                   use(xlink:href='img/icons/sprite.svg#icon-folder')
                 | ci
             td.source__table-data.source__table-data_commit-hash
-              a(href='#').source__table-link.text.link.link_color_blue r3248719
+              a(href='#').source__table-link.text.link.link_color_blue.link_hover_underline r3248719
             td.source__table-data.source__table-data_commit-msg
-              a(href='#').source__table-link.text.link.link_color_blue ARCADIA-771:
+              a(href='#').source__table-link.text.link.link_color_blue.link_hover_underline ARCADIA-771:
               span.source__table-text.text [vcs] move http to a
             td.source__table-data.source__table-data_commiter
-              a(href='#').source__table-link.text
+              a(href='#').source__table-link.text.link
                 span.name.name_hidden-tablet by Alexey Besedin,
                 span.name.name.name_first-letter.name_first-letter_red.name_hidden-mobile noxoomo
             td.source__table-data.source__table-data_date.source__table-data_tablet-text-right
               time.source__table-time 4s ago
             td.source__table-data.source__table-data_mobile-link
-              a(href='#').source__table-link.source__table-link_full.source__table-link_action-blue.source__table-link_grey-icon
+              a(href='#').source__table-link.source__table-link_full.source__table-link_action-blue.source__table-link_grey-icon.link
                 svg(role='img' width='10' height='19').source__table-icon.icon
                   use(xlink:href='img/icons/sprite.svg#icon-arrow-next')
           tr.source__table-row.text.text_size_l
             td.source__table-data.source__table-data_source
-              a(href='inner.html').source__table-link.source__table-link_action-blue.text.text_icon_folder.text_weight_medium
+              a(href='inner.html').source__table-link.source__table-link_action-blue.text.text_icon_folder.text_weight_medium.link
                 svg(role='img' width='12' height='9').source__table-icon.source__table-icon_left.icon
                   use(xlink:href='img/icons/sprite.svg#icon-folder')
                 | contrib
             td.source__table-data.source__table-data_commit-hash
-              a(href='#').source__table-link.text.link.link_color_blue s53dsv
+              a(href='#').source__table-link.text.link.link_color_blue.link_hover_underline s53dsv
             td.source__table-data.source__table-data_commit-msg
               span.source__table-text.text [vcs] change owner t
             td.source__table-data.source__table-data_commiter
-              a(href='#').source__table-link.text
+              a(href='#').source__table-link.text.link
                 span.name.name_hidden-tablet by Alexey Besedin,
                 span.name.name.name_first-letter.name_first-letter_red.name_hidden-mobile nalpp
             td.source__table-data.source__table-data_date.source__table-data_tablet-text-right
               time.source__table-time 1 min ago
             td.source__table-data.source__table-data_mobile-link
-              a(href='#').source__table-link.source__table-link_full.source__table-link_action-blue.source__table-link_grey-icon
+              a(href='#').source__table-link.source__table-link_full.source__table-link_action-blue.source__table-link_grey-icon.link
                 svg(role='img' width='10' height='19').source__table-icon.icon
                   use(xlink:href='img/icons/sprite.svg#icon-arrow-next')
 

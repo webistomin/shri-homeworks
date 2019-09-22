@@ -6,24 +6,24 @@
           .blob-viewer__col.blob-viewer__col_left
             strong.blob-viewer__state.blob-viewer__state_m.text.text_weight_medium.text_size_l M
             h2.blob-viewer__title.title.text.text_size_l
-              svg(role='img' width='9' height='20').blob-viewer__icon.blob-viewer__icon_left.icon
-                use(xlink:href='img/icons/sprite.svg#icon-document')
+              svg(role='img' width='11' height='20').blob-viewer__icon.blob-viewer__icon_left.icon.icon_color_grey
+                use(xlink:href='img/icons/sprite.svg#icon-file')
               |  /trunk/arcadia/devtools/intelij/src/main/java/ru/yandex/devtools/intelij/arc/client/ArcCli.java
           .blob-viewer__col.blob-viewer__col_right.blob-viewer__col_align-right
             strong.blob-viewer__state.blob-viewer__state_add.text.text_weight_medium.text_size_l +100
             strong.blob-viewer__state.blob-viewer__state_delete.text.text_weight_medium.text_size_l -81
-            button(type='button').blob-viewer__button.blob-viewer__button_share
+            button(type='button').blob-viewer__button.blob-viewer__button_share.btn
               svg(role='img' width='13' height='13').blob-viewer__icon.icon
                 use(xlink:href='img/icons/sprite.svg#icon-share')
       .blob-viewer__subheading
         .blob-viewer__inner-container.container.blob-viewer__inner-container_flex.blob-viewer__inner-container_flex_align-center
-          p.blob-viewer__stats.text.text_color_grey-6 @@ -270, 160 +270, 1 @@
+          p.blob-viewer__stats.text.text_color_grey-6.paragraph @@ -270, 160 +270, 1 @@
           .blob-viewer__actions
-            button(type='button').blob-viewer__action.blob-viewer__action_show-below.blob-viewer__action_inactive
+            button(type='button').blob-viewer__action.blob-viewer__action_show-below.blob-viewer__action_inactive.btn
               svg(role='img' width='8' height='5').blob-viewer__icon.blob-viewer__icon_left.icon
                 use(xlink:href='img/icons/sprite.svg#icon-triangle')
               | Below 20 lines
-            button(type='button').blob-viewer__action.blob-viewer__action_show-above
+            button(type='button').blob-viewer__action.blob-viewer__action_show-above.btn
               svg(role='img' width='8' height='5').blob-viewer__icon.blob-viewer__icon_left.icon
                 use(xlink:href='img/icons/sprite.svg#icon-triangle')
               | Above 20 lines
@@ -112,13 +112,13 @@
             td.blob-viewer__content-table-data.blob-viewer__content-table-data_content.blob-viewer__content-table-data_language_python        os.makedirs(path)
       .blob-viewer__subheading
         .blob-viewer__inner-container.container.blob-viewer__inner-container_flex.blob-viewer__inner-container_flex_align-center
-          p.blob-viewer__stats.text.text_color_grey-6 @@ -270, 160 +270, 1 @@
+          p.blob-viewer__stats.text.text_color_grey-6.paragraph @@ -270, 160 +270, 1 @@
           .blob-viewer__actions
-            button(type='button').blob-viewer__action.blob-viewer__action_show-below.blob-viewer__action_inactive
+            button(type='button').blob-viewer__action.blob-viewer__action_show-below.blob-viewer__action_inactive.btn
               svg(role='img' width='8' height='5').blob-viewer__icon.blob-viewer__icon_left.icon
                 use(xlink:href='img/icons/sprite.svg#icon-triangle')
               | Below 20 lines
-            button(type='button').blob-viewer__action.blob-viewer__action_show-above
+            button(type='button').blob-viewer__action.blob-viewer__action_show-above.btn
               svg(role='img' width='8' height='5').blob-viewer__icon.blob-viewer__icon_left.icon
                 use(xlink:href='img/icons/sprite.svg#icon-triangle')
               | Above 20 lines

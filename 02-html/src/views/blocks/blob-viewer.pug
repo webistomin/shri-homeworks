@@ -18,15 +18,15 @@
                 |  ya.make
               span.blob-viewer__size (4 347 bytes)
             .blob-viewer__col.blob-viewer__col_right
-              button(type='button').blob-viewer__button.blob-viewer__button_download
+              button(type='button').blob-viewer__button.blob-viewer__button_download.btn
                 svg(role='img' width='14' height='13').blob-viewer__icon
                   use(xlink:href='img/icons/sprite.svg#icon-download')
       if !isBlobTableVisible
         .blob-viewer__content
           .blob-viewer__inner-container.container
             h1.blob-viewer__content-title.blob-viewer__content-title_h1.text.text_size_xl Плагины и конфиги комбайна
-            p.blob-viewer__content-text.blob-viewer__content-text_margin-bottom.text.text_size_s Плагины - статически собираются в образ, любая модификация требует пересборки образа и перевыкатки сервиса. Перед перевыкаткой нужно не забыть поменять layers на новый, версию предыдущего layer можно посмотреть в сервисе. https://nanny.yandex-team.ru/ui/#/services/dashboards/
-            p.blob-viewer__content-text.text.text_size_s Конфиги - деплоятся динамически через deploy-configs.py, который запускается по крону на всех комбайнах. Скрипт generator.py и deploy-configs.py деплоятся динамически вместе с конфигами. Каталог configs poll-ится на измененние svn ревизии раз в минуту, поэтому задержка деплоя конфигов в комбайн должна быть не больше минуты с момента мерджа в транк.
+            p.blob-viewer__content-text.blob-viewer__content-text_margin-bottom.text.text_size_s.paragraph Плагины - статически собираются в образ, любая модификация требует пересборки образа и перевыкатки сервиса. Перед перевыкаткой нужно не забыть поменять layers на новый, версию предыдущего layer можно посмотреть в сервисе. https://nanny.yandex-team.ru/ui/#/services/dashboards/
+            p.blob-viewer__content-text.text.text_size_s.paragraph Конфиги - деплоятся динамически через deploy-configs.py, который запускается по крону на всех комбайнах. Скрипт generator.py и deploy-configs.py деплоятся динамически вместе с конфигами. Каталог configs poll-ится на измененние svn ревизии раз в минуту, поэтому задержка деплоя конфигов в комбайн должна быть не больше минуты с момента мерджа в транк.
       if isBlobTableVisible
         .blob-viewer__content.blob-viewer__content_full
           .blob-viewer__inner-container.container
@@ -60,7 +60,7 @@
                 td.blob-viewer__content-table-data.blob-viewer__content-table-data_content.blob-viewer__content-table-data_language_python
               tr.blob-viewer__content-table-row
                 td.blob-viewer__content-table-data.blob-viewer__content-table-data_counter 7
-                td.blob-viewer__content-table-data.blob-viewer__content-table-data_content.blob-viewer__content-table-data_language_python URLS = [#[a(href='https://proxy.sandbox.yandex-team.ru/453818264' target='_blank' rel='noopener noreferrer nofollow').link.link_color_blue.blob-viewer__content-link "https://proxy.sandbox.yandex-team.ru/453818264"]]
+                td.blob-viewer__content-table-data.blob-viewer__content-table-data_content.blob-viewer__content-table-data_language_python URLS = [#[a(href='https://proxy.sandbox.yandex-team.ru/453818264' target='_blank' rel='noopener noreferrer nofollow').link.link_color_blue.blob-viewer__content-link.link_hover_underline "https://proxy.sandbox.yandex-team.ru/453818264"]]
               tr.blob-viewer__content-table-row
                 td.blob-viewer__content-table-data.blob-viewer__content-table-data_counter 8
                 td.blob-viewer__content-table-data.blob-viewer__content-table-data_content.blob-viewer__content-table-data_language_python MD5 = #[span.blob-viewer__content-keyword.blob-viewer__content-keyword_blue '7f5a85f9c28d35c3a76d8cea7af51106']

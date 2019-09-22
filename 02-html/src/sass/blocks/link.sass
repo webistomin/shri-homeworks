@@ -1,7 +1,13 @@
 .link
+  color: inherit
+  text-decoration: none
+  -webkit-tap-highlight-color: transparent
+  touch-action: manipulation
 
-  &:hover
-    text-decoration: underline
+  +m('hover')
+    +m('underline')
+      &:hover
+        text-decoration: underline
 
   +m('color')
     +m('blue')
