@@ -28,7 +28,7 @@
     +m('full')
       padding: 0
 
-    +media(1024px)
+    +media(var(--desktop-media))
       padding: 0 16px 24px
 
       +m('full')
@@ -39,7 +39,7 @@
       margin-top: 15px
       margin-bottom: 10px
 
-      +media(1024px)
+      +media(var(--desktop-media))
         margin-top: 24px
 
   +e('content-text')
@@ -48,7 +48,7 @@
     +m('margin-bottom')
       margin-bottom: 24px
 
-    +media(768px)
+    +media(var(--tablet-media))
       max-width: 1128px
 
   +e('icon')
@@ -78,11 +78,11 @@
     +m('heading')
       padding-bottom: 12px
 
-      +media(768px)
+      +media(var(--tablet-media))
         padding-bottom: 0
         flex-direction: row
 
-    +media(1024px)
+    +media(var(--desktop-media))
       width: 97.6744186%
 
   +e('button')
@@ -121,11 +121,11 @@
     +m('left')
       max-width: 100%
 
-      +media(768px)
+      +media(var(--tablet-media))
         max-width: 80%
 
     +m('align-right')
-      +media(768px)
+      +media(var(--tablet-media))
         margin-left: auto
 
   +e('content-table-data')
@@ -167,7 +167,7 @@
       td:last-child
         padding-right: 4.44444445%
 
-      +media(1024px)
+      +media(var(--desktop-media))
         td:first-child
           padding-left: 2.25%
 
@@ -194,7 +194,7 @@
   +e('state')
     margin-right: 12px
 
-    +media(768px)
+    +media(var(--tablet-media))
       margin-right: 16px
 
     +m('m')
@@ -208,7 +208,7 @@
     +m('delete')
       color: var(--color-red-2)
 
-      +media(768px)
+      +media(var(--tablet-media))
         margin-right: 24px
 
   +e('subheading')
@@ -230,7 +230,7 @@
   +e('actions')
     display: none
 
-    +media(768px)
+    +media(var(--tablet-media))
       position: absolute
       left: 50%
       transform: translateX(-50%)

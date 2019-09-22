@@ -12,7 +12,7 @@
     display: flex
     flex-direction: column
 
-    +media(768px)
+    +media(var(--tablet-media))
       display: table
       width: 100%
 
@@ -20,7 +20,7 @@
     display: inherit
     flex-direction: inherit
 
-    +media(768px)
+    +media(var(--tablet-media))
       display: table-row-group
 
   +e('tab-item')
@@ -35,11 +35,11 @@
     padding: 12px 30px 12px 0
     position: relative
 
-    +media(768px)
+    +media(var(--tablet-media))
       display: table-row
       padding: 0
 
-    +media(1024px)
+    +media(var(--desktop-media))
       &:not(.source__table-row_heading):hover
         background-color: var(--color-grey-1)
 
@@ -49,11 +49,11 @@
     +m('mobile-hidden')
       display: none
 
-      +media(768px)
+      +media(var(--tablet-media))
         display: table-row
 
     +m('heading')
-      +media(768px)
+      +media(var(--tablet-media))
         padding-bottom: 8px
         padding-top: 16px
 
@@ -89,11 +89,11 @@
       width: 30px
       right: 0
 
-    +media(768px)
+    +media(var(--tablet-media))
       display: table-cell
       width: auto
-      padding-top: 12px
-      padding-bottom: 16px
+      padding-top: 14px
+      padding-bottom: 14px
 
       +m('tablet-text-right')
         text-align: right
@@ -104,7 +104,7 @@
       +m('mobile-link')
         display: none
 
-    +media(1024px)
+    +media(var(--desktop-media))
       +m('source')
         width: 17.5872093%
 
@@ -157,14 +157,14 @@
     &:hover
       color: var(--color-blue)
 
-    +media(1024px)
+    +media(var(--desktop-media))
       padding: 17px 24px 17px 24px
 
   +e('files-item')
     max-width: 160px
     background-color: var(--color-white)
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.15)
-    border-radius: 4px
+    border-radius: var(--border-radius-4)
     position: relative
     overflow: hidden
 
@@ -181,7 +181,7 @@
       &::before
         background-color: var(--color-purple-2)
 
-    +media(1024px)
+    +media(var(--desktop-media))
       max-width: 181px
 
   +e('files-list')
@@ -190,7 +190,7 @@
     grid-template-columns: repeat(auto-fill, minmax(160px,1fr))
     grid-gap: 8px
 
-    +media(1024px)
+    +media(var(--desktop-media))
       margin-top: 22px
       grid-template-columns: repeat(auto-fill, minmax(181px,1fr))
       grid-gap: 18px

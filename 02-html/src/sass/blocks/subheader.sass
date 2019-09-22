@@ -1,13 +1,13 @@
 .subheader
   padding-bottom: 6px
 
-  +media(1024px)
+  +media(var(--desktop-media))
     padding-bottom: 8px
 
   +e('current')
     padding-top: 10px
 
-    +media(1024px)
+    +media(var(--desktop-media))
       padding-top: 12px
 
   +e('row')
@@ -17,7 +17,7 @@
     +m('diff-page')
       flex-direction: column
 
-      +media(1024px)
+      +media(var(--desktop-media))
         flex-direction: row
         align-items: center
         justify-content: space-between
@@ -25,7 +25,7 @@
     &:not(:last-child)
       margin-bottom: 4px
 
-    +media(1024px)
+    +media(var(--desktop-media))
       &:not(:last-child)
         margin-bottom: 10px
 
@@ -41,7 +41,7 @@
     margin-bottom: 10px
     flex-shrink: 0
 
-    +media(1024px)
+    +media(var(--desktop-media))
       order: 2
       width: auto
       margin-bottom: 0
@@ -51,7 +51,7 @@
       +m('2')
         order: 2
 
-      +media(1024px)
+      +media(var(--desktop-media))
         order: 1
 
   +e('link')
@@ -64,13 +64,13 @@
       &:hover
         color: var(--color-blue)
 
-      +media(1024px)
+      +media(var(--desktop-media))
         display: none
 
     +m('show-commits')
       padding: 6px 12px
       background-color: var(--color-grey-4)
-      border-radius: 4px
+      border-radius: var(--border-radius-4)
 
       &:hover
         color: var(--color-white)
