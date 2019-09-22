@@ -1,12 +1,43 @@
 # Список страниц
-Страница | URL |
-Главная | https://webistomin.github.io/shri-homeworks/
-Список веток | https://webistomin.github.io/shri-homeworks/branches.html
-Diff коммита | https://webistomin.github.io/shri-homeworks/diff.html
-README.md и вложенные папки | https://webistomin.github.io/shri-homeworks/inner.html
-История изменений | https://webistomin.github.io/shri-homeworks/history.html
-Просмотр файла | https://webistomin.github.io/shri-homeworks/details.html
-Список всех папок | https://webistomin.github.io/shri-homeworks/folders.html
+
+<table>
+  <thead>
+    <tr>
+      <th>Страница</th>
+      <th>URL</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Главная</td>
+      <td>https://webistomin.github.io/shri-homeworks/</td>
+    </tr>
+    <tr>
+      <td>Список веток</td>
+      <td>https://webistomin.github.io/shri-homeworks/branches.html</td>
+    </tr>
+    <tr>
+      <td>Diff коммита</td>
+      <td>https://webistomin.github.io/shri-homeworks/diff.html</td>
+    </tr>
+    <tr>
+      <td>README.md и вложенные папки</td>
+      <td>https://webistomin.github.io/shri-homeworks/inner.html</td>
+    </tr>
+    <tr>
+      <td>История изменений</td>
+      <td>https://webistomin.github.io/shri-homeworks/history.html</td>
+    </tr>
+    <tr>
+      <td>Просмотр файла</td>
+      <td>https://webistomin.github.io/shri-homeworks/details.html</td>
+    </tr>
+    <tr>
+      <td>Список всех папок</td>
+      <td>https://webistomin.github.io/shri-homeworks/folders.html</td>
+    </tr>
+  </tbody>
+</table>
 
 ## Установка проекта
 
