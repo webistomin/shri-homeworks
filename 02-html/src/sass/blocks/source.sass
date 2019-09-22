@@ -12,7 +12,7 @@
     display: flex
     flex-direction: column
 
-    +media(var(--tablet-media))
+    +media($tablet-media)
       display: table
       width: 100%
 
@@ -20,7 +20,7 @@
     display: inherit
     flex-direction: inherit
 
-    +media(var(--tablet-media))
+    +media($tablet-media)
       display: table-row-group
 
   +e('tab-item')
@@ -35,11 +35,11 @@
     padding: 12px 30px 12px 0
     position: relative
 
-    +media(var(--tablet-media))
+    +media($tablet-media)
       display: table-row
       padding: 0
 
-    +media(var(--desktop-media))
+    +media($desktop-media)
       &:not(.source__table-row_heading):hover
         background-color: var(--color-grey-1)
 
@@ -49,11 +49,11 @@
     +m('mobile-hidden')
       display: none
 
-      +media(var(--tablet-media))
+      +media($tablet-media)
         display: table-row
 
     +m('heading')
-      +media(var(--tablet-media))
+      +media($tablet-media)
         padding-bottom: 8px
         padding-top: 16px
 
@@ -89,7 +89,7 @@
       width: 30px
       right: 0
 
-    +media(var(--tablet-media))
+    +media($tablet-media)
       display: table-cell
       width: auto
       padding-top: 14px
@@ -104,7 +104,7 @@
       +m('mobile-link')
         display: none
 
-    +media(var(--desktop-media))
+    +media($desktop-media)
       +m('source')
         width: 17.5872093%
 
@@ -157,7 +157,7 @@
     &:hover
       color: var(--color-blue)
 
-    +media(var(--desktop-media))
+    +media($desktop-media)
       padding: 17px 24px 17px 24px
 
   +e('files-item')
@@ -181,7 +181,7 @@
       &::before
         background-color: var(--color-purple-2)
 
-    +media(var(--desktop-media))
+    +media($desktop-media)
       max-width: 181px
 
   +e('files-list')
@@ -190,7 +190,7 @@
     grid-template-columns: repeat(auto-fill, minmax(160px,1fr))
     grid-gap: 8px
 
-    +media(var(--desktop-media))
+    +media($desktop-media)
       margin-top: 22px
       grid-template-columns: repeat(auto-fill, minmax(181px,1fr))
       grid-gap: 18px

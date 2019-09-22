@@ -15,12 +15,10 @@ const config = {
 gulp.task('svg:sprite', () => gulp.src('./build/img/icons/*.svg')
   .pipe(plumber({
     errorHandler: notify.onError(function(err) {
-
       return {
         title: 'Svg sprite',
         message: err.message,
       };
-
     }),
   }))
   .pipe(svgSprite(config))

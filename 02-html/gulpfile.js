@@ -8,7 +8,6 @@ tasker.loadTasks({
 });
 
 gulp.task('dev', (callback) => {
-
   runSequence(
     'clean:build',
     ['sass', 'pug', 'copy:js:libs', 'copy:js:custom', 'copy:img', 'copy:fonts'],
@@ -19,11 +18,9 @@ gulp.task('dev', (callback) => {
     'typograf',
     callback,
   );
-
 });
 
 gulp.task('build', (callback) => {
-
   runSequence(
     'clean:build',
     ['sass:build', 'pug', 'js:build:libs', 'js:build:custom', 'img:build', 'copy:fonts'],
@@ -32,10 +29,7 @@ gulp.task('build', (callback) => {
     'img:webp',
     'postcss',
     'posthtml',
-    // 'generate-favicon',
-    // 'inject-favicon-markups',
     'typograf',
     callback,
   );
-
 });

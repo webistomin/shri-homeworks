@@ -1,13 +1,13 @@
 .subheader
   padding-bottom: 6px
 
-  +media(var(--desktop-media))
+  +media($desktop-media)
     padding-bottom: 8px
 
   +e('current')
     padding-top: 10px
 
-    +media(var(--desktop-media))
+    +media($desktop-media)
       padding-top: 12px
 
   +e('row')
@@ -17,7 +17,7 @@
     +m('diff-page')
       flex-direction: column
 
-      +media(var(--desktop-media))
+      +media($desktop-media)
         flex-direction: row
         align-items: center
         justify-content: space-between
@@ -25,7 +25,7 @@
     &:not(:last-child)
       margin-bottom: 4px
 
-    +media(var(--desktop-media))
+    +media($desktop-media)
       &:not(:last-child)
         margin-bottom: 10px
 
@@ -41,7 +41,7 @@
     margin-bottom: 10px
     flex-shrink: 0
 
-    +media(var(--desktop-media))
+    +media($desktop-media)
       order: 2
       width: auto
       margin-bottom: 0
@@ -51,7 +51,7 @@
       +m('2')
         order: 2
 
-      +media(var(--desktop-media))
+      +media($desktop-media)
         order: 1
 
   +e('link')
@@ -64,7 +64,7 @@
       &:hover
         color: var(--color-blue)
 
-      +media(var(--desktop-media))
+      +media($desktop-media)
         display: none
 
     +m('show-commits')

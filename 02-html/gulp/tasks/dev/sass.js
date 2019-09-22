@@ -11,12 +11,10 @@ const rename = require('gulp-rename');
 gulp.task('sass', () => gulp.src('./src/sass/main.sass')
   .pipe(plumber({
     errorHandler: notify.onError(function(err) {
-
       return {
         title: 'Styles',
         message: err.message,
       };
-
     }),
   }))
   .pipe(sourcemaps.init())
@@ -27,7 +25,6 @@ gulp.task('sass', () => gulp.src('./src/sass/main.sass')
     basename: 'style',
   }))
   .pipe(gulp.dest('./build/css'))
-  .pipe(cleanCSS({ level: 2 }))
   .pipe(rename({
     basename: 'style',
     suffix: '.min',

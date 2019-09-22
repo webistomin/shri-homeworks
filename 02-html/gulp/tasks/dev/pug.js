@@ -7,12 +7,10 @@ const notify = require('gulp-notify');
 gulp.task('pug', () => gulp.src('./src/views/pages/**/*.pug')
   .pipe(plumber({
     errorHandler: notify.onError(function(err) {
-
       return {
         title: 'Pug',
         message: err.message,
       };
-
     }),
   }))
   .pipe(pug({

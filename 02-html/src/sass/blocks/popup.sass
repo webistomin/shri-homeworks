@@ -20,7 +20,7 @@
       transition-delay: 0.25s
       transform: none
 
-  +media(1024px)
+  +media($desktop-media)
     position: absolute
     top: 100%
     box-shadow: 0 4px 16px rgba(53, 73, 93, 0.2)
@@ -66,7 +66,7 @@
     +m('branch-select')
       padding: 24px 0
 
-    +media(1024px)
+    +media($desktop-media)
       height: 100%
       transform: none
       max-height: 360px
@@ -92,7 +92,7 @@
       &:not(:last-child)
         margin-bottom: 0
 
-      +media(1024px)
+      +media($desktop-media)
         &:hover
           background-color: var(--color-grey-14)
 
@@ -111,7 +111,7 @@
         width: calc(100% - 24px)
         background-color: var(--color-grey-3)
 
-    +media(1024px)
+    +media($desktop-media)
       &:not(:last-child)
         margin-bottom: 16px
 

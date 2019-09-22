@@ -10,7 +10,6 @@ const FAVICON_DATA_FILE = 'faviconData.json';
 // you should run it whenever RealFaviconGenerator updates its
 // package (see the check-for-favicon-update task below).
 gulp.task('generate-favicon', (done) => {
-
   realFavicon.generateFavicon({
     masterPicture: './src/img/favicon/favicon.png',
     dest: './build/img/favicon',
@@ -72,11 +71,8 @@ gulp.task('generate-favicon', (done) => {
     },
     markupFile: FAVICON_DATA_FILE,
   }, function() {
-
     done();
-
   });
-
 });
 
 // Inject the favicon markups in your HTML pages. You should run
@@ -91,16 +87,10 @@ gulp.task('inject-favicon-markups', () => gulp.src(['./build/*.html'])
 // Run this task from time to time. Ideally, make it part of your
 // continuous integration system.
 gulp.task('check-for-favicon-update', () => {
-
   const currentVersion = JSON.parse(fs.readFileSync(FAVICON_DATA_FILE)).version;
   realFavicon.checkForUpdates(currentVersion, function(err) {
-
     if (err) {
-
       throw err;
-
     }
-
   });
-
 });
