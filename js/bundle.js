@@ -62,26 +62,42 @@ const closePopup = (popupEl) => {
 
 };
 
-repositorySelectButton.addEventListener('click', () => {
+if (repositorySelectButton) {
 
-  openPopup(repositorySelectPopup);
+  repositorySelectButton.addEventListener('click', () => {
 
-});
+    openPopup(repositorySelectPopup);
 
-repositorySelectPopup.addEventListener('click', (e) => {
+  });
 
-  closePopup(e.target);
+}
 
-});
+if (repositorySelectPopup) {
 
-branchSelectButton.addEventListener('click', () => {
+  repositorySelectPopup.addEventListener('click', (e) => {
 
-  openPopup(branchSelectPopup);
+    closePopup(e.target);
 
-});
+  });
 
-branchSelectPopup.addEventListener('click', (e) => {
+}
 
-  closePopup(e.target);
+if (branchSelectButton) {
 
-});
+  branchSelectButton.addEventListener('click', () => {
+
+    openPopup(branchSelectPopup);
+
+  });
+
+}
+
+if (branchSelectPopup) {
+
+  branchSelectPopup.addEventListener('click', (e) => {
+
+    closePopup(e.target);
+
+  });
+
+}

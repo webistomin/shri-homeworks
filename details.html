@@ -12,13 +12,6 @@
     <title>Главная</title>
     <meta name="description" content="Главная страница">
     <meta name="keywords" content="Вёрстка">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:title" content="Ginger Grandpa">
-    <meta property="og:description" content="Дизайн и веб разработка">
-    <meta property="og:url" content="https://webistomin.github.io">
-    <meta property="og:image" content="https://webistomin.github.io/img/sharing/fb-image.jpg">
-    <meta property="vk:image" content="https://webistomin.github.io/img/sharing/vk-image.jpg">
     <link rel="stylesheet" href="css/style.min.css">
   </head>
   <body>
@@ -26,17 +19,17 @@
     <header class="page-header" role="banner">
       <div class="page-header__container container"><a class="page-header__home" href="/"><img class="page-header__img" src="img/blocks/logo.svg" alt="Yandex Arcanum" width="118" height="20"></a>
         <div class="page-header__actions">
-          <button class="page-header__tab tab" type="button" id="js-repository-select-btn"><span class="tab__name tab__name_current text text_size_l tab__name_space_m page-header__tab-name">Repository Arc</span>
+          <button class="page-header__tab tab btn" type="button" id="js-repository-select-btn"><span class="tab__name tab__name_current text text_size_l tab__name_space_m page-header__tab-name">Repository Arc</span>
             <svg class="tab__icon tab__icon_right" role="img" width="10" height="8">
               <use xlink:href="img/icons/sprite.svg#icon-dropdown"></use>
             </svg>
           </button>
           <div class="popup popup_repository-popup" id="js-repository-select-popup">
             <div class="popup__inner">
-              <ul class="popup__list">
-                <li class="popup__item"><a class="popup__name title" href="#">Arc</a></li>
-                <li class="popup__item"><a class="popup__name title" href="#">My repository</a></li>
-                <li class="popup__item"><a class="popup__name title" href="#">Devtools-team repository</a></li>
+              <ul class="popup__list list">
+                <li class="popup__item list-item"><a class="popup__name title link" href="#">Arc</a></li>
+                <li class="popup__item list-item"><a class="popup__name title link" href="#">My repository</a></li>
+                <li class="popup__item list-item"><a class="popup__name title link" href="#">Devtools-team repository</a></li>
               </ul>
             </div>
           </div>
@@ -47,36 +40,36 @@
       <div class="subheader">
         <div class="subheader__container container">
           <div class="subheader__heading">
-            <ul class="breadcrumbs">
-              <li class="breadcrumbs__item"><a class="breadcrumbs__link text text_size_l" href="#">arcadia</a></li>
-              <li class="breadcrumbs__item"><a class="breadcrumbs__link text text_size_l" href="#">trunk</a></li>
-              <li class="breadcrumbs__item"><a class="breadcrumbs__link text text_size_l" href="#">arcadia</a></li>
-              <li class="breadcrumbs__item"><a class="breadcrumbs__link text text_size_l" href="#">arcadia</a></li>
-              <li class="breadcrumbs__item"><a class="breadcrumbs__link text text_size_l" href="#">arcadia</a></li>
+            <ul class="breadcrumbs list list">
+              <li class="breadcrumbs__item list-item"><a class="breadcrumbs__link link text text_size_l" href="#">arcadia</a></li>
+              <li class="breadcrumbs__item list-item"><a class="breadcrumbs__link link text text_size_l" href="#">trunk</a></li>
+              <li class="breadcrumbs__item list-item"><a class="breadcrumbs__link link text text_size_l" href="#">arcadia</a></li>
+              <li class="breadcrumbs__item list-item"><a class="breadcrumbs__link link text text_size_l" href="#">arcadia</a></li>
+              <li class="breadcrumbs__item list-item"><a class="breadcrumbs__link link text text_size_l" href="#">arcadia</a></li>
             </ul>
           </div>
           <div class="subheader__current">
             <div class="subheader__row subheader__row_margin-bottom">
               <h1 class="subheader__title title text text_size_xl">arcadia</h1>
               <div class="subheader__dropdown">
-                <button class="subheader__select select select_icon_dropdown select_color_grey text text_size_xl" type="button" id="js-branch-select-btn">trunk
+                <button class="subheader__select select select_icon_dropdown select_color_grey text text_size_xl btn" type="button" id="js-branch-select-btn">trunk
                   <svg class="select__icon select__icon_right icon" role="img" width="10" height="8">
                     <use xlink:href="img/icons/sprite.svg#icon-dropdown"></use>
                   </svg>
                 </button>
                 <div class="popup popup_branch-popup" id="js-branch-select-popup">
                   <div class="popup__inner popup__inner_branch-select">
-                    <div class="popup__item popup__item_current"><a class="popup__name popup__name_white title" href="#">users/rudskoy/DEVTOO</a>
+                    <div class="popup__item popup__item_current"><a class="popup__name popup__name_white title link" href="#">users/rudskoy/DEVTOO</a>
                       <time class="popup__date popup__date_white">Last commit 1 min ago</time>
                     </div>
-                    <ul class="popup__list">
-                      <li class="popup__item popup__item_paddings"><a class="popup__name title" href="#">users/rudskoy/DEVTOO</a>
+                    <ul class="popup__list list">
+                      <li class="popup__item popup__item_paddings list-item"><a class="popup__name title link" href="#">users/rudskoy/DEVTOO</a>
                         <time class="popup__date">Last commit 1 min ago</time>
                       </li>
-                      <li class="popup__item popup__item_paddings"><a class="popup__name title" href="#">users/rudskoy/DEVTOO</a>
+                      <li class="popup__item popup__item_paddings list-item"><a class="popup__name title link" href="#">users/rudskoy/DEVTOO</a>
                         <time class="popup__date">Last commit 1 min ago</time>
                       </li>
-                      <li class="popup__item popup__item_paddings"><a class="popup__name title" href="#">users/rudskoy/DEVTOO</a>
+                      <li class="popup__item popup__item_paddings list-item"><a class="popup__name title link" href="#">users/rudskoy/DEVTOO</a>
                         <time class="popup__date">Last commit 1 min ago</time>
                       </li>
                     </ul>
@@ -85,7 +78,7 @@
               </div>
             </div>
             <div class="subheader__row">
-              <p class="subheader__info text text_size_l">Last commit <a class="subheader__link link link_color_blue text text_size_xs" href="#">r3248813</a> on <a class="subheader__link link link_color_blue" href="#">
+              <p class="subheader__info text text_size_l paragraph">Last commit <a class="subheader__link link link_color_blue text text_size_xs link_hover_underline" href="#">r3248813</a> on <a class="subheader__link link link_color_blue link_hover_underline" href="#">
                   <time class="subheader__time">20 Oct 2017, 12:24</time></a> by <span class="subheader__name name name_first-letter name_first-letter_red">robot-srch-releaser</span></p>
             </div>
           </div>
@@ -94,9 +87,9 @@
       <section class="source">
         <div class="source__container container">
           <div class="source__heading">
-            <ul class="source__tabs-list">
-              <li class="source__tab-item"><a class="source__tab tab tab_text_uppercase tab_color_grey text text_size_m" href="details.html"><span class="tab__name tab__name_current tab__name_space_s">Details</span></a></li>
-              <li class="source__tab-item"><a class="source__tab tab tab_text_uppercase tab_color_grey text text_size_m" href="history.html"><span class="tab__name tab__name_space_s">History</span></a></li>
+            <ul class="source__tabs-list list">
+              <li class="source__tab-item list-item"><a class="source__tab tab tab_text_uppercase tab_color_grey text text_size_m link" href="details.html"><span class="tab__name tab__name_current tab__name_space_s">Details</span></a></li>
+              <li class="source__tab-item list-item"><a class="source__tab tab tab_text_uppercase tab_color_grey text text_size_m link" href="history.html"><span class="tab__name tab__name_space_s">History</span></a></li>
             </ul>
           </div>
         </div>
@@ -114,7 +107,7 @@
                   </h2><span class="blob-viewer__size">(4 347 bytes)</span>
                 </div>
                 <div class="blob-viewer__col blob-viewer__col_right">
-                  <button class="blob-viewer__button blob-viewer__button_download" type="button">
+                  <button class="blob-viewer__button blob-viewer__button_download btn" type="button">
                     <svg class="blob-viewer__icon" role="img" width="14" height="13">
                       <use xlink:href="img/icons/sprite.svg#icon-download"></use>
                     </svg>
@@ -151,7 +144,7 @@
                   </tr>
                   <tr class="blob-viewer__content-table-row">
                     <td class="blob-viewer__content-table-data blob-viewer__content-table-data_counter">7</td>
-                    <td class="blob-viewer__content-table-data blob-viewer__content-table-data_content blob-viewer__content-table-data_language_python">URLS = [<a class="link link_color_blue blob-viewer__content-link" href="https://proxy.sandbox.yandex-team.ru/453818264" target="_blank" rel="noopener noreferrer nofollow">"https://proxy.sandbox.yandex-team.ru/453818264"</a>]</td>
+                    <td class="blob-viewer__content-table-data blob-viewer__content-table-data_content blob-viewer__content-table-data_language_python">URLS = [<a class="link link_color_blue blob-viewer__content-link link_hover_underline" href="https://proxy.sandbox.yandex-team.ru/453818264" target="_blank" rel="noopener noreferrer nofollow">"https://proxy.sandbox.yandex-team.ru/453818264"</a>]</td>
                   </tr>
                   <tr class="blob-viewer__content-table-row">
                     <td class="blob-viewer__content-table-data blob-viewer__content-table-data_counter">8</td>
