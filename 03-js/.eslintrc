@@ -1,0 +1,41 @@
+{
+  "extends": "eslint-config-airbnb-es5",
+  "parser": "babel-eslint",
+  "plugins": [
+    "es5"
+  ],
+  "env": {
+    "browser": false,
+    "node": true,
+    "mocha": false
+  },
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "globals": {
+    "window": false,
+    "document": false
+  },
+  "rules": {
+    "es5/no-arrow-functions": "error",
+    "no-unused-vars": "off",
+    "no-undef": "off",
+    "no-eval": "error",
+    "indent": ["error", 2],
+    "quotes": ["error", "single"],
+    "no-console": ["error", { "allow": ["warn", "info"] }],
+    "space-before-function-paren": ["error", "never"],
+    "padded-blocks": ["error", "never"],
+    "func-names": ["error", "never"],
+    "no-use-before-define": [
+      "error", {
+        "functions": true,
+        "classes": true
+      }
+    ],
+    "max-nested-callbacks": [
+      "error",
+      5
+    ]
+  }
+}
