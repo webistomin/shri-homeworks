@@ -20,6 +20,25 @@
       transition-delay: 0.25s
       transform: none
 
+  +media(1024px)
+    position: absolute
+    top: 100%
+    box-shadow: 0 4px 16px rgba(53, 73, 93, 0.2)
+
+    +m('visible')
+      .popup__inner
+        transition-delay: 0s
+
+    +m('repository-popup')
+      height: 124px
+      width: 266px
+
+    +m('branch-popup')
+      height: 360px
+      width: 320px
+      border-radius: 5px
+      overflow: hidden
+
   +e('inner')
     padding: 36px 16px 24px
     background-color: var(--color-white)
@@ -44,14 +63,80 @@
       background-color: var(--color-grey-3)
       border-radius: 10px
 
+    +m('branch-select')
+      padding: 24px 0
+
+    +media(1024px)
+      height: 100%
+      transform: none
+      max-height: 360px
+      border-radius: 0
+      padding: 14px 22px 18px 22px
+
+      &::before
+        display: none
+
+      +m('branch-select')
+        padding: 4px 0 0
+
   +e('item')
+    display: flex
+    flex-direction: column
 
     &:not(:last-child)
       margin-bottom: 24px
 
+    +m('paddings')
+      padding: 8px 12px
+
+      &:not(:last-child)
+        margin-bottom: 0
+
+      +media(1024px)
+        &:hover
+          background-color: var(--color-grey-14)
+
+    +m('current')
+      padding: 8px 12px 8px
+      background-color: var(--color-grey-8)
+      margin-bottom: 20px
+      position: relative
+
+      &::before
+        content: ''
+        position: absolute
+        +horizontal-center()
+        bottom: -5px
+        height: 1px
+        width: calc(100% - 24px)
+        background-color: var(--color-grey-3)
+
+    +media(1024px)
+      &:not(:last-child)
+        margin-bottom: 16px
+
+      +m('paddings')
+        &:not(:last-child)
+          margin-bottom: 0
+
   +e('name')
+    font-size: var(--font-size-l)
+    line-height: var(--line-height-l)
     font-weight: 500
 
     &:hover
       color: var(--color-blue)
+
+    +m('white')
+      color: var(--color-white)
+
+  +e('date')
+    margin-top: 2px
+    color: var(--color-grey-9)
+    font-size: var(--font-size-xs)
+    line-height: var(--line-height-m)
+
+    +m('white')
+      color: var(--color-white)
+
 

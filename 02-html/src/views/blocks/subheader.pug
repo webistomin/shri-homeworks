@@ -5,8 +5,10 @@
     .subheader__current
       .subheader__row.subheader__row_margin-bottom
         h1.subheader__title.title.text.text_size_xl arcadia
-        button(type='button').subheader__select.select.select_icon_dropdown.select_color_grey.text.text_size_xl trunk
-          svg(role='img' width='10' height='8').select__icon.select__icon_right.icon
-            use(xlink:href='img/icons/sprite.svg#icon-dropdown')
+        .subheader__dropdown
+          button(type='button').subheader__select.select.select_icon_dropdown.select_color_grey.text.text_size_xl#js-branch-select-btn trunk
+            svg(role='img' width='10' height='8').select__icon.select__icon_right.icon
+              use(xlink:href='img/icons/sprite.svg#icon-dropdown')
+          include ../blocks/popup-branch.pug
       .subheader__row
-        p.subheader__info.text.text_size_l Last commit #[a(href='#').subheader__link.link.link_color_blue r3248813] on #[a(href='#').subheader__link.link.link_color_blue #[time.subheader__time 20 Oct 2017, 12:24]] by #[span.subheader__name.name.name_first-letter.name_first-letter_red robot-srch-releaser]
+        p.subheader__info.text.text_size_l Last commit #[a(href='#').subheader__link.link.link_color_blue.text.text_size_xs r3248813] on #[a(href='#').subheader__link.link.link_color_blue #[time.subheader__time 20 Oct 2017, 12:24]] by #[span.subheader__name.name.name_first-letter.name_first-letter_red robot-srch-releaser]
