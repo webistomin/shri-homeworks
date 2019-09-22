@@ -74,8 +74,7 @@
     "posthtml-lazyload": "^1.0.2",
     "posthtml-link-noreferrer": "^1.0.3",
     "posthtml-w3c": "^0.8.1",
-    "psi": "^3.1.0",
-    "sw-precache": "^5.2.1"
+    "psi": "^3.1.0"
   },
   "dependencies": {}
 }
