@@ -51,7 +51,7 @@
       console.log(value); // Ошибка обработана"
     });
 
-  let catchPromise = new Promise(function(resolve, reject) {
+  var catchPromise = new Promise(function(resolve, reject) {
     return setTimeout(function() {
       reject(new Error("Ошибка!"));
     }, 1000);
