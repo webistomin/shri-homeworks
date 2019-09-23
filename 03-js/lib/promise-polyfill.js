@@ -98,10 +98,6 @@
     return this.then(null, onRejected);
   };
 
-  Promise.prototype.catch = function(onRejected) {
-    return this.then(null, onRejected);
-  };
-
   Promise.resolve = function(value) {
     return new Promise(function(resolve) {
       return resolve(value);
@@ -111,6 +107,14 @@
   Promise.reject = function(reason) {
     return new Promise(function(resolve, reject)  {
       return reject(reason);
+    });
+  };
+
+  Promise.race = function(arrayWithPromises) {
+    return new Promise(function(resolve, reject) {
+      arrayWithPromises.forEach(function(promise) {
+        promise.then(resolve, reject);
+      });
     });
   };
 
