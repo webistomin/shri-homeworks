@@ -5,6 +5,9 @@
   "main": "src/promise-polyfill.js",
   "author": "webistomin",
   "license": "ISC",
+  "scripts": {
+    "test": "mocha \"./test/promise.spec.js\""
+  },
   "devDependencies": {
     "babel-eslint": "^10.0.3",
     "eslint": "^6.4.0",

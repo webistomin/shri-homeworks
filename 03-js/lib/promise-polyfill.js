@@ -132,4 +132,8 @@
     console.info('promise polyfill enabled');
     globalNamespace.Promise = Promise;
   }
+
+  if (typeof exports === 'object') {
+    module.exports = Promise;
+  }
 })();
