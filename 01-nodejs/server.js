@@ -5,10 +5,14 @@ const path = require('path');
 const fs = require('fs');
 const showBanner = require('node-banner');
 const utils = require('./utils/utils');
+const util = require('util');
+const rimraf = require('rimraf');
+const asyncFsStat = util.promisify(fs.stat);
+const asyncExec = util.promisify(cp.exec);
 
 const app = express();
 app.listen(3000, () => {
-  (async () => {
+  (async() => {
     await showBanner('SHRI 2019', 'Simple node.js git client. Server available on localhost:3000');
   })();
 });
@@ -23,25 +27,28 @@ app.get('/', (req, res) => {
 });
 
 // get all repos inside folder
-app.get('/api/repos/', (req, res) => {
-  res.json({git_repos: utils.getAllFilesInsideFolder(directoryPath)});
+app.get('/api/repos/', async (req, res) => {
+  res.json(await utils.getAllFilesInsideFolder(directoryPath));
 });
 
 // get array of commits
 app.get('/api/repos/:repositoryId/commits/:commitHash/:page?', (req, res) => {
   const { repositoryId, commitHash } = req.params;
-  const [ page, paginateBy ] = req.params.page ? req.params.page.split('-') : [];
+  const [page, paginateBy] = req.params.page ? req.params.page.split('-') : [];
   const command = `git checkout ${commitHash} --quiet && git log --pretty=format:"%h%x09%an%x09%ad%x09%s" --full-history`;
   const cwd = `${directoryPath}/${repositoryId}`;
   const isCommandValid = utils.isCommandValid(command, cwd);
   
   const getArrayOfCommits = () => {
-    let result = cp.execSync(command, {cwd}, (err, stdout) => {
-        if (err) {
-          throw err;
-        }
-        return stdout;
-    }).toString().replace(/(\r\n|\n|\r)/gm, "\t").split("\t");
+    let result = cp.execSync(command, { cwd }, (err, stdout) => {
+      if (err) {
+        throw err;
+      }
+      return stdout;
+    })
+      .toString()
+      .replace(/(\r\n|\n|\r)/gm, '\t')
+      .split('\t');
     
     return utils.getBeautifiedCommits(utils.getChunks(result, 4));
   };
@@ -49,20 +56,23 @@ app.get('/api/repos/:repositoryId/commits/:commitHash/:page?', (req, res) => {
   if (isCommandValid) {
     if (+page) {
       if (page * paginateBy > Math.ceil((getArrayOfCommits().length + 1) / paginateBy) * paginateBy) {
-        res.status(404).send(`
+        res.status(404)
+          .send(`
         Последняя страница: ${Math.ceil(getArrayOfCommits().length / paginateBy)}
         Всего коммитов: ${getArrayOfCommits().length}
         `);
       } else {
-        res.json({commits: utils.getPaginatedData(getArrayOfCommits(), paginateBy, page)});
+        res.json({ commits: utils.getPaginatedData(getArrayOfCommits(), paginateBy, page) });
       }
     } else if (+page === 0) {
-      res.status(404).send(`Первая страница: 1`);
+      res.status(404)
+        .send(`Первая страница: 1`);
     } else {
-      res.json({commits: getArrayOfCommits()});
+      res.json({ commits: getArrayOfCommits() });
     }
   } else {
-    res.status(404).send('Что-то пошло не так!');
+    res.status(404)
+      .send('Что-то пошло не так!');
   }
 });
 
@@ -74,17 +84,19 @@ app.get('/api/repos/:repositoryId/commits/:commitHash/diff', (req, res) => {
   const isCommandValid = utils.isCommandValid(command, cwd);
   
   if (isCommandValid) {
-    let result = cp.execSync(command, {cwd}, (err, stdout) => {
-      if(err) {
+    let result = cp.execSync(command, { cwd }, (err, stdout) => {
+      if (err) {
         throw err;
       }
       return stdout;
-    }).toString();
-  
-    res.writeHead(200, {'Content-Type': 'text/plain; charset=utf-8'});
-    res.end(result)
+    })
+      .toString();
+    
+    res.writeHead(200, { 'Content-Type': 'text/plain; charset=utf-8' });
+    res.end(result);
   } else {
-    res.status(404).send('Что-то пошло не так!');
+    res.status(404)
+      .send('Что-то пошло не так!');
   }
 });
 
@@ -95,113 +107,108 @@ app.get('/api/repos/:repositoryId/', (req, res) => {
   let result = [];
   
   if (fs.existsSync(dir)) {
-    cp.execSync('git checkout master', {cwd: dir});
+    cp.execSync('git checkout master', { cwd: dir });
     const readDirSync = (dir) => {
-      const files = fs.readdirSync(dir).map(file => path.posix.join(dir, file));
+      const files = fs.readdirSync(dir)
+        .map(file => path.posix.join(dir, file));
       files.forEach((file) => {
-        result.push(file.slice(file.lastIndexOf('/') + 1 , file.length));
+        result.push(file.slice(file.lastIndexOf('/') + 1, file.length));
       });
-      return result
+      return result;
     };
-    res.json({files: readDirSync(dir)});
+    res.json({ files: readDirSync(dir) });
   } else {
-    res.status(404).send(`
+    res.status(404)
+      .send(`
     Такого репозитория не существует!
-    Доступны: ${utils.getAllFilesInsideFolder(directoryPath).join(', ')}`);
+    Доступны: ${utils.getAllFilesInsideFolder(directoryPath)
+        .join(', ')}`);
   }
 });
 
 // get all files inside repo by commit hash
-// git ls-tree 2c0ef57a727e6c22a97335298bfb73d3441122ee /layouts
-app.get('/api/repos/:repositoryId/tree/:commitHash?/:path([^/]*)?', (req, res) => {
+app.get('/api/repos/:repositoryId/tree/:commitHash?/:path([^/]*)?', async (req, res) => {
   const { repositoryId, commitHash, path } = req.params;
-  let command = '';
+  const fsPath = require('path');
+  const cwd = fsPath.resolve(directoryPath, repositoryId);
+  let command = null;
   
   if (commitHash && path) {
-    command = `git checkout ${commitHash} --quiet && cd ${path} && ls -A`;
+    command = `git ls-tree ${commitHash} ${path} --name-only`;
   } else if (commitHash && !path) {
-    command = `git checkout ${commitHash} --quiet && ls -A`;
+    command = `git ls-tree ${commitHash} --name-only`;
   } else if (!commitHash && !path) {
-    res.redirect(`/api/repos/${repositoryId}/`)
+    res.redirect(`/api/repos/${repositoryId}/`);
   }
   
-  const cwd = `${directoryPath}/${repositoryId}`;
-  const isCommandValid = utils.isCommandValid(command, cwd);
-  
-  if (isCommandValid) {
-    let result = cp.execSync(command, {cwd}, (err, stdout) => {
-      if (err) {
-        throw err;
-      }
-      return stdout;
-    }).toString().split("\n");
-  
-    res.json({files: result.filter((el) => el)});
-  } else {
-    res.redirect(`/api/repos/${repositoryId}/`)
+  try {
+    const { stdout } = await asyncExec(command, { cwd });
+    const allFiles = stdout.toString().split('\n');
+    const allFilesFormatted = allFiles
+      .filter((el) => el)
+      .map((el) => fsPath.basename(el));
+    res.json({ files: allFilesFormatted });
+  } catch (error) {
+    res.json({ message: error.stderr });
   }
 });
 
 // get file text
-app.get('/api/repos/:repositoryId/blob/:commitHash/:pathToFile([^/]*)', (req, res) => {
+app.get('/api/repos/:repositoryId/blob/:commitHash/:pathToFile([^/]*)', async (req, res) => {
   const { repositoryId, commitHash, pathToFile } = req.params;
   const command = `git show ${commitHash}:${pathToFile}`;
-  const cwd = `${directoryPath}/${repositoryId}`;
-  const isCommandValid = utils.isCommandValid(command, cwd);
+  const cwd = path.resolve(directoryPath, repositoryId);
   
-  if (isCommandValid) {
-    const result = cp.execSync(command, {cwd}, (err, stdout) => {
-        if (err) {
-          throw err;
-        }
-        return stdout;
-      });
-  
-    res.writeHead(200, {'Content-Type': 'text/plain; charset=utf-8'});
-    res.end(result);
-  } else {
-    res.status(404).send('Что-то пошло не так!');
+  try {
+    const { stdout } = await asyncExec(command, { cwd });
+    res.writeHead(200, { 'Content-Type': 'text/plain; charset=utf-8' });
+    res.end(stdout);
+  } catch (error) {
+    res.json({message: 'Что-то пошло не так'});
   }
 });
 
 // download repo
-app.post('/api/repos/:repositoryId', (req, res) => {
+app.post('/api/repos/:repositoryId', async(req, res) => {
   const { url } = req.body;
   const { repositoryId } = req.params;
   const command = `git clone ${url} ${repositoryId}`;
   const cwd = `${directoryPath}`;
+  let isRepositoryExist = false;
   
-  const isCommandValid = utils.isCommandValid(`git ls-remote ${url}`, cwd);
+  try {
+    let result = await asyncFsStat(path.resolve(cwd, repositoryId));
+    isRepositoryExist = result.isDirectory();
+  } catch (error) {}
   
-  if (fs.existsSync(path.posix.join(cwd, repositoryId))) {
-    res.status(404).send('Репозиторий уже существует. Удалите его во избежание конфликта.');
-  } else if (isCommandValid) {
-    cp.execSync(command, {cwd}, (err, stdout) => {
-      if (err) {
-        throw err;
-      }
-      return stdout;
-    });
-  
-    res.json({message: `Репозиторий ${repositoryId} добавлен в рабочую директорию.`});
+  if (isRepositoryExist) {
+    res.json({ message: 'Репозиторий уже существует. Удалите его во избежание конфликта.' });
   } else {
-    res.status(404).send('Что-то пошло не так!');
+    try {
+      await asyncExec(command, { cwd });
+      res.json({ message: `Репозиторий ${repositoryId} добавлен в рабочую директорию.` });
+    } catch (error) {
+      res.json({ message: 'Ошибка при скачивании репозитория.' });
+    }
   }
 });
 
 // delete repo by id
-app.delete('/api/repos/:repositoryId',  (req, res) => {
+app.delete('/api/repos/:repositoryId', async(req, res) => {
   const { repositoryId } = req.params;
-  const reposPath = `${directoryPath}/${repositoryId}`;
+  const reposPath = path.resolve(directoryPath, repositoryId);
   
-  if (fs.existsSync(reposPath)) {
-    utils.deleteFolderRecursive(reposPath);
-    res.json({message: 'successfully deleted ' + repositoryId});
-  } else {
-    res.status(404).send(`Репозитория ${repositoryId} не существует.`);
+  try {
+    await asyncFsStat(reposPath);
+    rimraf(reposPath, () => {
+      res.json({ message: `${repositoryId} удалён.`  });
+    });
+  } catch (error) {
+    res.status(404).json({ message: `${error.code}: ${repositoryId} не найден.` });
   }
 });
 
 app.get('*', (req, res) => {
-  res.status(404).send('Такого API не существует!');
+  res.status(404)
+    .send('Такого API не существует!');
 });

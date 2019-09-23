@@ -1,6 +1,9 @@
 const cp = require('child_process');
 const path = require('path');
 const fs = require('fs');
+const util = require('util');
+const asyncFsStat = util.promisify(fs.stat);
+const asyncReadDir = util.promisify(fs.readdir);
 
 exports.getChunks = (arr, chunkSize = 1, cache = []) => {
   const tmp = [...arr];
@@ -31,35 +34,32 @@ exports.isCommandValid = (command, cwd) => {
   }
 };
 
-exports.getAllFilesInsideFolder = (dir) => {
+exports.getAllFilesInsideFolder = async (dir) => {
+  try {
+    const isExists = await asyncFsStat(path.resolve(dir));
   
-  if (fs.existsSync(dir)) {
-    let result = [];
-    const files = fs.readdirSync(dir).map(file => path.posix.join(dir, file));
-  
-    files.forEach((file) => {
-      if (fs.statSync(file).isDirectory() && file.slice(file.lastIndexOf('/') + 1 , file.length) !== '.git') {
-        if (fs.readdirSync(`${file}/`).map(file => file).includes('.git')) {
-          result.push(file.slice(file.lastIndexOf('/') + 1 , file.length));
+    if (isExists.isDirectory()) {
+      let result = [];
+      const files = await asyncReadDir(dir);
+      const filesFullPath = files.map(file => path.resolve(dir, file));
+    
+      for (const file of filesFullPath) {
+        const isGitFolder = file.endsWith('.git');
+        const isExists = await asyncFsStat(path.resolve(dir));
+      
+        if (isExists.isDirectory() && !isGitFolder) {
+          const filesInsideDirectory = await asyncReadDir(path.resolve(file));
+          if (filesInsideDirectory.includes('.git')) {
+            result.push(path.basename(file));
+          }
         }
       }
-    });
-    return result
-  }
-  
-  return `Путь ${dir} не существует`
-};
-
-exports.deleteFolderRecursive = (dir) => {
-  fs.readdirSync(dir).forEach((file) => {
-    let curPath = path.posix.join(dir, file);
-    if(fs.lstatSync(curPath).isDirectory()) {
-      module.exports.deleteFolderRecursive(curPath);
-    } else {
-      fs.unlinkSync(curPath);
+    
+      return { 'git_repos': result }
     }
-  });
-  fs.rmdirSync(dir);
+  } catch (error) {
+    return { message: `Путь ${dir} не существует` }
+  }
 };
 
 exports.getPaginatedData = (array, pageSize = 10, pageNumber) => {

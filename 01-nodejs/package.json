@@ -4,16 +4,20 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon server.js --path=./repos"
+    "dev": "nodemon server.js --path=./repos",
+    "loadtest": "loadtest -c 10 -t 20 --rps 200  http://localhost:3000/api/repos/"
   },
   "author": "webistomin",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
     "node-banner": "^1.3.2",
+    "rimraf": "^3.0.0",
     "yargs": "^14.0.0"
   },
   "devDependencies": {
+    "loadtest": "^3.0.8",
     "nodemon": "^1.19.2"
   }
 }
+
