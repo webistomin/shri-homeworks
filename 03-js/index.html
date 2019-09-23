@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<style>
+  body {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+  }
+</style>
+<body>
+<h1>Promise Pollyfil</h1>
+<h2><code>see the output of console.log()</code></h2>
+</body>
+<script src="lib/promise-polyfill.js"></script>
+<script>
+  var promise = new Promise(function (resolve) {
+    resolve(42);
+  });
+  
+  promise
+    .then(function (value) {
+      console.log(value); //42
+      return value + 1;
+    })
+    .then(function (value) {
+      console.log(value); // 43
+      return new Promise(function (resolve) {
+        resolve(137);
+      });
+    })
+    .then(function (value) {
+      console.log(value); // 137
+      throw new Error();
+    })
+    .then(
+      function () {
+        console.log('Будет проигнорировано');
+      },
+      function () {
+        return 'Ошибка обработана';
+      }
+    )
+    .then(function (value) {
+      console.log(value); // Ошибка обработана"
+    });
+
+  let catchPromise = new Promise(function(resolve, reject) {
+    return setTimeout(function() {
+      reject(new Error("Ошибка!"));
+    }, 1000);
+  });
+  catchPromise.catch(function(error) {
+    console.log(error)
+  }); // выведет "Error: Ошибка!" спустя одну секунду
+
+  var p1 = new Promise(function(resolve) {
+    setTimeout(resolve, 500, 'Первый');
+  });
+  var p2 = new Promise(function(resolve) {
+    setTimeout(resolve, 100, 'Второй');
+  });
+
+  Promise.race([p1, p2]).then(function(value) {
+    console.log(value); // "Второй"
+    // Оба выполнятся, но p2 быстрее
+  });
+</script>
+</html>
