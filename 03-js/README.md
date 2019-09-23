@@ -43,10 +43,10 @@ catchPromise.catch((error) => {
   console.log(error)
 }); // выведет "Error: Ошибка!" спустя одну секунду
 
-const p1 = new Promise(function (resolve) {
+const p1 = new Promise((resolve) => {
   setTimeout(resolve, 500, 'Первый');
 });
-const p2 = new Promise(function (resolve) {
+const p2 = new Promise((resolve) => {
   setTimeout(resolve, 100, 'Второй');
 });
 
