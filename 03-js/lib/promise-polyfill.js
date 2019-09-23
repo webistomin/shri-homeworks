@@ -12,6 +12,10 @@
   };
 
   var Promise = function(executor) {
+    if (typeof executor !== 'function') {
+      throw new TypeError('Argument must be a function');
+    }
+
     this.state = promiseStates.pending;
     this.value = null;
     this.promisesQueue = [];
@@ -26,7 +30,11 @@
 
   Promise.prototype.resolver = function(value) {
     if (isObjectThenable(value)) {
-      value.then.call(value, this.resolver.bind(this), this.rejecter.bind(this));
+      try {
+        value.then.call(value, this.resolver.bind(this), this.rejecter.bind(this));
+      } catch (error) {
+        this.rejecter(error);
+      }
       return;
     }
 
@@ -111,6 +119,10 @@
   };
 
   Promise.race = function(arrayWithPromises) {
+    if (!Array.isArray(arrayWithPromises)) {
+      throw new TypeError(arrayWithPromises + ' is not iterable');
+    }
+
     return new Promise(function(resolve, reject) {
       arrayWithPromises.forEach(function(promise) {
         promise.then(resolve, reject);
@@ -119,6 +131,9 @@
   };
 
   var globalNamespace = (function() {
+    if (typeof self !== 'undefined') {
+      return self;
+    }
     if (typeof window !== 'undefined') {
       return window;
     }
