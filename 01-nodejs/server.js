@@ -32,121 +32,82 @@ app.get('/api/repos/', async (req, res) => {
 });
 
 // get array of commits
-app.get('/api/repos/:repositoryId/commits/:commitHash/:page?', (req, res) => {
+app.get('/api/repos/:repositoryId/commits/:commitHash', async (req, res) => {
   const { repositoryId, commitHash } = req.params;
-  const [page, paginateBy] = req.params.page ? req.params.page.split('-') : [];
-  const command = `git checkout ${commitHash} --quiet && git log --pretty=format:"%h%x09%an%x09%ad%x09%s" --full-history`;
-  const cwd = `${directoryPath}/${repositoryId}`;
-  const isCommandValid = utils.isCommandValid(command, cwd);
+  const { page, paginateBy } = req.query;
+  const command = `git log ${commitHash} --pretty=format:"%h%x09%an%x09%ad%x09%s" --full-history --quiet`;
+  const cwd = path.resolve(directoryPath, repositoryId);
   
-  const getArrayOfCommits = () => {
-    let result = cp.execSync(command, { cwd }, (err, stdout) => {
-      if (err) {
-        throw err;
-      }
-      return stdout;
-    })
-      .toString()
-      .replace(/(\r\n|\n|\r)/gm, '\t')
-      .split('\t');
-    
-    return utils.getBeautifiedCommits(utils.getChunks(result, 4));
-  };
-  
-  if (isCommandValid) {
-    if (+page) {
-      if (page * paginateBy > Math.ceil((getArrayOfCommits().length + 1) / paginateBy) * paginateBy) {
-        res.status(404)
-          .send(`
-        Последняя страница: ${Math.ceil(getArrayOfCommits().length / paginateBy)}
-        Всего коммитов: ${getArrayOfCommits().length}
-        `);
-      } else {
-        res.json({ commits: utils.getPaginatedData(getArrayOfCommits(), paginateBy, page) });
-      }
-    } else if (+page === 0) {
-      res.status(404)
-        .send(`Первая страница: 1`);
-    } else {
-      res.json({ commits: getArrayOfCommits() });
-    }
-  } else {
-    res.status(404)
-      .send('Что-то пошло не так!');
+  try {
+    let { stdout } = await asyncExec(command, { cwd });
+    let stringOfCommits = stdout.toString().replace(/(\r\n|\n|\r)/gm, '\t').split('\t');
+    let getChunkedArray = utils.getBeautifiedCommits(utils.getChunks(stringOfCommits, 4));
+    res.json({ commits: getChunkedArray });
+  } catch (error) {
+    res.send({ message: error.stderr });
   }
+  
+  
+  
+  //
+  // if (isCommandValid) {
+  //   if (+page) {
+  //     if (page * paginateBy > Math.ceil((getArrayOfCommits().length + 1) / paginateBy) * paginateBy) {
+  //       res.status(404)
+  //         .send(`
+  //       Последняя страница: ${Math.ceil(getArrayOfCommits().length / paginateBy)}
+  //       Всего коммитов: ${getArrayOfCommits().length}
+  //       `);
+  //     } else {
+  //       res.json({ commits: utils.getPaginatedData(getArrayOfCommits(), paginateBy, page) });
+  //     }
+  //   } else if (+page === 0) {
+  //     res.status(404)
+  //       .send(`Первая страница: 1`);
+  //   } else {
+  //     res.json({ commits: getArrayOfCommits() });
+  //   }
+  // } else {
+  //   res.status(404)
+  //     .send('Что-то пошло не так!');
+  // }
 });
 
 // get commit diff
-app.get('/api/repos/:repositoryId/commits/:commitHash/diff', (req, res) => {
+app.get('/api/repos/:repositoryId/commits/:commitHash/diff', async (req, res) => {
   const { repositoryId, commitHash } = req.params;
   const command = `git diff ${commitHash} ${commitHash}~`;
-  const cwd = `${directoryPath}/${repositoryId}`;
-  const isCommandValid = utils.isCommandValid(command, cwd);
+  const cwd = path.resolve(directoryPath, repositoryId);
   
-  if (isCommandValid) {
-    let result = cp.execSync(command, { cwd }, (err, stdout) => {
-      if (err) {
-        throw err;
-      }
-      return stdout;
-    })
-      .toString();
-    
+  try {
+    const { stdout } = await asyncExec(command, { cwd });
+    const stringResult = stdout.toString();
     res.writeHead(200, { 'Content-Type': 'text/plain; charset=utf-8' });
-    res.end(result);
-  } else {
-    res.status(404)
-      .send('Что-то пошло не так!');
-  }
-});
-
-// get all files inside repo
-app.get('/api/repos/:repositoryId/', (req, res) => {
-  const { repositoryId, commitHash } = req.params;
-  const dir = `${directoryPath}/${repositoryId}`;
-  let result = [];
-  
-  if (fs.existsSync(dir)) {
-    cp.execSync('git checkout master', { cwd: dir });
-    const readDirSync = (dir) => {
-      const files = fs.readdirSync(dir)
-        .map(file => path.posix.join(dir, file));
-      files.forEach((file) => {
-        result.push(file.slice(file.lastIndexOf('/') + 1, file.length));
-      });
-      return result;
-    };
-    res.json({ files: readDirSync(dir) });
-  } else {
-    res.status(404)
-      .send(`
-    Такого репозитория не существует!
-    Доступны: ${utils.getAllFilesInsideFolder(directoryPath)
-        .join(', ')}`);
+    res.end(stringResult);
+  } catch (error) {
+    res.send({ message: error.stderr });
   }
 });
 
 // get all files inside repo by commit hash
-app.get('/api/repos/:repositoryId/tree/:commitHash?/:path([^/]*)?', async (req, res) => {
+app.get(['/api/repos/:repositoryId/', '/api/repos/:repositoryId/tree/:commitHash?/:path([^/]*)?'], async (req, res) => {
   const { repositoryId, commitHash, path } = req.params;
   const fsPath = require('path');
   const cwd = fsPath.resolve(directoryPath, repositoryId);
   let command = null;
   
   if (commitHash && path) {
-    command = `git ls-tree ${commitHash} ${path} --name-only`;
+    command = `git ls-tree ${commitHash} ${path} --name-only -r`;
   } else if (commitHash && !path) {
-    command = `git ls-tree ${commitHash} --name-only`;
+    command = `git ls-tree ${commitHash} --name-only -r`;
   } else if (!commitHash && !path) {
-    res.redirect(`/api/repos/${repositoryId}/`);
+    command = 'git ls-tree master --name-only -r';
   }
   
   try {
     const { stdout } = await asyncExec(command, { cwd });
     const allFiles = stdout.toString().split('\n');
-    const allFilesFormatted = allFiles
-      .filter((el) => el)
-      .map((el) => fsPath.basename(el));
+    const allFilesFormatted = allFiles.filter((el) => el);
     res.json({ files: allFilesFormatted });
   } catch (error) {
     res.json({ message: error.stderr });
@@ -164,7 +125,7 @@ app.get('/api/repos/:repositoryId/blob/:commitHash/:pathToFile([^/]*)', async (r
     res.writeHead(200, { 'Content-Type': 'text/plain; charset=utf-8' });
     res.end(stdout);
   } catch (error) {
-    res.json({message: 'Что-то пошло не так'});
+    res.json({ message: error.stderr });
   }
 });
 
