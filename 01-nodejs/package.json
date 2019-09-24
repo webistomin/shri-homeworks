@@ -2,9 +2,9 @@
   "name": "shri-git-client",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "src/server.js",
   "scripts": {
-    "dev": "nodemon server.js --path=./repos",
+    "dev": "nodemon src/server.js --path=./repos",
     "loadtest": "loadtest -c 10 -t 20 --rps 200  http://localhost:3000/api/repos/"
   },
   "author": "webistomin",
