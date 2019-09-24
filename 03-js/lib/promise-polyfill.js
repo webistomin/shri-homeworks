@@ -1,4 +1,4 @@
-(function() {
+(function(context) {
   'use strict';
 
   var promiseStates = {
@@ -130,25 +130,12 @@
     });
   };
 
-  var globalNamespace = (function() {
-    if (typeof self !== 'undefined') {
-      return self;
-    }
-    if (typeof window !== 'undefined') {
-      return window;
-    }
-    if (typeof global !== 'undefined') {
-      return global;
-    }
-    throw new Error('unable to locate global object');
-  })();
-
-  if (!('Promise' in globalNamespace)) {
+  if (!('Promise' in context)) {
     console.info('promise polyfill enabled');
-    globalNamespace.Promise = Promise;
+    context.Promise = Promise;
   }
 
   if (typeof exports === 'object') {
     module.exports = Promise;
   }
-})();
+})(this);
