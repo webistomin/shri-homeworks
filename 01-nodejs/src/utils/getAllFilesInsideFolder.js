@@ -1,13 +1,12 @@
 const path = require('path');
 const util = require('util');
 const fs = require('fs');
-const asyncFsStat = util.promisify(fs.stat);
 const asyncReadDir = util.promisify(fs.readdir);
+const getFileStat = require('./getFileStat');
 
 module.exports = getAllFilesInsideFolder = async(dir) => {
   try {
-    const folderStat = await asyncFsStat(path.resolve(dir));
-    
+    const folderStat = await getFileStat(path.resolve(dir));
     if (folderStat.isDirectory()) {
       let result = [];
       const files = await asyncReadDir(dir);
@@ -15,7 +14,7 @@ module.exports = getAllFilesInsideFolder = async(dir) => {
       
       for (const file of filesWithPaths) {
         const isGitFolder = file.endsWith('.git');
-        const fileStat = await asyncFsStat(path.resolve(dir));
+        const fileStat = await getFileStat(path.resolve(dir));
         
         if (fileStat.isDirectory() && !isGitFolder) {
           const filesInsideDirectory = await asyncReadDir(path.resolve(file));
