@@ -1,5 +1,11 @@
 # Анализ сайта lifehacker.ru
 
+Профили, использованные при анализе лежат в папке profiles:
+
+* [network.har](profiles/lifehacker-network)
+* [performance.json](profiles/lifehacker-performance.json)
+* [coverage.json](profiles/lifehacker-coverage.json)
+
 ## Network
 
 ### Проблема №1. Блокирующие запросы
@@ -10,7 +16,7 @@
 
 Всего **55** блокирующих загрузку запросов. Если мы посмотрим на `index.html`, то увидим, что загружается множество css и js файлов (бесполезных, но об этом позже) в теге `<head>`.
 
-<img src="assets/blocking-requests-1.png" alt="Объявление CSS и JS">
+<img src="assets/request-blocking-css.png" alt="Объявление CSS и JS">
 
 Анализ от GTMetrix показывает, что можно сэкономить порядка **639KB** только на JavaScript коде. 
 
@@ -157,6 +163,7 @@
 
 В некоторых участках встречаются тормозные места, чаще всего это изменения ширины элемента, что провоцирует в свою очередь дорогую операцию layout. Так как на странице огромное количество DOM-элементов, уровень вложенности в которых иногда достигает *24* – получаем просадку FPS.
 
+<img src="assets/bottleneck.png" alt="bottleneck">
 <img src="assets/width-animation.png" alt="repaint">
 
 ## Coverage
