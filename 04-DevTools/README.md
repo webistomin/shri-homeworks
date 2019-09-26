@@ -4,6 +4,7 @@
 
 * [network.har](profiles/lifehacker-network)
 * [performance.json](profiles/lifehacker-performance.json)
+* [performance-slowdown.json](profiles/lifehacker-performance-slowdown.json)
 * [coverage.json](profiles/lifehacker-coverage.json)
 
 ## Network
@@ -188,4 +189,57 @@
 </table>
 
 _Для таблицы использовались файлы, подгружаемые конкретно с lifehacker.ru. Сторонние метрики в учёт не брал. Думаю так будет правильнее._
+
+## CPU 4x slowdown и Slow 3G
+
+### Performance
+
+<table>
+    <tr>
+        <td>Событие</td>
+        <td>Время в мс.</td>
+    </tr>
+    <tr>
+        <td>First Paint</td>
+        <td>11413.4</td>
+    </tr>
+    <tr>
+        <td>First Meaningful Paint</td>
+        <td>15330.3</td>
+    </tr>
+    <tr>
+        <td>DOM Content Loaded</td>
+        <td>24859.4</td>
+    </tr>
+    <tr>
+        <td>Load</td>
+        <td>51788.8</td>
+    </tr>
+</table>
+
+---
+
+<table>
+    <tr>
+        <td>Этап обработки документа</td>
+        <td>Время в мс.</td>
+    </tr>
+    <tr>
+        <td>Loading</td>
+        <td>233</td>
+    </tr>
+    <tr>
+        <td>Scripting</td>
+        <td>6481</td>
+    </tr>
+    <tr>
+        <td>Rendering</td>
+        <td>6667</td>
+    </tr>
+    <tr>
+        <td>Painting</td>
+        <td>1260</td>
+    </tr>
+</table>
+
 
