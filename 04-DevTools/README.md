@@ -1,7 +1,5 @@
 # Анализ сайта lifehacker.ru
 
-Анализ сайтов я обычно начинаю с аудита Lighthouse и анализом GTMetrix.
-
 ## Network
 
 ### Проблема №1. Блокирующие запросы
@@ -128,7 +126,7 @@
     </tr>
 </table>
 
-<img src="assets/perf.png" alt="Performance">
+<img src="assets/performance.png" alt="Performance">
 
 ---
 
