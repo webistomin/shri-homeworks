@@ -1,0 +1,28 @@
+{
+  "name": "eslint-plugin-lodash-to-native",
+  "version": "0.0.0",
+  "description": "_.map to native Array#map",
+  "keywords": [
+    "eslint",
+    "eslintplugin",
+    "eslint-plugin"
+  ],
+  "author": "webistomin",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon tests/lib/rules/map.js",
+    "test": "mocha tests --recursive"
+  },
+  "dependencies": {
+    "requireindex": "~1.2.0"
+  },
+  "devDependencies": {
+    "eslint": "~6.4.0",
+    "mocha": "^6.2.0",
+    "nodemon": "^1.19.2"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "license": "ISC"
+}

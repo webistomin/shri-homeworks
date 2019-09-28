@@ -1,0 +1,15 @@
+{
+  "name": "example",
+  "version": "1.0.0",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^6.4.0",
+    "eslint-plugin-lodash-to-native": "git+ssh://git@github.com/webistomin/eslint-plugin-lodash-to-native.git",
+    "babel": "6.5.1",
+    "babel-cli": "^6.6.5",
+    "babel-eslint": "^5.0.0",
+    "babel-preset-es2015": "^6.5.0",
+    "babel-preset-react": "6.5.0",
+    "babel-register": "^6.6.5"
+  }
+}
