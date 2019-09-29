@@ -1,9 +1,6 @@
 import View from './store/view';
+import { Types } from './redux/types';
 
-// const setNameAction = (name) => ({
-//   type: Types.SET_NAME,
-//   payload: name,
-// });
 
 // class UserView extends View{
 //   constructor(el, store) {
@@ -28,6 +25,20 @@ import View from './store/view';
 //     this._el.removeEventListener('change', this._onInput)
 //   }
 // }
+
+import { reducers } from './redux/reducers';
+import { createStore } from './redux/createStore';
+import { searchFilesAction, searchQueryAction } from './redux/actions';
+
+const store = createStore(reducers);
+const a = document.querySelector('input[type=search]');
+const b = document.querySelector('p');
+
+a.addEventListener('input', (event) => {
+  store.dispatch(searchQueryAction(event.target.value));
+  b.innerHTML = store.getState().query;
+});
+
 
 
 
