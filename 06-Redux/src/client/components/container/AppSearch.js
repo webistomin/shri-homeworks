@@ -10,15 +10,14 @@ export default class AppSearch extends View{
   
   _onInput(event) {
     this._store.dispatch(searchQueryAction(event.target.value));
-    // fetchFiles(event.target.value)
   }
   
   render() {
-    const query = this._store.getState().query;
+    const state = this._store.getState();
     
     return `
-      <div>${query}</div>
-      <input type='search' value='${query}'>
+      <input type='search' value='${state.query}'>
+      <div>${JSON.stringify(state)}</div>
     `
   }
   

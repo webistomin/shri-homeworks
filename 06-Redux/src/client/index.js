@@ -14,10 +14,3 @@ applyMiddleware(store, [ logger, crashReporter ]);
 
 new AppSearch(document.querySelector('.search'), store);
 new AppFilesTable(document.querySelector('.table'), store);
-
-
-
-
-
-
-
