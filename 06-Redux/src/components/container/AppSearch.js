@@ -10,6 +10,7 @@ export default class AppSearch extends View{
   
   _onInput(event) {
     this._store.dispatch(searchQueryAction(event.target.value));
+    // fetchFiles(event.target.value)
   }
   
   render() {

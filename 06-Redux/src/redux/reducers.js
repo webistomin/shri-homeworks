@@ -16,11 +16,9 @@ export const reducers = (previousState = initialState, action) => {
         query: action.payload
       });
       
-    case Types.SEARCH_FILES:
+    case Types.SAVE_FILES:
       return Object.assign({}, clonedState, {
-        files: [
-          ...action.payload,
-        ]
+        files: action.payload
       });
       
     case Types.INIT:
