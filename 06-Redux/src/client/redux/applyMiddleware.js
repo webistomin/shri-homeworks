@@ -1,11 +1,11 @@
-export function applyMiddleware(store, middlewares) {
-  middlewares = middlewares.slice();
-  middlewares.reverse();
+export const applyMiddleware = (middleware) => (store) => {
+  let { dispatch } = store;
   
-  let dispatch = store.dispatch;
-  middlewares.forEach(middleware =>
+  middleware.forEach(middleware =>
     dispatch = middleware(store)(dispatch)
   );
   
-  return Object.assign({}, store, { dispatch })
-}
+  store.dispatch = dispatch;
+  
+  return store;
+};

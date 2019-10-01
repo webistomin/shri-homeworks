@@ -3,6 +3,8 @@ export default class Store {
     this._reducer = reducer;
     this._state = undefined;
     this._listeners = [];
+  
+    this.dispatch = this.dispatch.bind(this);
     this.dispatch({
       type: '@@init',
     });
