@@ -10,11 +10,6 @@
     "clean": "gulp clean:build",
     "test": "glob-exec \"src/views/**/*.pug\" -- \"pug-lint {{files.join(' ')}}\" && gulp sass:lint && gulp js:lint"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run test"
-    }
-  },
   "author": "webistomin",
   "devDependencies": {
     "@babel/core": "^7.5.5",
