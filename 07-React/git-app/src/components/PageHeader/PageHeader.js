@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './PageHeader.sass';
 import logo from '../../layout/img/logo.svg'
-import Tab from '../Tab/Tab';
+import Tab from '../Tab';
 
 export default class PageHeader extends Component {
   render() {
