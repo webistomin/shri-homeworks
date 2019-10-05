@@ -13,5 +13,5 @@ export const getVh = () => {
       document.documentElement.style.setProperty('--vh', `${vh}px`);
       lastHeight = window.innerHeight;
     }
-  }, 300), { passive: true });
+  }, 500), { passive: true });
 };

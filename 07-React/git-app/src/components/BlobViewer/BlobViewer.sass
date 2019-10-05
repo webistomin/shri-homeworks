@@ -1,0 +1,266 @@
+@import '../../layout/sass/dev.sass'
+
++b('blob-viewer')
+  margin-top: 12px
+  margin-bottom: 42px
+
+  +e('container')
+    box-sizing: border-box
+    width: 100%
+    border: 1px solid var(--color-grey-3)
+    border-top-left-radius: var(--border-radius-5)
+    border-top-right-radius: var(--border-radius-5)
+    overflow: hidden
+
+  +e('title')
+    padding-top: 11px
+    padding-bottom: 11px
+    display: inline-block
+    align-items: center
+    font-weight: 400
+    +text-overflow()
+
+  +e('heading')
+    background-color: var(--color-grey-10)
+    border-bottom: 1px solid var(--color-grey-3)
+
+  +e('content')
+    padding: 0 8px 24px
+
+    +m('full')
+      padding: 0
+
+    +media($desktop-media)
+      padding: 0 16px 24px
+
+      +m('full')
+        padding: 0
+
+  +e('content-title')
+    +m('h1')
+      margin-top: 15px
+      margin-bottom: 10px
+
+      +media($desktop-media)
+        margin-top: 24px
+
+  +e('content-text')
+    font-size: var(--font-size-l)
+
+    +m('margin-bottom')
+      margin-bottom: 24px
+
+    +media($tablet-media)
+      max-width: 1128px
+
+  +e('icon')
+    flex-shrink: 0
+
+    +m('left')
+      margin-right: 8px
+
+  +e('inner-container')
+    position: relative
+    overflow: auto
+
+    +m('flex')
+      display: flex
+
+      +m('space-between')
+        justify-content: space-between
+
+      +m('align-center')
+        align-items: center
+
+      +m('align-baseline')
+        align-items: baseline
+
+      +m('column')
+        flex-direction: column
+
+    +m('heading')
+      padding-bottom: 12px
+
+      +media($tablet-media)
+        padding-bottom: 0
+        flex-direction: row
+
+    +media($desktop-media)
+      width: 97.6744186%
+
+  +e('button')
+    display: flex
+    align-items: center
+    justify-content: center
+
+    &:hover
+      color: var(--color-blue)
+      border-color: var(--color-blue)
+
+    +m('download')
+      width: 38px
+      height: 28px
+      border-radius: var(--border-radius-3)
+      border: 1px solid var(--color-grey-11)
+
+    +m('share')
+      margin-left: auto
+
+  +e('icon')
+    vertical-align: middle
+
+  +e('size')
+    padding-top: 11px
+    padding-bottom: 11px
+    padding-left: 4px
+    color: var(--color-grey-12)
+    font-size: var(--font-size-xs)
+    line-height: var(--line-height-m)
+
+  +e('col')
+    display: flex
+    align-items: center
+
+    +m('left')
+      max-width: 100%
+
+      +media($tablet-media)
+        max-width: 80%
+
+    +m('align-right')
+      +media($tablet-media)
+        margin-left: auto
+
+  +e('content-table-data')
+    white-space: pre
+    word-wrap: normal
+
+    +m('counter')
+      width: 1%
+      color: var(--color-grey-12)
+      text-align: right
+      padding: 0 12px 0 7px
+      vertical-align: top
+      user-select: none
+
+    +m('content')
+      padding: 0
+
+    +m('language')
+      +m('python')
+        color: var(--color-darkblue)
+
+  +e('content-table')
+    font-size: var(--font-size-xxs)
+    line-height: var(--line-height-m)
+    width: 100%
+    margin-top: 8px
+    margin-bottom: 8px
+    border-collapse: collapse
+    border-spacing: 0
+    font-family: var(--monospace)
+
+    +m('no-margin')
+      margin: 0
+
+    +m('offset')
+      td:first-child
+        padding-left: 4.44444445%
+
+      td:last-child
+        padding-right: 4.44444445%
+
+      +media($desktop-media)
+        td:first-child
+          padding-left: 2.25%
+
+        td:last-child
+          padding-right: 2.25%
+
+  +e('content-keyword')
+    //word-break: break-all
+    //white-space: normal
+
+    pre
+      margin: 0
+
+    +m('bold')
+      font-weight: 700
+
+    +m('blue')
+      color: var(--color-blue)
+
+    +m('grey')
+      color: var(--color-grey-13)
+
+  +e('content-link')
+    white-space: normal
+    word-break: break-all
+
+  +e('state')
+    margin-right: 12px
+
+    +media($tablet-media)
+      margin-right: 16px
+
+    +m('m')
+      padding-top: 11px
+      padding-bottom: 11px
+      color: var(--color-purple)
+
+    +m('add')
+      color: var(--color-green)
+
+    +m('delete')
+      color: var(--color-red-2)
+
+      +media($tablet-media)
+        margin-right: 24px
+
+  +e('subheading')
+    padding-top: 4px
+    padding-bottom: 4px
+    background-color: var(--color-lightblue)
+
+  +e('stats')
+    font-size: var(--font-size-xxs)
+    line-height: var(--line-height-l)
+
+  +e('content-table-row')
+    +m('new')
+      background-color: var(--color-lightgreen)
+
+    +m('old')
+      background-color: var(--color-pink)
+
+  +e('actions')
+    display: none
+
+    +media($tablet-media)
+      position: absolute
+      left: 50%
+      transform: translateX(-50%)
+      display: flex
+
+  +e('action')
+    font-size: 12px
+    line-height: 20px
+    display: inline-flex
+    align-items: center
+    font-family: var(--monospace)
+
+    &:hover
+      color: var(--color-blue)
+
+    +m('show-below')
+      margin-right: 32px
+
+      .blob-viewer__icon
+        transform: rotate(180deg)
+
+    +m('inactive')
+      pointer-events: none
+      color: var(--color-grey-6)
+
+
+

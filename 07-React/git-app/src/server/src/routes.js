@@ -78,8 +78,9 @@ router.get('/api/repos/:repositoryId/blob/:commitHash/:pathToFile([^/]*)', async
   });
   
   if (!result.message) {
-    res.writeHead(200, { 'Content-Type': 'text/plain; charset=utf-8' });
-    res.end(result);
+    // res.writeHead(200, { 'Content-Type': 'text/plain; charset=utf-8' });
+    // res.end(result);
+    res.json(result)
   } else {
     res.json(result);
   }

@@ -3,9 +3,21 @@ import './Tab.sass';
 import sprite from '../../layout/img/icons/sprite.svg';
 
 export default class Tab extends Component {
+  
+  state = {
+    isOpened: false,
+  };
+  
   render() {
     return (
-      <button className={`tab btn text text_size_l ${ this.props.className }`} type="button" id="js-repository-select-btn">
+      <button
+        className={`tab btn text text_size_l ${ this.props.className }`}
+        type="button"
+        id="js-repository-select-btn"
+        onClick={() => {
+          this.props.onTabClicked()
+        }}
+      >
         <span className="tab__name tab__name_current tab__name_space_m">
           Repository Arc
         </span>
