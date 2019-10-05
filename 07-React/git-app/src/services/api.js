@@ -21,5 +21,10 @@ export default class git {
   getBlob = async (repoId, commitHash = 'master', path) => {
     const result = await axios.get(`${this._apiBase}/api/repos/${repoId}/blob/${commitHash}/${path}`);
     return result.data;
+  };
+  
+  getTree = async (repoId, commitHash = 'master', path) => {
+    const result = await axios.get(`${this._apiBase}/api/repos/${repoId}/tree/${commitHash}/${path}`);
+    return result.data;
   }
 }

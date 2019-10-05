@@ -8,6 +8,7 @@ import PageFooter from '../PageFooter';
 import Home from '../../pages/Home';
 import Blob from '../../pages/Blob';
 import api from '../../services/api';
+import Tree from '../../pages/Tree';
 
 
 export default class App extends Component {
@@ -37,12 +38,8 @@ export default class App extends Component {
           <main className="page-content" role="main">
             
             <Route path="/" exact component={Home}/>
-            <Route exact path="/api/repos/:repositoryId/blob/:commitHash/:pathToFile([^/]*)" component={Blob}/>
-            <Route exact path="/api/repos/:repositoryId/tree/:commitHash?/:path([^/]*)?" render={() => {
-              return (
-                <h2>456</h2>
-              );
-            }}/>
+            <Route exact path="/api/repos/:repositoryId/blob/:commitHash/:pathToFile+" component={Blob}/>
+            <Route exact path="/api/repos/:repositoryId/tree/:commitHash?/:path+" component={Tree}/>
           
           </main>
           <PageFooter/>

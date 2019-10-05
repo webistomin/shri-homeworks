@@ -49,7 +49,7 @@ export default class Blob extends Component {
   render() {
     return (
       <React.Fragment>
-        <Subheader commits={this.state.commits}/>
+        <Subheader commits={this.state.commits} breadcrumbs={this.state.fileName.split('/')}/>
         <BlobViewer blob={this.state.blob} fileName={this.state.fileName}/>
       </React.Fragment>
     )

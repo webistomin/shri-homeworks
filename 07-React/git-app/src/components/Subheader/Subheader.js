@@ -52,7 +52,7 @@ export default class Subheader extends Component {
       <div className="subheader">
         <div className="subheader__container container">
           <div className="subheader__heading">
-            <Breadcrumbs breadcrumbs={breadcrumbs}/>
+            <Breadcrumbs breadcrumbs={this.props.breadcrumbs}/>
           </div>
           <div className="subheader__current">
             <div className="subheader__row subheader__row_margin-bottom">
@@ -86,4 +86,3 @@ export default class Subheader extends Component {
     )
   }
 };
-
