@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon src/index.js --path=./repos",
     "loadtest": "loadtest -c 10 -t 20 --rps 200  http://localhost:8080/api/repos/",
-    "test": "jest --detectOpenHandles --path=./src/tests/test-repos"
+    "test": "rimraf ./src/tests/test-repos/learn-unit-testing && git clone git@github.com:webistomin/learn-unit-testing.git ./src/tests/test-repos/learn-unit-testing && jest --detectOpenHandles --path=./src/tests/test-repos"
   },
   "author": "webistomin",
   "license": "ISC",
