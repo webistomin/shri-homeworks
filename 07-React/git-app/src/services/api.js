@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export default class git {
+export default class API {
   _apiBase = 'http://localhost:8080';
   
   getAllRepos = async () => {

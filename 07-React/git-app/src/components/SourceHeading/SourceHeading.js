@@ -1,10 +1,7 @@
 import React from 'react';
 import '../Tab/Tab.sass'
 
-const SourceHeading = (props) => {
-  
-  const { links } = props;
-  
+const SourceHeading = ({ links }) => {
   const items = links.map((item) => {
     
     const { id, link, label } = item;

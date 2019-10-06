@@ -1,25 +1,62 @@
 import React, {Component} from 'react';
 import Subheader from '../../components/Subheader';
-import api from '../../services/api';
+import API from '../../services/api';
 import BlobViewer from '../../components/BlobViewer';
+import Spinner from '../../components/Spinner';
 
 export default class Blob extends Component {
   
   state = {
-    git: new api(),
+    git: new API(),
     blob: {
       blob: '',
       size: 0,
     },
     fileName: '',
     commits: [],
+    isLoading: true,
+    isBreadcrumbsVisible: true,
   };
   
-  componentDidMount = () => {
-    
+  currentRepo = this.props.currentRepo;
+  
+  updateComponent() {
     const file = this.props.match.params.pathToFile;
+    const currentRepo = this.currentRepo;
     
-    const currentRepo = this.props.currentRepo;
+    if (currentRepo) {
+      this.state.git.getArrayOfCommits(currentRepo, 'master')
+        .then((result) => {
+          this.setState(() => {
+            return {
+              isLoading: false,
+              commits: result.commits,
+            }
+          })
+        });
+    
+      this.state.git.getBlob(currentRepo, 'master', file)
+        .then((result) => {
+          if (!result.message) {
+            this.setState(() => {
+              return {
+                isLoading: false,
+                blob: result,
+              }
+            })
+          }
+        });
+    }
+  }
+  
+  componentDidMount = () => {
+    const file = this.props.match.params.pathToFile;
+    const repoId = this.props.match.params.repositoryId;
+    
+    if (!this.currentRepo) {
+      this.props.onRepoSelected(repoId);
+      this.currentRepo = repoId;
+    }
     
     this.setState(() => {
       return {
@@ -27,34 +64,36 @@ export default class Blob extends Component {
       }
     });
     
-    if (currentRepo) {
-      this.state.git.getArrayOfCommits(currentRepo, 'master')
-        .then((result) => {
-          this.setState(() => {
-            return {
-              commits: result.commits,
-            }
-          })
-        });
-  
-      this.state.git.getBlob(currentRepo, 'master', file)
-        .then((result) => {
-          if (!result.message) {
-            this.setState(() => {
-              return {
-                blob: result,
-              }
-            })
-          }
-        });
-    }
+    this.updateComponent();
   };
   
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (this.props.currentRepo !== prevProps.currentRepo) {
+      this.updateComponent();
+    }
+  }
+  
   render() {
+    
+    const { isLoading, commits, blob, fileName, isBreadcrumbsVisible  } = this.state;
+    const arrayOfBreadcrumbs = fileName.split('/');
+    
+    const renderBlob = isLoading ?
+      <Spinner/> :
+      (
+        <React.Fragment>
+          <Subheader commits={commits}
+                     isBreadcrumbsVisible={isBreadcrumbsVisible}
+                     breadcrumbs={arrayOfBreadcrumbs}/>
+          <BlobViewer blob={blob}
+                      fileName={fileName}/>
+        </React.Fragment>
+      )
+      ;
+    
     return (
       <React.Fragment>
-        <Subheader commits={this.state.commits} breadcrumbs={this.state.fileName.split('/')}/>
-        <BlobViewer blob={this.state.blob} fileName={this.state.fileName}/>
+        { renderBlob }
       </React.Fragment>
     )
   }

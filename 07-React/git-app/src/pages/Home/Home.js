@@ -1,20 +1,24 @@
 import React, {Component} from 'react';
 import Subheader from '../../components/Subheader';
 import Source from '../../components/Source';
-import api from '../../services/api';
+import API from '../../services/api';
+import Message from '../../components/Message';
 
 export default class Home extends Component {
   
   state = {
-    git: new api(),
+    git: new API(),
     files: [],
     commits: [],
+    homeMessage: 'Выберите репозиторий, чтобы продолжить работу',
+    isBreadcrumbsVisible: false,
   };
   
-  componentDidMount = () => {
+  updateComponent() {
+    const { currentRepo } = this.props;
     
-    if (this.props.currentRepo) {
-      this.state.git.getAllRepoFiles('alena')
+    if (currentRepo) {
+      this.state.git.getAllRepoFiles(currentRepo)
         .then((result) => {
           this.setState(() => {
             return {
@@ -22,30 +26,8 @@ export default class Home extends Component {
             };
           });
         });
-  
-      this.state.git.getArrayOfCommits('alena', 'master')
-        .then((result) => {
-          this.setState(() => {
-            return {
-              commits: result.commits,
-            }
-          })
-        });
-    }
-  };
-  
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    if (this.props.currentRepo !== prevProps.currentRepo) {
-      this.state.git.getAllRepoFiles(this.props.currentRepo)
-        .then((result) => {
-          this.setState(() => {
-            return {
-              files: result.files,
-            };
-          });
-        });
-  
-      this.state.git.getArrayOfCommits(this.props.currentRepo, 'master')
+    
+      this.state.git.getArrayOfCommits(currentRepo, 'master')
         .then((result) => {
           this.setState(() => {
             return {
@@ -56,11 +38,34 @@ export default class Home extends Component {
     }
   }
   
+  componentDidMount = () => {
+    this.updateComponent();
+  };
+  
+  componentDidUpdate(prevProps) {
+    if (this.props.currentRepo !== prevProps.currentRepo) {
+      this.updateComponent();
+    }
+  }
+  
   render() {
+    
+    const { commits, files, homeMessage, isBreadcrumbsVisible } = this.state;
+    const { currentRepo } = this.props;
+    
+    const renderHome = currentRepo ?
+      (
+        <React.Fragment>
+          <Subheader commits={commits}
+                     isBreadcrumbsVisible={isBreadcrumbsVisible}/>
+          <Source files={files}
+                  currentRepo={currentRepo}/>
+        </React.Fragment>
+      ) : <Message message={homeMessage} />;
+    
     return (
       <React.Fragment>
-        <Subheader commits={this.state.commits} isBreadcrumbsVisible={false}/>
-        <Source files={this.state.files} currentRepo={this.props.currentRepo}/>
+        { renderHome }
       </React.Fragment>
     );
   }

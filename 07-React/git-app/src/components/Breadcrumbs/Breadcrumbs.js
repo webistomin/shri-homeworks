@@ -4,13 +4,13 @@ import {Link} from 'react-router-dom';
 
 const Breadcrumbs = (props) => {
   
-  // const { breadcrumbs } = props;
+  const { breadcrumbs } = props;
   
-  const items = props.breadcrumbs.map((item) => {
+  const items = breadcrumbs.map((item) => {
     
     // const { id, link, label } = item;
     
-    const link = `/api/repos/alena/tree/master/${item}`
+    // const link = `/api/repos/alena/tree/master/${item}`
     
     return (
       <li className="breadcrumbs__item list-item" key={item}>

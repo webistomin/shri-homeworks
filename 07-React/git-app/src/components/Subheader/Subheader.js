@@ -20,7 +20,8 @@ export default class Subheader extends Component {
   };
   
   render() {
-    const commits = this.props.commits;
+    const { commits, isVisible, breadcrumbs } = this.props;
+    const { isBranchPopupVisible } = this.state;
   
     let lastCommit = {
       author: '',
@@ -36,10 +37,8 @@ export default class Subheader extends Component {
     const branches = ['master', 'dev'];
     
     const renderBreadcrumbs = () => {
-      const isVisible = this.props.isBreadcrumbsVisible;
-      
       if (isVisible) {
-        return <Breadcrumbs breadcrumbs={this.props.breadcrumbs}/>
+        return <Breadcrumbs breadcrumbs={breadcrumbs}/>
       } else {
         return null;
       }
@@ -56,7 +55,7 @@ export default class Subheader extends Component {
               <h1 className="subheader__title title text text_size_xl">arcadia</h1>
               <div className="subheader__dropdown">
                 <Select className="subheader__select" onSelectClicked={ this.onSelectClicked }  />
-                <BranchPopup branches={branches} isVisible={this.state.isBranchPopupVisible}/>
+                <BranchPopup branches={branches} isVisible={isBranchPopupVisible}/>
               </div>
             </div>
             <div className="subheader__row">

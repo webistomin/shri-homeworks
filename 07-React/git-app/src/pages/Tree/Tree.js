@@ -1,26 +1,21 @@
 import React, {Component} from 'react';
 import Subheader from '../../components/Subheader';
 import Source from '../../components/Source';
-import api from '../../services/api';
+import API from '../../services/api';
 
 export default class Tree extends Component {
   
   state = {
-    git: new api(),
+    git: new API(),
     files: [],
     commits: [],
+    isBreadcrumbsVisible: true,
   };
   
   path = `${this.props.match.params.path}/`;
   currentRepo = this.props.currentRepo;
   
-  componentDidMount = () => {
-    
-    if (!this.currentRepo) {
-      this.props.onRepoSelected(this.props.match.params.repositoryId);
-      this.currentRepo = this.props.match.params.repositoryId
-    }
-    
+  updateComponent() {
     this.state.git.getTree(this.currentRepo, 'master', this.path)
       .then((result) => {
         this.setState(() => {
@@ -29,7 +24,7 @@ export default class Tree extends Component {
           };
         });
       });
-    
+  
     this.state.git.getArrayOfCommits(this.currentRepo, 'master')
       .then((result) => {
         this.setState(() => {
@@ -38,31 +33,39 @@ export default class Tree extends Component {
           }
         })
       });
+  }
+  
+  componentDidMount = () => {
+    const repoId = this.props.match.params.repositoryId;
+    
+    if (!this.currentRepo) {
+      this.props.onRepoSelected(repoId);
+      this.currentRepo = repoId
+    }
+    
+    this.updateComponent();
   };
   
-  componentDidUpdate(prevProps, prevState, snapshot) {
+  componentDidUpdate(prevProps) {
     if (this.props.match.params.path !== prevProps.match.params.path) {
       this.path = `${this.props.match.params.path}/`;
-      this.state.git.getTree(this.currentRepo, 'master', this.path)
-        .then((result) => {
-          this.setState(() => {
-            return {
-              files: result.files,
-            };
-          });
-        });
+      this.updateComponent();
     }
   }
   
   render() {
+  
+    const { commits, isBreadcrumbsVisible, files } = this.state;
+    const arrayOfBreadcrumbs = this.path.split('/');
+    
     return (
       <React.Fragment>
         <Subheader
-          commits={this.state.commits}
-          breadcrumbs={this.path.split('/')}
-          isBreadcrumbsVisible={true}
+          commits={commits}
+          breadcrumbs={arrayOfBreadcrumbs}
+          isBreadcrumbsVisible={isBreadcrumbsVisible}
         />
-        <Source files={this.state.files} currentRepo={this.currentRepo}/>
+        <Source files={files} currentRepo={this.currentRepo}/>
       </React.Fragment>
     )
   }

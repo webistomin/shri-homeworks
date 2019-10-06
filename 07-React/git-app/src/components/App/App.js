@@ -1,21 +1,22 @@
 import React, {Component} from 'react';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 import './App.sass';
 
-import api from '../../services/api';
+import API from '../../services/api';
 
 import PageHeader from '../PageHeader';
 import PageFooter from '../PageFooter';
 import Home from '../../pages/Home';
 import Blob from '../../pages/Blob';
 import Tree from '../../pages/Tree';
+import Error404 from '../Error404';
 
 
 export default class App extends Component {
   
   state = {
-    git: new api(),
+    git: new API(),
     repos: [],
     currentRepo: '',
   };
@@ -30,6 +31,7 @@ export default class App extends Component {
           };
         });
       });
+    
   };
   
   onRepoSelected = (repo) => {
@@ -50,25 +52,29 @@ export default class App extends Component {
             onRepoSelected={this.onRepoSelected}
           />
           <main className="page-content" role="main">
-            
-            <Route
-              path="/"
-              exact
-              render={(props) => <Home {...props} currentRepo={this.state.currentRepo} />}
-            />
-            <Route
-              exact
-              path="/api/repos/:repositoryId/blob/:commitHash/:pathToFile+"
-              render={(props) => <Blob {...props} currentRepo={this.state.currentRepo} />}
-            />
-            <Route
-              exact
-              path="/api/repos/:repositoryId/tree/:commitHash?/:path+"
-              render={(props) => <Tree {...props}
-                                       currentRepo={this.state.currentRepo}
-                                       onRepoSelected={this.onRepoSelected}/>}
-            />
-          
+            <Switch>
+              <Route
+                path="/"
+                exact
+                render={(props) => <Home {...props} currentRepo={this.state.currentRepo} />}
+              />
+              <Route
+                exact
+                path="/api/repos/:repositoryId/blob/:commitHash/:pathToFile+"
+                render={(props) => <Blob {...props}
+                                         currentRepo={this.state.currentRepo}
+                                         onRepoSelected={this.onRepoSelected}/>}
+              />
+              <Route
+                exact
+                path="/api/repos/:repositoryId/tree/:commitHash?/:path+"
+                render={(props) => <Tree {...props}
+                                         currentRepo={this.state.currentRepo}
+                                         onRepoSelected={this.onRepoSelected}/>}
+              />
+  
+              <Route component={Error404} />
+            </Switch>
           </main>
           <PageFooter/>
         </Router>

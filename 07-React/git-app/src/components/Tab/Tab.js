@@ -9,16 +9,17 @@ export default class Tab extends Component {
   };
   
   render() {
+    const { currentRepo, className, onTabClicked } = this.props;
     
-    const label = this.props.currentRepo ? this.props.currentRepo : 'Выберите репозиторий';
+    const label = currentRepo ? currentRepo : 'Выберите репозиторий';
     
     return (
       <button
-        className={`tab btn text text_size_l ${ this.props.className }`}
+        className={`tab btn text text_size_l ${ className }`}
         type="button"
         id="js-repository-select-btn"
         onClick={() => {
-          this.props.onTabClicked()
+          onTabClicked()
         }}
       >
         <span className="tab__name tab__name_current tab__name_space_m">

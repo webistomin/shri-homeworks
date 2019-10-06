@@ -21,8 +21,8 @@ const Source = (props) => {
   ];
   
   const {files, currentRepo} = props;
+  
   const items = files.map((item) => {
-    
     const fileName = item.substring(item.lastIndexOf('/') +1 );
     
     let linkUrl = `/api/repos/${currentRepo}/tree/master/${item}`;
@@ -46,7 +46,7 @@ const Source = (props) => {
     }
     
     return (
-      <li className="source__files-item list-item" key={item} title={item}>
+      <li className="source__files-item list-item" key={item} title={fileName}>
         <Link className="source__files-name link" to={linkUrl}>
           <svg className="source__table-icon source__table-icon_left icon" role="img" width={icon.width}
                height={icon.height}>

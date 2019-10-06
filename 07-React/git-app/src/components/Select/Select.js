@@ -10,13 +10,15 @@ export default class Select extends Component {
   };
   
   render() {
+    const { className, onSelectClicked } = this.props;
+    
     return(
       <button
-        className={`select select_icon_dropdown select_color_grey text text_size_xl btn ${ this.props.className }`}
+        className={`select select_icon_dropdown select_color_grey text text_size_xl btn ${className}`}
         type="button"
         id="js-branch-select-btn"
         onClick={() => {
-          this.props.onSelectClicked()
+          onSelectClicked()
         }}
       >
         master

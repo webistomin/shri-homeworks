@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Link, BrowserRouter as Router} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import './PageHeader.sass';
 import logo from '../../layout/img/logo.svg';
 import Tab from '../Tab';
@@ -29,6 +29,9 @@ export default class PageHeader extends Component {
   };
   
   render() {
+    const { currentRepo, repos } = this.props;
+    const { isReposPopupVisible } = this.state;
+    
     return (
       <header className="page-header" role="banner">
         <div className="page-header__container container">
@@ -38,13 +41,13 @@ export default class PageHeader extends Component {
           <div className="page-header__actions">
             <Tab className="page-header__tab"
                  onTabClicked={this.onTabClicked}
-                 currentRepo={this.props.currentRepo}
+                 currentRepo={currentRepo}
             />
             <RepositoryPopup onPopupClicked={this.onTabClicked}
                              onRepoSelected={this.onRepoSelected}
-                             currentRepo={this.props.currentRepo}
-                             isVisible={this.state.isReposPopupVisible}
-                             repos={this.props.repos}/>
+                             currentRepo={currentRepo}
+                             isVisible={isReposPopupVisible}
+                             repos={repos}/>
           </div>
         </div>
       </header>

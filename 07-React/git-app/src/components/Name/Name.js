@@ -1,12 +1,12 @@
 import React from 'react';
 import './Name.sass';
 
-const Name = (props) => {
+const Name = React.memo(({className, name}) => {
   return (
-    <span className={`name name_first-letter name_first-letter_red ${props.className}`}>
-      {props.name}
+    <span className={`name name_first-letter name_first-letter_red ${className}`}>
+      {name}
     </span>
   );
-};
+});
 
 export default Name;
