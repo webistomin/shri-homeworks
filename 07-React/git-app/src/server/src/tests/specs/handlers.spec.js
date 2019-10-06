@@ -145,13 +145,13 @@ describe('Git api', () => {
     expect(getRes(response).message).toEqual('Репозиторий уже существует. Удалите его во избежание конфликта.')
   });
   
-  it('POST /api/repos/:repositoryId - удаляет репозиторий', async () => {
+  it('DELETE /api/repos/:repositoryId - удаляет репозиторий', async () => {
     const response = await request.delete('/api/repos/test');
     expect(response.statusCode).toBe(200);
     expect(getRes(response).message).toEqual('test удалён.')
   });
   
-  it('POST /api/repos/:repositoryId - выдаёт ошибку при удалении, если репозитория не существует', async () => {
+  it('DELETE /api/repos/:repositoryId - выдаёт ошибку при удалении, если репозитория не существует', async () => {
     const response = await request.delete('/api/repos/test1');
     expect(response.statusCode).toBe(200);
     expect(getRes(response).message).toEqual('Репозитория не существует')
