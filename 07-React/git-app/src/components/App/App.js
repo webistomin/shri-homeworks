@@ -7,10 +7,12 @@ import API from '../../services/api';
 
 import PageHeader from '../PageHeader';
 import PageFooter from '../PageFooter';
+import Error404 from '../Error404';
+import ErrorBoundary from '../ErrorBoundary';
+
 import Home from '../../pages/Home';
 import Blob from '../../pages/Blob';
 import Tree from '../../pages/Tree';
-import Error404 from '../Error404';
 
 
 export default class App extends Component {
@@ -44,7 +46,7 @@ export default class App extends Component {
   
   render() {
     return (
-      <React.Fragment>
+      <ErrorBoundary>
         <Router>
           <PageHeader
             repos={this.state.repos}
@@ -56,7 +58,7 @@ export default class App extends Component {
               <Route
                 path="/"
                 exact
-                render={(props) => <Home {...props} currentRepo={this.state.currentRepo} />}
+                render={(props) => <Home {...props} currentRepo={this.state.currentRepo}/>}
               />
               <Route
                 exact
@@ -72,13 +74,13 @@ export default class App extends Component {
                                          currentRepo={this.state.currentRepo}
                                          onRepoSelected={this.onRepoSelected}/>}
               />
-  
-              <Route component={Error404} />
+              
+              <Route component={Error404}/>
             </Switch>
           </main>
           <PageFooter/>
         </Router>
-      </React.Fragment>
+      </ErrorBoundary>
     );
   }
 };

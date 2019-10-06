@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import './Subheader.sass';
 import Breadcrumbs from '../Breadcrumbs';
 import Select from '../Select';
-import Name from '../Name';
 import BranchPopup from '../BranchPopup';
+import SubheaderInfo from './SubheaderInfo';
 
 export default class Subheader extends Component {
   
@@ -58,24 +58,7 @@ export default class Subheader extends Component {
                 <BranchPopup branches={branches} isVisible={isBranchPopupVisible}/>
               </div>
             </div>
-            <div className="subheader__row">
-              <p className="subheader__info text text_size_l paragraph">
-                Last commit
-                &nbsp;
-                <a
-                  className="subheader__link link link_color_blue text text_size_xs link_hover_underline"
-                  href="#">{lastCommit.short_commit}</a> on&nbsp;
-                <a
-                  className="subheader__link link link_color_blue link_hover_underline"
-                  href="#">
-                  <time
-                    className="subheader__time">
-                    {new Date(lastCommit.date).toUTCString()}
-                  </time>
-                </a> by&nbsp;
-                <Name className="subheader__name" name={lastCommit.author}/>
-              </p>
-            </div>
+            <SubheaderInfo lastCommit={lastCommit}/>
           </div>
         </div>
       </div>
