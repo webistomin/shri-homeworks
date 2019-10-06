@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Helmet} from 'react-helmet';
 import Subheader from '../../components/Subheader';
 import Source from '../../components/Source';
 import API from '../../services/api';
@@ -56,7 +57,11 @@ export default class Home extends Component {
     const renderHome = currentRepo ?
       (
         <React.Fragment>
+          <Helmet>
+            <title>{`Yandex Arcanum: ${currentRepo}`}</title>
+          </Helmet>
           <Subheader commits={commits}
+                     currentRepo={currentRepo}
                      isBreadcrumbsVisible={isBreadcrumbsVisible}/>
           <Source files={files}
                   currentRepo={currentRepo}/>

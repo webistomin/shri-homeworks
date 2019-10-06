@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Helmet} from 'react-helmet';
 import Subheader from '../../components/Subheader';
 import Source from '../../components/Source';
 import API from '../../services/api';
@@ -54,15 +55,18 @@ export default class Tree extends Component {
   }
   
   render() {
-  
     const { commits, isBreadcrumbsVisible, files } = this.state;
     const arrayOfBreadcrumbs = this.path.split('/');
     
     return (
       <React.Fragment>
+        <Helmet>
+          <title>{`Yandex Arcanum: ${this.currentRepo}`}</title>
+        </Helmet>
         <Subheader
           commits={commits}
           breadcrumbs={arrayOfBreadcrumbs}
+          currentRepo={this.currentRepo}
           isBreadcrumbsVisible={isBreadcrumbsVisible}
         />
         <Source files={files} currentRepo={this.currentRepo}/>

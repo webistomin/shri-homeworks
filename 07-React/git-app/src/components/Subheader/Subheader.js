@@ -20,7 +20,7 @@ export default class Subheader extends Component {
   };
   
   render() {
-    const { commits, isVisible, breadcrumbs } = this.props;
+    const { commits, isVisible, breadcrumbs, currentRepo } = this.props;
     const { isBranchPopupVisible } = this.state;
   
     let lastCommit = {
@@ -52,7 +52,7 @@ export default class Subheader extends Component {
           </div>
           <div className="subheader__current">
             <div className="subheader__row subheader__row_margin-bottom">
-              <h1 className="subheader__title title text text_size_xl">arcadia</h1>
+              <h1 className="subheader__title title text text_size_xl">{currentRepo}</h1>
               <div className="subheader__dropdown">
                 <Select className="subheader__select" onSelectClicked={ this.onSelectClicked }  />
                 <BranchPopup branches={branches} isVisible={isBranchPopupVisible}/>

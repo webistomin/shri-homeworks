@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Helmet} from 'react-helmet';
 import Subheader from '../../components/Subheader';
 import API from '../../services/api';
 import BlobViewer from '../../components/BlobViewer';
@@ -74,7 +75,7 @@ export default class Blob extends Component {
   }
   
   render() {
-    
+    const { currentRepo } = this.props;
     const { isLoading, commits, blob, fileName, isBreadcrumbsVisible  } = this.state;
     const arrayOfBreadcrumbs = fileName.split('/');
     
@@ -82,7 +83,11 @@ export default class Blob extends Component {
       <Spinner/> :
       (
         <React.Fragment>
+          <Helmet>
+            <title>{`Yandex Arcanum: ${fileName}`}</title>
+          </Helmet>
           <Subheader commits={commits}
+                     currentRepo={currentRepo}
                      isBreadcrumbsVisible={isBreadcrumbsVisible}
                      breadcrumbs={arrayOfBreadcrumbs}/>
           <BlobViewer blob={blob}
