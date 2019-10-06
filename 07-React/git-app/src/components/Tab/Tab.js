@@ -9,6 +9,9 @@ export default class Tab extends Component {
   };
   
   render() {
+    
+    const label = this.props.currentRepo ? this.props.currentRepo : 'Выберите репозиторий';
+    
     return (
       <button
         className={`tab btn text text_size_l ${ this.props.className }`}
@@ -19,7 +22,7 @@ export default class Tab extends Component {
         }}
       >
         <span className="tab__name tab__name_current tab__name_space_m">
-          Repository Arc
+          { label }
         </span>
         <svg className="tab__icon tab__icon_right" role="img" width={10} height={8}>
           <use xlinkHref={`${sprite}#icon-dropdown`} />

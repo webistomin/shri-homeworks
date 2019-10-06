@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import './Source.sass';
 import sprite from '../../layout/img/icons/sprite.svg';
 import SourceHeading from '../SourceHeading';
-import { getFileExtension } from '../../plugins/getFileExtension';
+import {getFileExtension} from '../../plugins/getFileExtension';
 
 const Source = (props) => {
   
@@ -20,10 +20,12 @@ const Source = (props) => {
     },
   ];
   
-  const { files } = props;
+  const {files, currentRepo} = props;
   const items = files.map((item) => {
     
-    let linkUrl = `/api/repos/alena/tree/master/${item}`;
+    const fileName = item.substring(item.lastIndexOf('/') +1 );
+    
+    let linkUrl = `/api/repos/${currentRepo}/tree/master/${item}`;
     let icon = null;
     const hasExtension = getFileExtension(item);
     
@@ -33,23 +35,24 @@ const Source = (props) => {
         height: '15',
         name: 'icon-file',
       };
-      linkUrl = `/api/repos/alena/blob/master/${item}`;
+      linkUrl = `/api/repos/${currentRepo}/blob/master/${item}`;
     } else {
       icon = {
         width: '12',
         height: '9',
         name: 'icon-folder',
       };
-      linkUrl = `/api/repos/alena/tree/master/${item}/`;
+      linkUrl = `/api/repos/${currentRepo}/tree/master/${item}/`;
     }
     
     return (
       <li className="source__files-item list-item" key={item} title={item}>
         <Link className="source__files-name link" to={linkUrl}>
-          <svg className="source__table-icon source__table-icon_left icon" role="img" width={icon.width} height={icon.height}>
-            <use xlinkHref={`${sprite}#${icon.name}`} />
+          <svg className="source__table-icon source__table-icon_left icon" role="img" width={icon.width}
+               height={icon.height}>
+            <use xlinkHref={`${sprite}#${icon.name}`}/>
           </svg>
-          {item}
+          {fileName}
         </Link>
       </li>
     );
@@ -58,13 +61,13 @@ const Source = (props) => {
   return (
     <section className="source">
       <div className="source__container container">
-        <SourceHeading links={headingLinks} />
+        <SourceHeading links={headingLinks}/>
         <ul className="source__files-list list">
-          { items }
+          {items}
         </ul>
       </div>
     </section>
-  )
+  );
 };
 
 export default Source;

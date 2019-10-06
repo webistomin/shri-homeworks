@@ -33,26 +33,23 @@ export default class Subheader extends Component {
       lastCommit = {...commits[0]}
     }
   
-    const breadcrumbs = [
-      {
-        id: 1,
-        link: '/',
-        label: 'arcadia'
-      },
-      {
-        id: 2,
-        link: '/',
-        label: 'arcadia'
-      }
-    ];
-  
     const branches = ['master', 'dev'];
-  
+    
+    const renderBreadcrumbs = () => {
+      const isVisible = this.props.isBreadcrumbsVisible;
+      
+      if (isVisible) {
+        return <Breadcrumbs breadcrumbs={this.props.breadcrumbs}/>
+      } else {
+        return null;
+      }
+    };
+    
     return (
       <div className="subheader">
         <div className="subheader__container container">
           <div className="subheader__heading">
-            <Breadcrumbs breadcrumbs={this.props.breadcrumbs}/>
+            { renderBreadcrumbs() }
           </div>
           <div className="subheader__current">
             <div className="subheader__row subheader__row_margin-bottom">

@@ -5,7 +5,6 @@ import api from '../../services/api';
 
 export default class Home extends Component {
   
-  
   state = {
     git: new api(),
     files: [],
@@ -13,30 +12,55 @@ export default class Home extends Component {
   };
   
   componentDidMount = () => {
-    this.state.git.getAllRepoFiles('alena')
-      .then((result) => {
-        this.setState(() => {
-          return {
-            files: result.files,
-          };
+    
+    if (this.props.currentRepo) {
+      this.state.git.getAllRepoFiles('alena')
+        .then((result) => {
+          this.setState(() => {
+            return {
+              files: result.files,
+            };
+          });
         });
-      });
   
-    this.state.git.getArrayOfCommits('alena', 'master')
-      .then((result) => {
-        this.setState(() => {
-          return {
-            commits: result.commits,
-          }
-        })
-      });
+      this.state.git.getArrayOfCommits('alena', 'master')
+        .then((result) => {
+          this.setState(() => {
+            return {
+              commits: result.commits,
+            }
+          })
+        });
+    }
   };
+  
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (this.props.currentRepo !== prevProps.currentRepo) {
+      this.state.git.getAllRepoFiles(this.props.currentRepo)
+        .then((result) => {
+          this.setState(() => {
+            return {
+              files: result.files,
+            };
+          });
+        });
+  
+      this.state.git.getArrayOfCommits(this.props.currentRepo, 'master')
+        .then((result) => {
+          this.setState(() => {
+            return {
+              commits: result.commits,
+            }
+          })
+        });
+    }
+  }
   
   render() {
     return (
       <React.Fragment>
-        <Subheader commits={this.state.commits} breadcrumbs={['32112']}/>
-        <Source files={this.state.files}/>
+        <Subheader commits={this.state.commits} isBreadcrumbsVisible={false}/>
+        <Source files={this.state.files} currentRepo={this.props.currentRepo}/>
       </React.Fragment>
     );
   }

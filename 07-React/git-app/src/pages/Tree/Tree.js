@@ -12,10 +12,16 @@ export default class Tree extends Component {
   };
   
   path = `${this.props.match.params.path}/`;
-  
+  currentRepo = this.props.currentRepo;
   
   componentDidMount = () => {
-    this.state.git.getTree('alena', 'master', this.path)
+    
+    if (!this.currentRepo) {
+      this.props.onRepoSelected(this.props.match.params.repositoryId);
+      this.currentRepo = this.props.match.params.repositoryId
+    }
+    
+    this.state.git.getTree(this.currentRepo, 'master', this.path)
       .then((result) => {
         this.setState(() => {
           return {
@@ -24,7 +30,7 @@ export default class Tree extends Component {
         });
       });
     
-    this.state.git.getArrayOfCommits('alena', 'master')
+    this.state.git.getArrayOfCommits(this.currentRepo, 'master')
       .then((result) => {
         this.setState(() => {
           return {
@@ -37,7 +43,7 @@ export default class Tree extends Component {
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (this.props.match.params.path !== prevProps.match.params.path) {
       this.path = `${this.props.match.params.path}/`;
-      this.state.git.getTree('alena', 'master', this.path)
+      this.state.git.getTree(this.currentRepo, 'master', this.path)
         .then((result) => {
           this.setState(() => {
             return {
@@ -51,8 +57,12 @@ export default class Tree extends Component {
   render() {
     return (
       <React.Fragment>
-        <Subheader commits={this.state.commits} breadcrumbs={this.path.split('/')}/>
-        <Source files={this.state.files}/>
+        <Subheader
+          commits={this.state.commits}
+          breadcrumbs={this.path.split('/')}
+          isBreadcrumbsVisible={true}
+        />
+        <Source files={this.state.files} currentRepo={this.currentRepo}/>
       </React.Fragment>
     )
   }

@@ -19,31 +19,35 @@ export default class Blob extends Component {
     
     const file = this.props.match.params.pathToFile;
     
+    const currentRepo = this.props.currentRepo;
+    
     this.setState(() => {
       return {
         fileName: file,
       }
     });
     
-    this.state.git.getArrayOfCommits('alena', 'master')
-      .then((result) => {
-        this.setState(() => {
-          return {
-            commits: result.commits,
-          }
-        })
-      });
-  
-    this.state.git.getBlob('alena', 'master', file)
-      .then((result) => {
-        if (!result.message) {
+    if (currentRepo) {
+      this.state.git.getArrayOfCommits(currentRepo, 'master')
+        .then((result) => {
           this.setState(() => {
             return {
-              blob: result,
+              commits: result.commits,
             }
           })
-        }
-      });
+        });
+  
+      this.state.git.getBlob(currentRepo, 'master', file)
+        .then((result) => {
+          if (!result.message) {
+            this.setState(() => {
+              return {
+                blob: result,
+              }
+            })
+          }
+        });
+    }
   };
   
   render() {

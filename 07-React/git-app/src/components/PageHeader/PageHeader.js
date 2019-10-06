@@ -19,6 +19,15 @@ export default class PageHeader extends Component {
     });
   };
   
+  onRepoSelected = (repo) => {
+    this.props.onRepoSelected(repo);
+    this.setState(() => {
+      return {
+        isReposPopupVisible: false
+      };
+    });
+  };
+  
   render() {
     return (
       <header className="page-header" role="banner">
@@ -27,8 +36,14 @@ export default class PageHeader extends Component {
             <img className="page-header__img" src={logo} alt="Yandex Arcanum" width={118} height={20}/>
           </Link>
           <div className="page-header__actions">
-            <Tab className="page-header__tab" onTabClicked={this.onTabClicked}/>
-            <RepositoryPopup onPopupClicked={this.onTabClicked} isVisible={this.state.isReposPopupVisible}
+            <Tab className="page-header__tab"
+                 onTabClicked={this.onTabClicked}
+                 currentRepo={this.props.currentRepo}
+            />
+            <RepositoryPopup onPopupClicked={this.onTabClicked}
+                             onRepoSelected={this.onRepoSelected}
+                             currentRepo={this.props.currentRepo}
+                             isVisible={this.state.isReposPopupVisible}
                              repos={this.props.repos}/>
           </div>
         </div>
