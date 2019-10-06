@@ -24,6 +24,6 @@ module.exports = getCommits = async (params) => {
     let getChunkedArray = getBeautifiedCommits(getChunks(splittedArray, 4));
     return { commits: getChunkedArray }
   } catch (error) {
-    return { message: error.stderr }
+    return { message: error }
   }
 };

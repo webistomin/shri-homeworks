@@ -23,6 +23,6 @@ module.exports = getAllFilesByCommit = async (params) => {
     const allFilesFormatted = allFiles.filter((el) => el);
     return { files: allFilesFormatted };
   } catch (error) {
-    return { message: error.stderr };
+    return { message: error };
   }
 };
