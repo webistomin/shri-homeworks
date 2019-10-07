@@ -66,7 +66,7 @@
 
 Юнит тесты лежат в папке [spec](https://github.com/webistomin/shri-homeworks/tree/master/07-React/git-app/src/server/src/tests/specs). После выполнение теста появится папка coverage.
 
-Интеграционные находятся в [cypress](https://github.com/webistomin/shri-homeworks/tree/master/07-React/git-app/cypress/integration/git-api). Пока не успел написать для всех кейсов.
+Интеграционные находятся в [cypress](https://github.com/webistomin/shri-homeworks/tree/master/07-React/git-app/cypress/integration/git-api). 
 
 Немного запутался, как это всё организовать. Ведь для теста гит команд нужен гит репозиторий с историей. Создал отдельный репозиторий и добавил команду на скачивание перед тестами, но мне кажется нужно как-то сэмулировать ответы сервера. Как это сделать - я не до конца понял.
 
