@@ -10,8 +10,9 @@ import PageFooter from '../PageFooter';
 import ErrorBoundary from '../ErrorBoundary';
 import Spinner from '../Spinner';
 
+import Home from '../../pages/Home';
+
 const Error404 = lazy(() => import('../Error404'));
-const Home = lazy(() => import('../../pages/Home'));
 const Blob = lazy(() => import('../../pages/Blob'));
 const Tree = lazy(() => import('../../pages/Tree'));
 
