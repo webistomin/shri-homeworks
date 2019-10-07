@@ -4,7 +4,7 @@ const getChunks = require('../../utils/getChunks.js');
 
 describe('Utils', () => {
   it('getAllFilesInsideFolder - Выводит все файлы в директории', async () => {
-    const dirPath = path.resolve('./', 'src/tests/test-repos');
+    const dirPath = path.resolve('./src/server/src/tests/test-repos');
     const result = await getAllFilesInsideFolder(dirPath);
     expect(result.git_repos.length).not.toEqual(0);
   });

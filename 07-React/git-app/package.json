@@ -3,17 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "react-scripts start",
+    "start": "npm run server && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "cypress:open": "npm run clone-test && cypress open",
     "server": "nodemon src/server/src/index.js --path=./src/server/repos",
-    "clone-test": "rimraf ./src/server/repos/learn-unit-testing && git clone git@github.com:webistomin/learn-unit-testing.git ./src/server/repos/learn-unit-testing"
+    "clone-e2e-test": "rimraf ./src/server/repos/learn-unit-testing && git clone git@github.com:webistomin/learn-unit-testing.git ./src/server/repos/learn-unit-testing",
+    "test:e2e": "npm run clone-e2e-test && cypress open",
+    "clone-unit-test": "rimraf ./src/server/src/tests/test-repos/learn-unit-testing && git clone git@github.com:webistomin/learn-unit-testing.git ./src/server/src/tests/test-repos/learn-unit-testing",
+    "test:unit": "npm run clone-unit-test && jest --detectOpenHandles --path=./src/server/src/tests/test-repos"
   },
   "dependencies": {
     "axios": "^0.19.0",
-    "cypress-plugin-snapshots": "^1.2.9",
     "lodash.throttle": "^4.1.1",
     "react": "^16.10.1",
     "react-dom": "^16.10.1",
@@ -23,10 +24,12 @@
     "react-scripts": "3.1.2"
   },
   "devDependencies": {
+    "jest": "^24.9.0",
     "cypress": "^3.4.1",
     "node-sass": "^4.12.0",
     "nodemon": "^1.19.3",
-    "rimraf": "^3.0.0"
+    "rimraf": "^3.0.0",
+    "cypress-plugin-snapshots": "^1.2.9"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -41,6 +44,27 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
+    ]
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "./src/server/src/handlers/**/*.js",
+      "./src/server/src/utils/**/*.js",
+      "./src/server/src/server.js",
+      "./src/server/src/routes.js"
+    ],
+    "coverageReporters": [
+      "json",
+      "lcov",
+      "text",
+      "clover"
+    ],
+    "testRegex": ".src/server/src/tests/specs/.*.js$",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/repos/"
     ]
   }
 }
