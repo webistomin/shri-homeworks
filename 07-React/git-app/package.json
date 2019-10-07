@@ -6,10 +6,14 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "cypress:open": "npm run clone-test && cypress open",
+    "server": "nodemon src/server/src/index.js --path=./src/server/repos",
+    "clone-test": "rimraf ./src/server/repos/learn-unit-testing && git clone git@github.com:webistomin/learn-unit-testing.git ./src/server/repos/learn-unit-testing"
   },
   "dependencies": {
     "axios": "^0.19.0",
+    "cypress-plugin-snapshots": "^1.2.9",
     "lodash.throttle": "^4.1.1",
     "react": "^16.10.1",
     "react-dom": "^16.10.1",
@@ -19,7 +23,10 @@
     "react-scripts": "3.1.2"
   },
   "devDependencies": {
-    "node-sass": "^4.12.0"
+    "cypress": "^3.4.1",
+    "node-sass": "^4.12.0",
+    "nodemon": "^1.19.3",
+    "rimraf": "^3.0.0"
   },
   "eslintConfig": {
     "extends": "react-app"
