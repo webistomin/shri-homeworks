@@ -18,7 +18,7 @@ export default class Select extends Component {
         type="button"
         id="js-branch-select-btn"
         onClick={() => {
-          onSelectClicked()
+          // onSelectClicked()
         }}
       >
         master

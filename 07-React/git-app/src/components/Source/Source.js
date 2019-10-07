@@ -11,13 +11,14 @@ const Source = (props) => {
     {
       id: 1,
       link: '/',
-      label: 'Files'
+      label: 'Files',
+      isActive: true,
     },
-    {
-      id: 2,
-      link: '/',
-      label: 'Branches'
-    },
+    // {
+    //   id: 2,
+    //   link: '/',
+    //   label: 'Branches'
+    // },
   ];
   
   const {files, currentRepo} = props;
