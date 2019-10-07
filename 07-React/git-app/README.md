@@ -1,68 +1,65 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# React app
 
-## Available Scripts
+Проект начал с create-react-app. Получилось реализовать навигацию по папкам, просмотр файлов, выбор репозитория в попапе.
 
-In the project directory, you can run:
+## Использованные библиотеки
 
-### `npm start`
+<table>
+  <thead>
+    <tr>
+      <th>Библиотека</th>
+      <th>Описание</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td width="30%"><code>axios</code></td>
+      <td>Библиотека для HTTP запросов к серверу</td>
+    </tr>
+    <tr>
+      <td><code>react-helmet</code></td>
+      <td>Для добавление каждой странице своего title и прочего</td>
+    </tr>
+    <tr>
+      <td><code>react-highlight</code></td>
+      <td>Подсветка синтаксиса в файлах</td>
+    </tr>
+  </tbody>
+</table>
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Команды
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+<table>
+  <thead>
+    <tr>
+      <th>Команда</th>
+      <th>Результат</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td width="30%"><code>npm i</code></td>
+      <td>Установить зависимости</td>
+    </tr>
+    <tr>
+      <td><code>npm run start</code></td>
+      <td>Запустить сборку, сервер и слежение за файлами</td>
+    </tr>
+    <tr>
+      <td><code>npm start ЗАДАЧА</code></td>
+      <td>Запустить задачу с названием ЗАДАЧА (список задач в <code>gulpfile.js</code>)</td>
+    </tr>
+  </tbody>
+</table>
 
-### `npm test`
+# Тесты
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Для юнит тестов взял Jest, для интеграционного Cypress. Гермиона у меня не хочет устанавливаться.
 
-### `npm run build`
+Юнит тесты лежат в папке [spec](https://github.com/webistomin/shri-homeworks/tree/master/07-React/git-app/src/server/src/tests/specs).
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Интеграционные находятся в [cypress](https://github.com/webistomin/shri-homeworks/tree/master/07-React/git-app/cypress/integration/git-api). Пока не успел написать для всех кейсов.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+Немного запутался, как это всё организовать. Ведь для теста гит команд нужен гит репозиторий с историей. Создал отдельный репозиторий и добавил команду на скачивание перед тестами, но мне кажется нужно как-то сэмулировать ответы сервера. Как это сделать - я не до конца понял.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
