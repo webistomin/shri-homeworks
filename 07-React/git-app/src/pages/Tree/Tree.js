@@ -57,7 +57,7 @@ export default class Tree extends Component {
   render() {
     const { commits, isBreadcrumbsVisible, files } = this.state;
     const arrayOfBreadcrumbs = this.path.split('/');
-    
+    arrayOfBreadcrumbs.pop();
     return (
       <React.Fragment>
         <Helmet>

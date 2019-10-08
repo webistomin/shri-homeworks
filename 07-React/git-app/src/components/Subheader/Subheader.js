@@ -20,7 +20,7 @@ export default class Subheader extends Component {
   };
   
   render() {
-    const { commits, isVisible, breadcrumbs, currentRepo } = this.props;
+    const { commits, isBreadcrumbsVisible, breadcrumbs, currentRepo } = this.props;
     const { isBranchPopupVisible } = this.state;
   
     let lastCommit = {
@@ -37,8 +37,10 @@ export default class Subheader extends Component {
     const branches = ['master', 'dev'];
     
     const renderBreadcrumbs = () => {
-      if (isVisible) {
-        return <Breadcrumbs breadcrumbs={breadcrumbs}/>
+      if (isBreadcrumbsVisible) {
+        return <Breadcrumbs
+          currentRepo={currentRepo}
+          breadcrumbs={breadcrumbs}/>
       } else {
         return null;
       }

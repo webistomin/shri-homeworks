@@ -5,7 +5,7 @@ describe('Git Api - Главная страница', () => {
     cy.get('#js-repository-select-btn')
       .click({force: true})
       .blur()
-      .toMatchImageSnapshot()
+      .toMatchImageSnapshot();
       
     cy.get('#js-repository-select-popup')
       .should('be.visible');
