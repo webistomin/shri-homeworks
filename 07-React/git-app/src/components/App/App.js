@@ -15,6 +15,7 @@ import Home from '../../pages/Home';
 const Error404 = lazy(() => import('../Error404'));
 const Blob = lazy(() => import('../../pages/Blob'));
 const Tree = lazy(() => import('../../pages/Tree'));
+const CommitsHistory = lazy(() => import('../../pages/CommitsHistory'));
 
 export default class App extends Component {
   
@@ -60,7 +61,8 @@ export default class App extends Component {
                 <Route
                   path="/"
                   exact
-                  render={(props) => <Home {...props} currentRepo={this.state.currentRepo}/>}
+                  render={(props) => <Home {...props}
+                                           currentRepo={this.state.currentRepo}/>}
                 />
                 <Route
                   exact
@@ -73,6 +75,13 @@ export default class App extends Component {
                   exact
                   path="/api/repos/:repositoryId/tree/:commitHash?/:path+"
                   render={(props) => <Tree {...props}
+                                           currentRepo={this.state.currentRepo}
+                                           onRepoSelected={this.onRepoSelected}/>}
+                />
+                <Route
+                  exact
+                  path="/api/repos/:repositoryId/commits/:commitHash"
+                  render={(props) => <CommitsHistory {...props}
                                            currentRepo={this.state.currentRepo}
                                            onRepoSelected={this.onRepoSelected}/>}
                 />

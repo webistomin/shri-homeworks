@@ -35,7 +35,7 @@ export default class Blob extends Component {
             }
           })
         });
-    
+      
       this.state.git.getBlob(currentRepo, 'master', file)
         .then((result) => {
           if (!result.message) {

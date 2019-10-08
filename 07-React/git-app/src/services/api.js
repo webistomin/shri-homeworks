@@ -14,7 +14,7 @@ export default class API {
   };
   
   getArrayOfCommits = async (repoId, commitHash) => {
-    const result = await axios.get(`${this._apiBase}/api/repos/${repoId}/commits/${commitHash}`)
+    const result = await axios.get(`${this._apiBase}/api/repos/${repoId}/commits/${commitHash}`);
     return result.data;
   };
   

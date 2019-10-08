@@ -60,7 +60,7 @@ export default class Subheader extends Component {
                 <BranchPopup branches={branches} isVisible={isBranchPopupVisible}/>
               </div>
             </div>
-            <SubheaderInfo lastCommit={lastCommit}/>
+            <SubheaderInfo lastCommit={lastCommit} currentRepo={currentRepo}/>
           </div>
         </div>
       </div>
