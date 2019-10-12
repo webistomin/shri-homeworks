@@ -1,0 +1,22 @@
+@import '../../layout/sass/dev.sass'
+
++b('page-footer')
+  margin-top: 10px
+  flex-shrink: 0
+  padding: 18px 0
+  color: #7f8285
+  border-top: 1px solid #f0f2f3
+
+  +e('container')
+    +media($tablet-media)
+      display: flex
+
+  +e('col')
+    +m('right')
+      +media($tablet-media)
+        margin-left: auto
+
+  +e('copyright')
+    +media($tablet-media)
+      display: inline-block
+      margin-left: 32px

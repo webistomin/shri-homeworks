@@ -1,0 +1,19 @@
+@import '../../layout/sass/dev.sass'
+
++b('select')
+  display: inline-flex
+  align-items: center
+  +ts()
+
+  +m('color')
+    +m('grey')
+      color: var(--color-grey-7)
+
+      &:hover
+        color: var(--color-blue)
+
+  +e('icon')
+    fill: currentColor
+
+    +m('right')
+      margin-left: 6px

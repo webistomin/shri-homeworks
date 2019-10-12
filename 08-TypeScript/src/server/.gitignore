@@ -1,0 +1,17 @@
+# IntelliJ project files
+.idea
+.vscode
+*.iml
+out
+gen
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Dependencies
+node_modules
+
+# Test folder
+repos
+coverage
