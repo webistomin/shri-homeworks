@@ -17,7 +17,11 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true
+    "noEmit": true,
+    "downlevelIteration": true,
+    "typeRoots": [
+      "node_modules/@types"
+    ]
   },
   "include": [
     "src"

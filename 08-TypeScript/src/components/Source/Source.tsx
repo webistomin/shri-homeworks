@@ -3,10 +3,15 @@ import {Link} from 'react-router-dom';
 import './Source.sass';
 import sprite from '../../layout/img/icons/sprite.svg';
 import SourceHeading from '../SourceHeading';
-import {getFileExtension} from '../../plugins/getFileExtension.ts';
+import {getFileExtension} from '../../plugins/getFileExtension';
 
-const Source = (props) => {
-  
+export interface SourceProps {
+  files: Array<string>;
+  currentRepo: string;
+}
+
+const Source: React.FC<SourceProps> = (props) => {
+
   const headingLinks = [
     {
       id: 1,
@@ -20,16 +25,16 @@ const Source = (props) => {
     //   label: 'Branches'
     // },
   ];
-  
+
   const {files, currentRepo} = props;
-  
+
   const items = files.map((item) => {
     const fileName = item.substring(item.lastIndexOf('/') +1 );
-    
+
     let linkUrl = `/api/repos/${currentRepo}/tree/master/${item}`;
     let icon = null;
     const hasExtension = getFileExtension(item);
-    
+
     if (hasExtension || item[0] === '.') {
       icon = {
         width: '12',
@@ -45,7 +50,7 @@ const Source = (props) => {
       };
       linkUrl = `/api/repos/${currentRepo}/tree/master/${item}/`;
     }
-    
+
     return (
       <li className="source__files-item list-item" key={item} title={fileName}>
         <Link className="source__files-name link" to={linkUrl}>
@@ -58,7 +63,7 @@ const Source = (props) => {
       </li>
     );
   });
-  
+
   return (
     <section className="source">
       <div className="source__container container">

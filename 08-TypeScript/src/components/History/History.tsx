@@ -4,23 +4,29 @@ import dayjs from 'dayjs';
 import sprite from '../../layout/img/icons/sprite.svg';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import {Link} from 'react-router-dom';
+import CommitsModel from "../../services/api";
 
 dayjs.extend(relativeTime);
 
-export default class History extends Component {
+export interface HistoryProps {
+    history: Array<CommitsModel>;
+    currentRepo: string;
+}
+
+export default class History extends Component<HistoryProps> {
   render() {
     const { history, currentRepo } = this.props;
-    
-    const getFormattedDate = (date) => {
+
+    const getFormattedDate = (date: string) => {
       // DD-MM-YYYY
       return new Date(date).toLocaleDateString()
     };
-    
+
     const uniqueDates = [...new Set(history.map(item => getFormattedDate(item.date)))];
-    
+
     const historyItems = uniqueDates.map((item) => {
       const commitsForDate = history.filter((commit) => getFormattedDate(commit.date) === item);
-      
+
       return (
         <li className="history__item list-item" key={item}>
           <h2 className="history__title title">
@@ -88,7 +94,7 @@ export default class History extends Component {
         </li>
       );
     });
-    
+
     return (
       <section className="history">
         <div className="history__container container">

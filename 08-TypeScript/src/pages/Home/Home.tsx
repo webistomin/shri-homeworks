@@ -2,22 +2,35 @@ import React, {Component} from 'react';
 import {Helmet} from 'react-helmet';
 import Subheader from '../../components/Subheader';
 import Source from '../../components/Source';
-import API from '../../services/api.ts';
+import API from '../../services/api';
 import Message from '../../components/Message';
+import CommitsModel from "../../services/api";
 
-export default class Home extends Component {
-  
-  state = {
+export interface HomeProps {
+  currentRepo: string;
+}
+
+export interface HomeState {
+  git: API;
+  files: Array<string>;
+  commits: Array<CommitsModel>;
+  homeMessage: string;
+  isBreadcrumbsVisible: boolean;
+}
+
+export default class Home extends Component<HomeProps, HomeState> {
+
+  state: Readonly<HomeState> = {
     git: new API(),
     files: [],
     commits: [],
     homeMessage: 'Выберите репозиторий, чтобы продолжить работу',
     isBreadcrumbsVisible: false,
   };
-  
+
   updateComponent() {
     const { currentRepo } = this.props;
-    
+
     if (currentRepo) {
       this.state.git.getAllRepoFiles(currentRepo)
         .then((result) => {
@@ -27,7 +40,7 @@ export default class Home extends Component {
             };
           });
         });
-    
+
       this.state.git.getArrayOfCommits(currentRepo, 'master')
         .then((result) => {
           this.setState(() => {
@@ -38,22 +51,22 @@ export default class Home extends Component {
         });
     }
   }
-  
+
   componentDidMount = () => {
     this.updateComponent();
   };
-  
-  componentDidUpdate(prevProps) {
+
+  componentDidUpdate(prevProps: HomeProps) {
     if (this.props.currentRepo !== prevProps.currentRepo) {
       this.updateComponent();
     }
   }
-  
+
   render() {
-    
+
     const { commits, files, homeMessage, isBreadcrumbsVisible } = this.state;
     const { currentRepo } = this.props;
-    
+
     const renderHome = currentRepo ?
       (
         <React.Fragment>
@@ -67,7 +80,7 @@ export default class Home extends Component {
                   currentRepo={currentRepo}/>
         </React.Fragment>
       ) : <Message message={homeMessage} />;
-    
+
     return (
       <React.Fragment>
         { renderHome }

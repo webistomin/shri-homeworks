@@ -2,9 +2,22 @@ import React from 'react';
 import Name from '../../Name';
 import {Link} from 'react-router-dom';
 
-const SubheaderInfo = React.memo(({lastCommit, currentRepo}) => {
+interface Commits {
+  date: string;
+  short_commit: string;
+  message: string;
+  author: string;
+}
+
+interface SubheaderInfoProps {
+  lastCommit: Commits;
+  currentRepo: string;
+}
+
+const SubheaderInfo: React.FC<SubheaderInfoProps> = (props) => {
+  const { lastCommit, currentRepo } = props;
   const commitLink = `/api/repos/${currentRepo}/commits/${lastCommit.short_commit}`;
-  
+
   return (
     <div className="subheader__row">
       <p className="subheader__info text text_size_l paragraph">
@@ -25,6 +38,6 @@ const SubheaderInfo = React.memo(({lastCommit, currentRepo}) => {
       </p>
     </div>
   )
-});
+};
 
 export default SubheaderInfo;

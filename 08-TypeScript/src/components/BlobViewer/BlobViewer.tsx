@@ -3,17 +3,27 @@ import Highlight from 'react-highlight'
 import './BlobViewer.sass'
 import './github-gist.css'
 import sprite from '../../layout/img/icons/sprite.svg';
-import {formatBytes} from '../../plugins/formatBytes.ts';
+import {formatBytes} from '../../plugins/formatBytes';
 
-const BlobViewer = (props) => {
+interface Blob {
+  blob: string;
+  size: number;
+}
+
+export interface BlobViewerProps {
+  fileName: string;
+  blob: Blob;
+}
+
+const BlobViewer: React.FC<BlobViewerProps> = (props) => {
   const fileName = props.fileName;
   const blob = props.blob.blob;
- 
+
   const size = props.blob.size;
   const formattedSize = formatBytes(size);
-  
+
   let items = null;
-  
+
   if (blob) {
     const arrayOfStrings = blob.split('\n');
     items = arrayOfStrings.map((item, index) => {
@@ -25,7 +35,7 @@ const BlobViewer = (props) => {
           <td
             className="blob-viewer__content-table-data blob-viewer__content-table-data_content blob-viewer__content-table-data_language_python">
           <span className="blob-viewer__content-keyword blob-viewer__content-keyword_grey">
-            <Highlight>
+            <Highlight className="blob-viewer__content-highlighter">
               {item}
             </Highlight>
           </span>
@@ -36,7 +46,7 @@ const BlobViewer = (props) => {
   } else {
     items = <tr><td>Файл пустой</td></tr>
   }
-  
+
   return (
     <div className="blob-viewer">
       <div className="blob-viewer__container container">

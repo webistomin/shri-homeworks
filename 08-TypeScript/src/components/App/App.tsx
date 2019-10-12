@@ -6,18 +6,23 @@ import './App.sass';
 import API from '../../services/api';
 
 import PageHeader from '../PageHeader';
-// import PageFooter from '../PageFooter';
+import PageFooter from '../PageFooter';
 import ErrorBoundary from '../ErrorBoundary';
 import Spinner from '../Spinner';
-//
+
 import Home from '../../pages/Home';
+const Error404 = lazy(() => import('../Error404'));
+const Blob = lazy(() => import('../../pages/Blob'));
+const Tree = lazy(() => import('../../pages/Tree'));
+const CommitsHistory = lazy(() => import('../../pages/CommitsHistory'));
 
-// const Error404 = lazy(() => import('../Error404'));
-// const Blob = lazy(() => import('../../pages/Blob'));
-// const Tree = lazy(() => import('../../pages/Tree'));
-// const CommitsHistory = lazy(() => import('../../pages/CommitsHistory'));
+export interface AppState {
+  git: object;
+  repos: Array<string>;
+  currentRepo: string;
+}
 
-export default class App extends Component {
+export default class App extends Component<{}, AppState> {
 
   state = {
     git: new API(),
@@ -31,7 +36,6 @@ export default class App extends Component {
       .then((result) => {
         this.setState(() => {
           return {
-            // @ts-ignore
             repos: result.git_repos,
           };
         });
@@ -53,7 +57,6 @@ export default class App extends Component {
       <ErrorBoundary>
         <Router>
           <Suspense fallback={<Spinner/>}>
-            // @ts-ignore
             <PageHeader
               repos={this.state.repos}
               currentRepo={this.state.currentRepo}
@@ -67,32 +70,31 @@ export default class App extends Component {
                   render={(props) => <Home {...props}
                                            currentRepo={this.state.currentRepo}/>}
                 />
-                {/*<Route*/}
-                {/*  exact*/}
-                {/*  path="/api/repos/:repositoryId/blob/:commitHash/:pathToFile+"*/}
-                {/*  render={(props) => <Blob {...props}*/}
-                {/*                           currentRepo={this.state.currentRepo}*/}
-                {/*                           onRepoSelected={this.onRepoSelected}/>}*/}
-                {/*/>*/}
-                {/*<Route*/}
-                {/*  exact*/}
-                {/*  path="/api/repos/:repositoryId/tree/:commitHash?/:path+"*/}
-                {/*  render={(props) => <Tree {...props}*/}
-                {/*                           currentRepo={this.state.currentRepo}*/}
-                {/*                           onRepoSelected={this.onRepoSelected}/>}*/}
-                {/*/>*/}
-                {/*<Route*/}
-                {/*  exact*/}
-                {/*  path="/api/repos/:repositoryId/commits/:commitHash"*/}
-                {/*  render={(props) => <CommitsHistory {...props}*/}
-                {/*                           currentRepo={this.state.currentRepo}*/}
-                {/*                           onRepoSelected={this.onRepoSelected}/>}*/}
-                {/*/>*/}
-
-                {/*<Route component={Error404}/>*/}
+                <Route
+                  exact
+                  path="/api/repos/:repositoryId/blob/:commitHash/:pathToFile+"
+                  render={(props) => <Blob {...props}
+                                           currentRepo={this.state.currentRepo}
+                                           onRepoSelected={this.onRepoSelected}/>}
+                />
+                <Route
+                  exact
+                  path="/api/repos/:repositoryId/tree/:commitHash?/:path+"
+                  render={(props) => <Tree {...props}
+                                           currentRepo={this.state.currentRepo}
+                                           onRepoSelected={this.onRepoSelected}/>}
+                />
+                <Route
+                  exact
+                  path="/api/repos/:repositoryId/commits/:commitHash"
+                  render={(props) => <CommitsHistory {...props}
+                                           currentRepo={this.state.currentRepo}
+                                           onRepoSelected={this.onRepoSelected}/>}
+                />
+                <Route component={Error404}/>
               </Switch>
             </main>
-            {/*<PageFooter/>*/}
+            <PageFooter/>
           </Suspense>
         </Router>
       </ErrorBoundary>

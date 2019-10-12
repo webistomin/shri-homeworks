@@ -1,12 +1,28 @@
 import React, {Component} from 'react';
 import {Helmet} from 'react-helmet';
 import Subheader from '../../components/Subheader';
-import API from '../../services/api.ts';
+import API from '../../services/api';
 import BlobViewer from '../../components/BlobViewer';
 import Spinner from '../../components/Spinner';
+import CommitsModel from "../../services/api";
+import {RouteComponentProps} from "react-router";
 
-export default class Blob extends Component {
-  
+export interface BlobProps {
+  currentRepo: string;
+  onRepoSelected: (repoId: string) => void;
+}
+
+export interface BlobState {
+  git: API;
+  blob: object,
+  isBreadcrumbsVisible: boolean;
+  isLoading: boolean;
+  fileName: string,
+  commits: Array<CommitsModel>,
+}
+
+export default class Blob extends Component<BlobProps & RouteComponentProps<any>, BlobState> {
+
   state = {
     git: new API(),
     blob: {
@@ -18,13 +34,13 @@ export default class Blob extends Component {
     isLoading: true,
     isBreadcrumbsVisible: true,
   };
-  
+
   currentRepo = this.props.currentRepo;
-  
+
   updateComponent() {
     const file = this.props.match.params.pathToFile;
     const currentRepo = this.currentRepo;
-    
+
     if (currentRepo) {
       this.state.git.getArrayOfCommits(currentRepo, 'master')
         .then((result) => {
@@ -35,7 +51,7 @@ export default class Blob extends Component {
             }
           })
         });
-      
+
       this.state.git.getBlob(currentRepo, 'master', file)
         .then((result) => {
           if (!result.message) {
@@ -49,36 +65,36 @@ export default class Blob extends Component {
         });
     }
   }
-  
+
   componentDidMount = () => {
     const file = this.props.match.params.pathToFile;
     const repoId = this.props.match.params.repositoryId;
-    
+
     if (!this.currentRepo) {
       this.props.onRepoSelected(repoId);
       this.currentRepo = repoId;
     }
-    
+
     this.setState(() => {
       return {
         fileName: file,
       }
     });
-    
+
     this.updateComponent();
   };
-  
-  componentDidUpdate(prevProps, prevState, snapshot) {
+
+  componentDidUpdate(prevProps: BlobProps) {
     if (this.props.currentRepo !== prevProps.currentRepo) {
       this.updateComponent();
     }
   }
-  
+
   render() {
     const { currentRepo } = this.props;
     const { isLoading, commits, blob, fileName, isBreadcrumbsVisible  } = this.state;
     const arrayOfBreadcrumbs = fileName.split('/');
-    
+
     const renderBlob = isLoading ?
       <Spinner/> :
       (
@@ -95,12 +111,12 @@ export default class Blob extends Component {
         </React.Fragment>
       )
       ;
-    
+
     return (
       <React.Fragment>
         { renderBlob }
       </React.Fragment>
     )
   }
-  
+
 }

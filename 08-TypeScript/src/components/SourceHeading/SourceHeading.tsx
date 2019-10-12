@@ -1,11 +1,24 @@
 import React from 'react';
 import '../Tab/Tab.sass'
 
-const SourceHeading = ({ links }) => {
+interface Links {
+  id: number;
+  link: string;
+  label: string;
+  isActive: boolean;
+}
+
+export interface SourceHeadingProps {
+  links: Array<Links>;
+}
+
+const SourceHeading: React.FC<SourceHeadingProps> = (props) => {
+  const { links } = props;
+
   const items = links.map((item) => {
-    
+
     const { id, link, label, isActive } = item;
-    
+
     return (
       <li className="source__tab-item list-item" key={id}>
         <a className="source__tab tab tab_text_uppercase tab_color_grey text text_size_m link" href={link}>
@@ -14,7 +27,7 @@ const SourceHeading = ({ links }) => {
       </li>
     );
   });
-  
+
   return (
     <div className="source__heading">
       <ul className="source__tabs-list list">

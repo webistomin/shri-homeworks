@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
 import './popup.sass';
-import {detectMob} from '../../plugins/isMobile.ts';
+import {detectMob} from '../../plugins/isMobile';
 
-export default class BranchPopup extends Component {
-  
+export interface BranchPopupProps {
+  branches: Array<string>;
+  isVisible: boolean;
+  onPopupClicked: () => void;
+}
+
+export default class BranchPopup extends Component<BranchPopupProps> {
+
   render() {
-    const { branches, isVisible } = this.props;
-  
+    const { branches, isVisible, onPopupClicked } = this.props;
+
     const isPopupVisible = isVisible ? 'popup_visible' : '';
-  
+
     const items = branches.map((item) => {
       return (
         <li className="popup__item popup__item_paddings list-item" key={item}>
@@ -18,13 +24,13 @@ export default class BranchPopup extends Component {
         </li>
       );
     });
-  
+
     const closePopup = () => {
       if (detectMob()) {
-        this.props.onPopupClicked()
+        onPopupClicked()
       }
     };
-  
+
     return (
       <div
         className={`popup popup_branch-popup ${isPopupVisible}`}
