@@ -3,6 +3,7 @@ const cors = require('cors');
 const showBanner = require('node-banner');
 const router = require('./routes');
 
+// @ts-ignore
 const app = express();
 app.use(cors());
 app.use(express.json());

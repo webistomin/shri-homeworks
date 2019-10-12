@@ -1,6 +1,6 @@
 const getAllFilesInsideFolder = require('../utils/getAllFilesInsideFolder');
 
-module.exports = getAllRepoFiles = async (directoryPath) => {
+const getAllRepoFiles = async (directoryPath: string) : Promise<object> => {
   try {
     let result = await getAllFilesInsideFolder(directoryPath);
     return result
@@ -8,3 +8,5 @@ module.exports = getAllRepoFiles = async (directoryPath) => {
     return { message: error }
   }
 };
+
+module.exports = getAllRepoFiles;

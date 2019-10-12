@@ -1,3 +1,5 @@
+export {}
+
 const path = require('path');
 const cp = require('child_process');
 const util = require('util');
@@ -5,13 +7,19 @@ const asyncExec = util.promisify(cp.exec);
 
 const getFileStat = require('../utils/getFileStat');
 
-module.exports = getDownloadRepository = async (params) => {
+interface getDownloadRepositoryInterface {
+  repositoryId: string;
+  directoryPath: string;
+  url: string;
+}
+
+const getDownloadRepository = async (params: getDownloadRepositoryInterface): Promise<object> => {
   const { url, repositoryId, directoryPath } = params;
   const command = `git clone ${url} ${repositoryId}`;
   const cwd = `${directoryPath}`;
-  
+
   let getDirStat = await getFileStat(path.resolve(cwd, repositoryId));
-  
+
   if (getDirStat.code === 'ENOENT') {
     try {
       await asyncExec(command, { cwd });
@@ -23,3 +31,5 @@ module.exports = getDownloadRepository = async (params) => {
     return { message: 'Репозиторий уже существует. Удалите его во избежание конфликта.' }
   }
 };
+
+module.exports = getDownloadRepository;

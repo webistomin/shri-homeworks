@@ -7,7 +7,7 @@ Node.js v10.16.3
 
 Для передачи директории, используется параметр --path:
 ```bash
-nodemon server.js --path=...
+nodemon server.ts --path=...
 ```
 
 ## Что реализовано

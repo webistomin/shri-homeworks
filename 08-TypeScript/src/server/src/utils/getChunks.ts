@@ -1,4 +1,4 @@
-module.exports = getChunks = (arr, chunkSize = 1, cache = []) => {
+const getChunks = (arr: Array<string>, chunkSize: number = 1, cache: Array<string[]> = []) => {
   const temp = [...arr];
   if (chunkSize <= 0) {
     return cache;
@@ -8,3 +8,5 @@ module.exports = getChunks = (arr, chunkSize = 1, cache = []) => {
   }
   return cache
 };
+
+module.exports = getChunks;
