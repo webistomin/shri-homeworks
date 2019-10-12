@@ -5,12 +5,22 @@ import logo from '../../layout/img/logo.svg';
 import Tab from '../Tab';
 import RepositoryPopup from '../RepositoryPopup/RepositoryPopup';
 
-export default class PageHeader extends Component {
-  
-  state = {
+export interface PageHeaderProps {
+  repos: Array<string>;
+  currentRepo: string;
+  onRepoSelected: (item: string) => void;
+}
+
+export interface PageHeaderState {
+  isReposPopupVisible: boolean,
+}
+
+export default class PageHeader extends Component<PageHeaderProps, PageHeaderState> {
+
+  state: Readonly<PageHeaderState> = {
     isReposPopupVisible: false,
   };
-  
+
   onTabClicked = () => {
     this.setState(() => {
       return {
@@ -18,8 +28,8 @@ export default class PageHeader extends Component {
       };
     });
   };
-  
-  onRepoSelected = (repo) => {
+
+  onRepoSelected = (repo: any) => {
     this.props.onRepoSelected(repo);
     this.setState(() => {
       return {
@@ -27,11 +37,11 @@ export default class PageHeader extends Component {
       };
     });
   };
-  
+
   render() {
     const { currentRepo, repos } = this.props;
     const { isReposPopupVisible } = this.state;
-    
+
     return (
       <header className="page-header" role="banner">
         <div className="page-header__container container">

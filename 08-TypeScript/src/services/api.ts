@@ -1,29 +1,29 @@
 import axios from 'axios';
 
 export default class API {
-  _apiBase = 'http://localhost:8080';
-  
-  getAllRepos = async () => {
+  private readonly _apiBase = 'http://localhost:8080';
+
+  public getAllRepos = async () : Promise<object> => {
     const result = await axios.get(`${this._apiBase}/api/repos/`);
     return result.data;
   };
-  
-  getAllRepoFiles = async (repoId) => {
+
+  public getAllRepoFiles = async (repoId: string) : Promise<object> => {
     const result = await axios.get(`${this._apiBase}/api/repos/${repoId}/`);
     return result.data;
   };
-  
-  getArrayOfCommits = async (repoId, commitHash) => {
+
+  public getArrayOfCommits = async (repoId: string, commitHash: string) : Promise<object> => {
     const result = await axios.get(`${this._apiBase}/api/repos/${repoId}/commits/${commitHash}`);
     return result.data;
   };
-  
-  getBlob = async (repoId, commitHash = 'master', path) => {
+
+  public getBlob = async (repoId: string, commitHash: string = 'master', path: string) : Promise<object> => {
     const result = await axios.get(`${this._apiBase}/api/repos/${repoId}/blob/${commitHash}/${path}`);
     return result.data;
   };
-  
-  getTree = async (repoId, commitHash = 'master', path) => {
+
+  public getTree = async (repoId: string, commitHash = 'master', path: string) : Promise<object> => {
     const result = await axios.get(`${this._apiBase}/api/repos/${repoId}/tree/${commitHash}/${path}`);
     return result.data;
   }

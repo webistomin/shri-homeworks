@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import API from '../../services/api';
+import API from '../../services/api.ts';
 import Spinner from '../../components/Spinner';
 import {Helmet} from 'react-helmet';
 import History from '../../components/History';

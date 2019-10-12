@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Helmet} from 'react-helmet';
 import Subheader from '../../components/Subheader';
-import API from '../../services/api';
+import API from '../../services/api.ts';
 import BlobViewer from '../../components/BlobViewer';
 import Spinner from '../../components/Spinner';
 

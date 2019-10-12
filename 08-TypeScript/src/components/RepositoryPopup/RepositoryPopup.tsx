@@ -1,24 +1,32 @@
 import React, { Component } from 'react';
 import './popup.sass';
-import { detectMob } from '../../plugins/isMobile.ts';
+import { detectMob } from '../../plugins/isMobile';
 
-export default class RepositoryPopup extends Component {
-  
+export interface RepositoryPopupProps {
+  repos: Array<string>;
+  isVisible: boolean;
+  currentRepo: string;
+  onRepoSelected: (item: string) => void;
+  onPopupClicked: () => void;
+}
+
+export default class RepositoryPopup extends Component<RepositoryPopupProps> {
+
   render() {
-    const { repos, isVisible } = this.props;
-  
+    const { repos, isVisible, currentRepo, onRepoSelected, onPopupClicked } = this.props;
+
     const isPopupVisible = isVisible ? 'popup_visible' : '';
-    
+
     const items = repos.map((item) => {
-      
-      const activeClass = item === this.props.currentRepo ? 'popup__name_active' : '';
-      
+
+      const activeClass = item === currentRepo ? 'popup__name_active' : '';
+
       return (
         <li className="popup__item list-item" key={item}>
           <button
             type="button"
             onClick={() => {
-              this.props.onRepoSelected(item)
+              onRepoSelected(item)
             }}
             className={`popup__name btn title link ${activeClass}`}>
             {item}
@@ -26,13 +34,13 @@ export default class RepositoryPopup extends Component {
         </li>
       );
     });
-    
+
     const closePopup = () => {
       if (detectMob()) {
-        this.props.onPopupClicked()
+        onPopupClicked()
       }
     };
-    
+
     return (
       <div
         className={`popup popup_repository-popup ${isPopupVisible}`}

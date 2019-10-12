@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Helmet} from 'react-helmet';
 import Subheader from '../../components/Subheader';
 import Source from '../../components/Source';
-import API from '../../services/api';
+import API from '../../services/api.ts';
 
 export default class Tree extends Component {
   

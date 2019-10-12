@@ -2,17 +2,27 @@ import React, { Component } from 'react';
 import './Tab.sass';
 import sprite from '../../layout/img/icons/sprite.svg';
 
-export default class Tab extends Component {
-  
-  state = {
+export interface TabProps {
+  currentRepo: string;
+  className: string,
+  onTabClicked: () => void;
+}
+
+export interface TabState {
+  isOpened: boolean,
+}
+
+export default class Tab extends Component<TabProps, TabState> {
+
+  state: Readonly<TabState> = {
     isOpened: false,
   };
-  
+
   render() {
     const { currentRepo, className, onTabClicked } = this.props;
-    
+
     const label = currentRepo ? currentRepo : 'Выберите репозиторий';
-    
+
     return (
       <button
         className={`tab btn text text_size_l ${ className }`}
