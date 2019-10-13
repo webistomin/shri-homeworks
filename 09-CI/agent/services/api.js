@@ -17,6 +17,7 @@ module.exports = class API {
   }
   
   async runRepoTest(repositoryId, hash, command, directoryPath) {
+    console.log('Запускаю тесты');
     this.setStatus('working');
     const start = Date.now();
     const result = await runTest(repositoryId, hash, command, directoryPath);

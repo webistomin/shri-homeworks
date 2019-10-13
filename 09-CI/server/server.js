@@ -14,10 +14,10 @@ app.use(express.json({limit: '50mb'}));
 app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
-  const tasks = CI.getAllTasks();
+  const builds = CI.getAllBuilds();
   
   res.render('index.ejs', {
-    tasks
+    builds
   });
 });
 
@@ -26,11 +26,11 @@ app.post('/register', urlencodedParser, async (req, res) => {
     return res.sendStatus(400);
   }
   
-  // CI.addTask(req.body);
-  
   const { hash, command } = req.body;
   const url = config.repo;
   const repositoryId = nanoid();
+  
+  CI.setBuild(hash, command, url, repositoryId);
   
   await axios.post('http://localhost:8080/build', {
     hash,
@@ -49,10 +49,25 @@ app.post('/register', urlencodedParser, async (req, res) => {
 
 app.get('/build/:id?', (req, res) => {
   const { id } = req.params;
+  const builds = CI.getAllBuilds();
   
-  res.render('build.ejs', {
-    id,
-  });
+  const index = builds.findIndex(item => item.repositoryId === id);
+  
+  if (index !== -1) {
+    const { repositoryId, hash, command, start, end, result, status } = builds[index];
+    
+    res.render('build.ejs', {
+      repositoryId,
+      hash,
+      command,
+      start,
+      end,
+      result,
+      status
+    });
+  } else {
+    res.json({message: 'id not found'})
+  }
 });
 
 app.post('/notify_agent', (req, res) => {
@@ -64,10 +79,9 @@ app.post('/notify_agent', (req, res) => {
 });
 
 app.post('/notify_build_result', (req, res) => {
-  console.log(req.body);
+  console.log('Сохраняю результат билда');
   const { repositoryId, hash, command, start, end, result } = req.body;
   CI.saveBuildResult(repositoryId, hash, command, start, end, result);
-  // console.log(CI.getAllBuilds());
   res.json({ status: 'success' })
 });
 

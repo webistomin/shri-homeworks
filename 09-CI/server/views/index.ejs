@@ -31,8 +31,8 @@
   </ul>
 
   <ul>
-    <% tasks.forEach(function(task) { %>
-      <li><%= task.id %> - <%= task.start %></li>
+    <% builds.forEach(function(build) { %>
+      <li><%= build.repositoryId %> - <%= build.hash %></li>
     <% }); %>
   </ul>
 </body>

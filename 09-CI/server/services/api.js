@@ -17,30 +17,23 @@ module.exports = class API {
     console.log(this.agents);
   }
   
-  addTask(params) {
-    const { hash, command } = params;
-    
-    const uniqueId = nanoid();
-    
-    this.tasks.push({
-      id: uniqueId,
-      address: '',
-      hash,
-      command,
-      start: Date.now(),
-      end: '',
-      status: '',
-    });
-    
-    return uniqueId;
-  }
-  
   getAllTasks() {
     return this.tasks;
   }
   
+  setBuild(hash, command, url, repositoryId) {
+    this.builds.push({
+      repositoryId,
+      hash,
+      command,
+      url
+    })
+  }
+  
   saveBuildResult(repositoryId, hash, command, start, end, result) {
-    const build = {
+    const builds = this.getAllBuilds();
+    const index = builds.findIndex(item => item.repositoryId === repositoryId);
+    this.builds[index] = {
       repositoryId,
       hash,
       command,
@@ -49,7 +42,6 @@ module.exports = class API {
       result,
       status: 'failure'
     };
-    this.builds.push(build)
   }
   
   getAllBuilds() {

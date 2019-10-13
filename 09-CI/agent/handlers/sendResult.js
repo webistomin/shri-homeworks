@@ -11,6 +11,9 @@ const sendResult = (repositoryId, hash, command, start, end, result) => {
       start,
       end,
       result,
+    })
+    .then(() => {
+      console.log('Отправил результат теста');
     });
 };
 
