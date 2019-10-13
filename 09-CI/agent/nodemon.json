@@ -1,0 +1,4 @@
+{
+  "watch": ["agent.js", "utils/", "services/", "handlers/"],
+  "ext": "js"
+}

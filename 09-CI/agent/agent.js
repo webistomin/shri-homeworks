@@ -3,12 +3,25 @@ const axios = require('axios');
 const yargs = require('yargs');
 const argv = yargs.argv;
 const config = require('./config');
+const API = require('./services/api');
 
 const { port, hostPort } = config;
 const directoryPath = argv.path;
+const Agent = new API();
 
 const app = express();
-app.use(express.json());
+app.use(express.json({limit: '50mb'}));
+
+app.post('/build', async (req, res) => {
+  const { hash, command, url, repositoryId } = req.body;
+  
+  res.json({message: 'succesfully add task'});
+  
+  await Agent.downloadRepo(url, repositoryId, directoryPath)
+    .then(() => {
+      Agent.runRepoTest(repositoryId, hash, command, directoryPath);
+    });
+});
 
 const agent = app.listen(port, async () => {
   await axios.post(

@@ -39,15 +39,15 @@ module.exports = class API {
     return this.tasks;
   }
   
-  saveBuildResult(id, address, hash, command, start, end, status) {
+  saveBuildResult(repositoryId, hash, command, start, end, result) {
     const build = {
-      id,
-      address,
+      repositoryId,
       hash,
       command,
       start,
       end,
-      status,
+      result,
+      status: 'failure'
     };
     this.builds.push(build)
   }
