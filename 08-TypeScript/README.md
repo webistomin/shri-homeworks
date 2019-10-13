@@ -39,3 +39,4 @@
 
 В процессе перевода были найдены некоторые ошибки импорта, неверной пагинации, которые без TypeScript никак не проявлялись.
 
+В [одном месте](https://github.com/webistomin/shri-homeworks/blob/master/08-TypeScript/src/pages/Blob/Blob.tsx#L24) пришлось использовать any. Не понимаю как поправить. Types для роутера подключил.
