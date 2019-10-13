@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <% if(id){ %>
+    <title>Build №<%= id %></title>
+  <% } else{ %>
+    <title>Builds</title>
+  <% } %>
+</head>
+<body>
+  <% if(id){ %>
+    <h1>Build №<%= id %></h1>
+  <% } else{ %>
+    <h1>Builds</h1>
+  <% } %>
+
+  <h2>Commit hash:</h2>
+  <p>6456b45h6g45hjfg6j45hv645</p>
+
+  <h3>Start:</h3>
+  <time>22.02.2019</time>
+
+  <h3>End:</h3>
+  <time>22.02.2019</time>
+
+  <h3>Status:</h3>
+  <em>Success</em>
+
+  <h3>Build command:</h3>
+  <u>npm run dev</u>
+</body>
+</html>

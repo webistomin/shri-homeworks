@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Homepage</title>
+</head>
+<body>
+  <h1>Shri CI</h1>
+  <form action="/register" method="post">
+    <input type="text" name="hash" placeholder="Commit hash" required>
+    <input type="text" name="command" placeholder="Test command" required>
+    <button type="submit">Run build</button>
+  </form>
+  <h2>Previous builds</h2>
+  <ul>
+    <li>
+      <a href="#">
+        <strong>Git app</strong>
+        <em>Success</em>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <strong>Git app</strong>
+        <em>Success</em>
+      </a>
+    </li>
+  </ul>
+
+  <ul>
+    <% tasks.forEach(function(task) { %>
+      <li><%= task.id %> - <%= task.start %></li>
+    <% }); %>
+  </ul>
+</body>
+</html>
