@@ -2,7 +2,7 @@ const axios = require('axios');
 const config = require('../config');
 const { hostPort } = config;
 
-const sendResult = (repositoryId, hash, command, start, end, result) => {
+const sendResult = (repositoryId, hash, command, start, end, result, status) => {
   axios.post(
     `http://localhost:${hostPort}/notify_build_result`, {
       repositoryId,
@@ -11,6 +11,7 @@ const sendResult = (repositoryId, hash, command, start, end, result) => {
       start,
       end,
       result,
+      status,
     })
     .then(() => {
       console.log('Отправил результат теста');

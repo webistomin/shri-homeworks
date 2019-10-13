@@ -30,7 +30,7 @@ module.exports = class API {
     })
   }
   
-  saveBuildResult(repositoryId, hash, command, start, end, result) {
+  saveBuildResult(repositoryId, hash, command, start, end, result, status) {
     const builds = this.getAllBuilds();
     const index = builds.findIndex(item => item.repositoryId === repositoryId);
     this.builds[index] = {
@@ -40,7 +40,7 @@ module.exports = class API {
       start,
       end,
       result,
-      status: 'failure'
+      status,
     };
   }
   

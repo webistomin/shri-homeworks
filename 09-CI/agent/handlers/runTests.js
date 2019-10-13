@@ -9,9 +9,9 @@ const runTest = async (repositoryId, hash, command, directoryPath) => {
   
   try {
     const result = await asyncExec(testCommand, { cwd });
-    return { message: result };
+    return { message: result.stdout, status: 'success' };
   } catch (error) {
-    return { message: error.stderr }
+    return { message: error.stderr, status: 'failure' };
   }
 };
 

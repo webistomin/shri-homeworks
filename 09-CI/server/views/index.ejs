@@ -6,6 +6,36 @@
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Homepage</title>
+  <style>
+    li {
+      margin-bottom: 20px;
+    }
+
+    a {
+      display: inline-block;
+      position: relative;
+      color: green;
+      margin-bottom: 2em;
+    }
+
+    a.isDisabled {
+      pointer-events: none;
+      color: grey
+    }
+
+    .column {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    a img {
+      position: absolute;
+      right: -60px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  </style>
 </head>
 <body>
   <h1>Shri CI</h1>
@@ -15,25 +45,19 @@
     <button type="submit">Run build</button>
   </form>
   <h2>Previous builds</h2>
-  <ul>
-    <li>
-      <a href="#">
-        <strong>Git app</strong>
-        <em>Success</em>
-      </a>
-    </li>
-    <li>
-      <a href="#">
-        <strong>Git app</strong>
-        <em>Success</em>
-      </a>
-    </li>
-  </ul>
-
-  <ul>
+  <div class="column">
     <% builds.forEach(function(build) { %>
-      <li><%= build.repositoryId %> - <%= build.hash %></li>
+      <a href="/build/<%= build.repositoryId %>" <%if (!build.end) {%>  class="isDisabled" <%}%>>
+        <%if (!build.end) {%>
+          <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" alt="" width="60" height="60">
+        <%}%>
+        <span>
+          <strong>ID: <%= build.repositoryId %></strong>
+          <br>
+          <strong>HASH: <%= build.hash %></strong>
+        </span>
+      </a>
     <% }); %>
-  </ul>
+  </div>
 </body>
 </html>

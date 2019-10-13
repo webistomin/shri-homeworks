@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "dev": "nodemon agent.js --path=./repos"
+    "dev": "nodemon agent.js --path=./repos",
+    "start": "node agent.js --path=./repos"
   },
   "author": "",
   "license": "ISC",

@@ -80,8 +80,8 @@ app.post('/notify_agent', (req, res) => {
 
 app.post('/notify_build_result', (req, res) => {
   console.log('Сохраняю результат билда');
-  const { repositoryId, hash, command, start, end, result } = req.body;
-  CI.saveBuildResult(repositoryId, hash, command, start, end, result);
+  const { repositoryId, hash, command, start, end, result, status } = req.body;
+  CI.saveBuildResult(repositoryId, hash, command, start, end, result, status);
   res.json({ status: 'success' })
 });
 
