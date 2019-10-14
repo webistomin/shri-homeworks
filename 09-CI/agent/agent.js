@@ -35,7 +35,7 @@ const agent = app.listen(port, async () => {
     })
     .catch((error) => {
       console.log('Agent has been deleted.');
-      console.log(error);
+      console.log(`Reason: ${error.code}`);
       agent.close(() => {
         process.exit(0);
       });

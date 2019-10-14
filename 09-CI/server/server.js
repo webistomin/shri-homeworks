@@ -4,8 +4,10 @@ const bodyParser = require('body-parser');
 const axios = require('axios');
 const nanoid = require('nanoid');
 const config = require('./config');
+const agentConfig = require('../agent/config');
 
 const { port, repo } = config;
+const { port: agentPort } = agentConfig;
 const app = express();
 const CI = new API();
 const urlencodedParser = bodyParser.urlencoded({ extended: false , limit: '50mb'});
@@ -40,7 +42,7 @@ app.post('/register', urlencodedParser, async (req, res) => {
   if (taskCounter <= 5) {
     CI.setBuild(hash, command, url, repositoryId);
   
-    await axios.post('http://localhost:8080/build', {
+    await axios.post(`http://localhost:${agentPort}/build`, {
       hash,
       command,
       url,
