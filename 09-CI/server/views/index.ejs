@@ -42,7 +42,7 @@
   <form action="/register" method="post">
     <input type="text" name="hash" placeholder="Commit hash" value="971cebc61c8724875826658cb4801d1d72a35c4a" required>
     <input type="text" name="command" placeholder="Test command" value="test" required>
-    <button type="submit">Run build</button>
+    <button type="submit" <%if (disabled) {%>  disabled <%}%>>Run build</button>
   </form>
   <h2>Previous builds</h2>
   <div class="column">

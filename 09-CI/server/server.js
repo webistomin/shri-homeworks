@@ -15,9 +15,12 @@ app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
   const builds = CI.getAllBuilds();
+  const taskCounter = CI.getTaskCounter();
+  const disabled = taskCounter >= 5;
   
   res.render('index.ejs', {
-    builds
+    builds,
+    disabled,
   });
 });
 
@@ -29,22 +32,34 @@ app.post('/register', urlencodedParser, async (req, res) => {
   const { hash, command } = req.body;
   const url = config.repo;
   const repositoryId = nanoid();
+  const builds = CI.getAllBuilds();
+  CI.setTaskCounter();
   
-  CI.setBuild(hash, command, url, repositoryId);
+  const taskCounter = CI.getTaskCounter();
   
-  await axios.post('http://localhost:8080/build', {
-    hash,
-    command,
-    url,
-    repositoryId,
-  })
-    .then((result) => {
-      console.log(result.data);
-      res.redirect('/');
+  if (taskCounter <= 5) {
+    CI.setBuild(hash, command, url, repositoryId);
+  
+    await axios.post('http://localhost:8080/build', {
+      hash,
+      command,
+      url,
+      repositoryId,
     })
-    .catch((error) => {
-      res.redirect('/');
+      .then((result) => {
+        console.log(result.data);
+        res.redirect('/');
+      })
+      .catch((error) => {
+        CI.removeTaskCounter();
+        res.redirect('/');
+      });
+  } else {
+    res.render('index.ejs', {
+      builds,
+      disabled: true,
     });
+  }
 });
 
 app.get('/build/:id?', (req, res) => {
@@ -79,10 +94,11 @@ app.post('/notify_agent', (req, res) => {
 });
 
 app.post('/notify_build_result', (req, res) => {
-  console.log('Сохраняю результат билда');
+  console.log('Save build result:');
   const { repositoryId, hash, command, start, end, result, status } = req.body;
   CI.saveBuildResult(repositoryId, hash, command, start, end, result, status);
-  res.json({ status: 'success' })
+  CI.removeTaskCounter();
+  res.json({ message: 'successfully save build' })
 });
 
 app.listen(port, () => {

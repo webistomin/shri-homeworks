@@ -1,11 +1,9 @@
-const nanoid = require('nanoid');
-
 module.exports = class API {
   
   constructor() {
     this.builds = [];
     this.agents = [];
-    this.tasks = [];
+    this.taskCounter = 0;
   }
   
   addAgent(host, port) {
@@ -15,10 +13,6 @@ module.exports = class API {
     });
     
     console.log(this.agents);
-  }
-  
-  getAllTasks() {
-    return this.tasks;
   }
   
   setBuild(hash, command, url, repositoryId) {
@@ -48,5 +42,15 @@ module.exports = class API {
     return this.builds;
   }
   
+  setTaskCounter() {
+    this.taskCounter++;
+  }
   
+  removeTaskCounter() {
+    this.taskCounter--;
+  }
+  
+  getTaskCounter() {
+    return this.taskCounter;
+  }
 };
