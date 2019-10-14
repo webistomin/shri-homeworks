@@ -13,6 +13,18 @@
 
 Если после принятия задачи на сборку, сервер отключился, агент попытается несколько раз отправить результат. Если так и не получилось отправить, агент выключается.
 
+---
+
+Конфиг для сервера хранится в [server/config.js](https://github.com/webistomin/shri-homeworks/blob/master/09-CI/server/config.js)
+
+* port - порт на котором запускается сервер
+* repo - тестируемый репозиторий
+
+Конфиг для агента хранится в [agent/config.js](https://github.com/webistomin/shri-homeworks/blob/master/09-CI/agent/config.js)
+
+* port - порт на котором запускается агент
+* hostPort - порт для сервера
+
 ## Команды
 
 <table>
