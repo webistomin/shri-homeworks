@@ -1,3 +1,8 @@
+const util = require('util');
+const fs = require('fs');
+const asyncWrite = util.promisify(fs.writeFile);
+const asyncRead = util.promisify(fs.readFile);
+
 module.exports = class API {
   
   constructor() {
@@ -15,6 +20,10 @@ module.exports = class API {
     console.log(this.agents);
   }
   
+  getAgents() {
+    return this.agents;
+  }
+  
   setBuild(hash, command, url, repositoryId) {
     this.builds.push({
       repositoryId,
@@ -24,10 +33,10 @@ module.exports = class API {
     })
   }
   
-  saveBuildResult(repositoryId, hash, command, start, end, result, status) {
+  async saveBuildResult(repositoryId, hash, command, start, end, result, status) {
     const builds = this.getAllBuilds();
     const index = builds.findIndex(item => item.repositoryId === repositoryId);
-    this.builds[index] = {
+    const obj = {
       repositoryId,
       hash,
       command,
@@ -36,6 +45,16 @@ module.exports = class API {
       result,
       status,
     };
+    this.builds[index] = obj;
+    asyncRead('./data.json', 'utf8', async (err, data) => {
+      if (err) {
+        console.log(err);
+      } else {
+        let existingObj = JSON.parse(data);
+        existingObj.push(obj);
+        let json = JSON.stringify(existingObj, null, 2);
+        asyncWrite('./data.json', json, 'utf-8')
+      }});
   }
   
   getAllBuilds() {
@@ -52,5 +71,9 @@ module.exports = class API {
   
   getTaskCounter() {
     return this.taskCounter;
+  }
+  
+  setOldBuilds(content) {
+    this.builds = this.builds.concat(content);
   }
 };

@@ -1,4 +1,8 @@
 const express = require('express');
+const util = require('util');
+const fs = require('fs');
+const asyncWrite = util.promisify(fs.writeFile);
+const asyncRead = util.promisify(fs.readFile);
 const API = require('./services/api');
 const bodyParser = require('body-parser');
 const axios = require('axios');
@@ -38,8 +42,9 @@ app.post('/register', urlencodedParser, async (req, res) => {
   CI.setTaskCounter();
   
   const taskCounter = CI.getTaskCounter();
+  const agents = CI.getAgents();
   
-  if (taskCounter <= 5) {
+  if (taskCounter <= 5 && agents.length !== 0) {
     CI.setBuild(hash, command, url, repositoryId);
   
     await axios.post(`http://localhost:${agentPort}/build`, {
@@ -95,14 +100,32 @@ app.post('/notify_agent', (req, res) => {
   })
 });
 
-app.post('/notify_build_result', (req, res) => {
+app.post('/notify_build_result', async (req, res) => {
   console.log('Save build result:');
   const { repositoryId, hash, command, start, end, result, status } = req.body;
-  CI.saveBuildResult(repositoryId, hash, command, start, end, result, status);
+  await CI.saveBuildResult(repositoryId, hash, command, start, end, result, status);
   CI.removeTaskCounter();
   res.json({ message: 'successfully save build' })
 });
 
-app.listen(port, () => {
-  console.log(`Listening port: ${port}. Repository CI: ${repo}`)
+app.post('/initial_data', async (req, res) => {
+  console.log('saving initial data');
+  const { data } = req.body;
+  CI.setOldBuilds(data);
+  res.json({ message: 'successfully saved initial data' })
+});
+
+app.listen(port, async () => {
+  console.log(`Listening port: ${port}. Repository CI: ${repo}`);
+  await asyncRead('./data.json', 'utf8', async (err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      let existingData = JSON.parse(data);
+      if (existingData.length !== 0) {
+        CI.setOldBuilds(existingData);
+        let json = JSON.stringify(existingData, null, 2);
+        await asyncWrite('./data.json', json, 'utf-8');
+      }
+    }});
 });
