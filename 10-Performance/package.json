@@ -1,0 +1,11 @@
+{
+  "name": "performance",
+  "version": "1.0.0",
+  "scripts": {
+    "deploy": "gulp deploy"
+  },
+  "devDependencies": {
+    "gh-pages": "^2.1.1",
+    "gulp": "^4.0.2"
+  }
+}
