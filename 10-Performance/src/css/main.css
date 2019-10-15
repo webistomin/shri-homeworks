@@ -315,7 +315,8 @@ footer {
 }
 
 .card {
-    background: url("../img/cbg.jpg");
+    /*background: url("../img/cbg.jpg");*/
+    background-color: #ebebeb;
     color: #333;
     border-radius: 20px;
     box-sizing: border-box;
@@ -702,7 +703,8 @@ html {
 }
 
 .description_critical {
-    background: url('../img/cbg.jpg');
+    /*background: url('../img/cbg.jpg');*/
+    background-color: #ebebeb;
     color: #000;
     border-radius: 20px;
     margin-top: -20px;
