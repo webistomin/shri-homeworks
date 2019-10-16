@@ -1,3 +1,24 @@
+header {
+  height: 93px;
+  box-sizing: border-box;
+  padding: 0 40px;
+  border-bottom: 1px solid #f0f0f0
+}
+
+.card-title {
+  margin-bottom: 0;
+}
+
+.card {
+  position: relative;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border-radius: 0.25rem;
+}
+
 :root {
   --blue: #007bff;
   --indigo: #6610f2;
@@ -371,12 +392,4 @@ h3, .h3 {
 
 h4, .h4 {
   font-size: 1.5rem;
-}
-
-h5, .h5 {
-  font-size: 1.25rem;
-}
-
-h6, .h6 {
-  font-size: 1rem;
 }
