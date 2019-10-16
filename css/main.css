@@ -1203,3 +1203,12 @@ html {
         margin-top: 10px
     }
 }
+
+.card {
+  border-radius: 23px;
+}
+
+.card_size_s {
+  border-radius: 22px;
+}
+
