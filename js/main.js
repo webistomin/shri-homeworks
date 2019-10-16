@@ -24455,6 +24455,7 @@ let currentPageDevs = 1;
 
 // pagiantorDevs.classList.toggle('paginator_hide', panelCountDevs < 7);
 
+// TODO: DELETE HERE
 $('.card').each(function(e) {
     if ($(this).hasClass('card_size_s')) {
         $(this).css({'border-radius': '22px'})
@@ -24623,7 +24624,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     var waterContainer = document.querySelector('.card.card_size_s:last-child');
 
-    waterContainer.innerHTML = 
+    waterContainer.innerHTML =
                 '<div class="card-heading">' +
                     '<div class="card-icon-wrap">' +
                         '<img class="card-icon" src="img/kettle.svg">' +
