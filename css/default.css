@@ -29,6 +29,10 @@
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
+img.card-icon {
+  object-fit: contain;
+}
+
 *,
 *::before,
 *::after {
