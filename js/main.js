@@ -24623,7 +24623,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     var waterContainer = document.querySelector('.card.card_size_s:last-child');
 
-    waterContainer.innerHTML =
+    waterContainer.innerHTML = 
                 '<div class="card-heading">' +
                     '<div class="card-icon-wrap">' +
                         '<img class="card-icon" src="img/kettle.svg">' +
@@ -24705,12 +24705,12 @@ var storage, initCriticalCam = function () {
     }), document.addEventListener("pointerup", e), g.addEventListener("onpointerup", e)
 };
 
-// $(document).ready(function(){
-//
-//     var carousel = $("#carousel");
-//
-//     carousel.owlCarousel();
-// });
+$(document).ready(function(){
+
+    var carousel = $("#carousel");
+
+    carousel.owlCarousel();
+});
 
 function status(e) {
     return 200 <= e.status && e.status < 300 ? Promise.resolve(e) : Promise.reject(new Error(e.statusText))
