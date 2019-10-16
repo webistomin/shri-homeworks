@@ -2,101 +2,10 @@
 
 !function(t) {
   var e = window.pcodeJsonp6187;
-  window.pcodeJsonp6187 = function(i, o, r) {
-    for (var a, s, l = 0, p = []; l < i.length; l += 1) {
-      s = i[l],
-      n[s] && p.push(n[s][0]),
-        n[s] = 0;
-    }
-    for (a in o)
-      Object.prototype.hasOwnProperty.call(o, a) && (t[a] = o[a]);
-    for (e && e(i, o, r); p.length; ) {
-      p.shift()();
-    }
-  }
   var i = {}
     , n = {
     2: 0
   };
-  function o(e) {
-    if (i[e]) {
-      return i[e].exports;
-    }
-    var n = i[e] = {
-      i: e,
-      l: !1,
-      exports: {}
-    };
-    return (t[e].call(n.exports, n, n.exports, o), n.l = !0, n.exports)
-  }
-  o.e = function(t) {
-    var e = n[t];
-    if (0 === e) {
-      return new Promise(function(t) {
-          t()
-        }
-      );
-    }
-    if (e) {
-      return e[2];
-    }
-    var i = new Promise(function(i, o) {
-        e = n[t] = [i, o]
-      }
-    );
-    e[2] = i;
-    var r = document.getElementsByTagName("head")[0]
-      , a = document.createElement("script");
-    a.type = "text/javascript",
-      a.charset = "utf-8",
-      a.async = !0,
-      a.timeout = 12e4,
-    o.nc && a.setAttribute("nonce", o.nc),
-      a.src = o.p + "" + {
-        0: "9b10f65b0c7e7a1d8693",
-        1: "7641180249a9d7be3cfa"
-      }[t] + ".js";
-    var s = setTimeout(l, 12e4);
-    function l() {
-      a.onerror = a.onload = null,
-        clearTimeout(s);
-      var e = n[t];
-      0 !== e && (e && e[1](new Error("Loading chunk " + t + " failed.")),
-        n[t] = void 0)
-    }
-    return (a.onerror = a.onload = l, r.appendChild(a), i)
-  }
-    ,
-    o.m = t,
-    o.c = i,
-    o.d = function(t, e, i) {
-      o.o(t, e) || Object.defineProperty(t, e, {
-        configurable: !1,
-        enumerable: !0,
-        get: i
-      })
-    }
-    ,
-    o.n = function(t) {
-      var e = t && t.__esModule ? function() {
-          return t["default"]
-        }
-        : function() {
-          return t
-        }
-      return (o.d(e, "a", e), e);
-    }
-    ,
-    o.o = function(t, e) {
-      return Object.prototype.hasOwnProperty.call(t, e)
-    }
-    ,
-    o.p = "//an.yandex.ru/partner-code-bundles/6187/",
-    o.oe = function(t) {
-      throw (console.error(t), t)
-    }
-    ,
-    o(o.s = 271);
 }([function(t, e, i) {
   "use strict";
   t.exports = i(351)
