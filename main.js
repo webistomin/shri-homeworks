@@ -1,7 +1,7 @@
 $(document).ready(function(){
-
+  
   var carousel = $("#carousel");
-
+  
   carousel.owlCarousel();
 });
 
