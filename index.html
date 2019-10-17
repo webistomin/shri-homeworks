@@ -130,7 +130,10 @@
         <p class="card-description card-description_big">Так держать! За последнюю неделю вы
           потратили на 10% меньше ресурсов, чем неделей ранее.</p>
         <div class="card-data card-data_graph">
-          <img class="card-data_graph-img" src="img/graph.png">
+          <picture>
+            <source srcset="img/graph.webp" type="image/webp">
+            <img class="card-data_graph-img" src="img/graph.png">
+          </picture>
         </div>
       </div>
       
@@ -370,27 +373,14 @@
 <script src="https://unpkg.com/jquery@3.3.1/dist/jquery.slim.min.js" defer></script>
 <script src="js/owl-carousel/owl.carousel.min.js" defer></script>
 <script src="main.js" defer></script>
-<!--<script src="https://unpkg.com/react@16.10.2/umd/react.production.min.js" defer></script>-->
-<!--<script src="https://unpkg.com/react-dom@16.10.2/umd/react-dom.production.min.js" defer></script>-->
 <script>
   window.addEventListener('DOMContentLoaded', () => {
-    const multimediaScript = document.createElement('script');
-    multimediaScript.setAttribute('src','./js/multimedia.js');
     const buttonsContainer = document.querySelector('.buttons-wrap');
     
     buttonsContainer.innerHTML = '<button class="button button_yellow" type="button">Да</button>' +
       '<button class="button">Нет</button>';
-    
-    // document.querySelector('.multimedia').appendChild(multimediaScript);
   });
 
 </script>
-
-
-<!--<script>-->
-<!--  document.getElementsByClassName("header-menu__switcher")[0].addEventListener("click", function () {-->
-<!--    document.getElementsByClassName("header-menu")[0].classList.toggle("header-menu_active")-->
-<!--  })-->
-<!--</script>-->
 </body>
 </html>

@@ -738,6 +738,12 @@ html {
     touch-action: none
 }
 
+@supports (background: -webkit-image-set(url("../img/cam2.webp") 1x)) {
+  .critical-cam {
+    background-image: url("../img/cam2.webp");
+  }
+}
+
 .card-data_graph {
     border-radius: 20px;
     width: 100%;
