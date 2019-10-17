@@ -1,3 +1,4 @@
+<!doctype html>
 <html lang="ru" dir="ltr">
 <head>
   <meta charset="utf-8">
@@ -5,6 +6,7 @@
   <meta name="robots" content="noindex">
   <title>Yandex Performance</title>
   <link rel="shortcut icon" href="favicon.png">
+  <link rel="preconnect" href="https://unpkg.com"/>
   <template class="template">
     <div class="card">
       <div class="card-heading">
@@ -64,15 +66,9 @@
       </div>
       <div class="player-controls">
         <button class="player-control player-control_prev">
-<!--          <svg width="53" height="52">-->
-<!--            <use xlink:href="img/sprite.svg#Prev"></use>-->
-<!--          </svg>-->
           <img src="img/Prev.svg">
         </button>
         <button class="player-control player-control_next">
-<!--          <svg width="53" height="52">-->
-<!--            <use xlink:href="img/sprite.svg#Prev"></use>-->
-<!--          </svg>-->
           <img src="img/Prev.svg">
         </button>
         
@@ -126,10 +122,8 @@
       <div class="card card_size_l">
         <div class="card-heading">
           <div class="card-icon-wrap">
-            <svg class="card-icon sprite-icon" width="48" height="23">
-              <use xlink:href="img/sprite.svg#stats"></use>
-            </svg>
-<!--            <img class="card-icon" src="img/stats.svg">-->
+            <!--            <img class="card-icon" src="img/sprite.svg#stats" height="23" width="48" style="position: absolute">-->
+            <img class="card-icon" src="img/stats.svg">
           </div>
           <h3 class="card-title">Еженедельный отчет по расходам ресурсов</h3>
         </div>
@@ -151,10 +145,7 @@
       <div class="card card_size_s">
         <div class="card-heading">
           <div class="card-icon-wrap">
-            <svg class="card-icon sprite-icon" width="48" height="45">
-              <use xlink:href="img/sprite.svg#key"></use>
-            </svg>
-<!--                        <img class="card-icon" src="img/key.svg">-->
+            <img class="card-icon" src="img/key.svg">
           </div>
           <h3 class="card-title">Дверь открыта</h3>
         </div>
@@ -168,10 +159,7 @@
       <div class="card card_size_s">
         <div class="card-heading">
           <div class="card-icon-wrap">
-            <svg class="card-icon sprite-icon" width="48" height="29">
-              <use xlink:href="img/sprite.svg#robot-cleaner"></use>
-            </svg>
-<!--                        <img class="card-icon" src="img/robot-cleaner.svg">-->
+            <img class="card-icon" src="img/robot-cleaner.svg">
           </div>
           <h3 class="card-title">Уборка закончена</h3>
         </div>
@@ -185,10 +173,7 @@
       <div class="card card_size_s">
         <div class="card-heading">
           <div class="card-icon-wrap">
-            <svg class="card-icon sprite-icon" width="48" height="46">
-              <use xlink:href="img/sprite.svg#router"></use>
-            </svg>
-<!--                        <img class="card-icon" src="img/router.svg">-->
+            <img class="card-icon" src="img/router.svg">
           </div>
           <h3 class="card-title">Новый пользователь</h3>
         </div>
@@ -202,10 +187,7 @@
       <div class="card card_size_m">
         <div class="card-heading">
           <div class="card-icon-wrap">
-            <svg class="card-icon sprite-icon" width="48" height="48">
-              <use xlink:href="img/sprite.svg#thermal"></use>
-            </svg>
-<!--                        <img class="card-icon" src="img/thermal.svg">-->
+            <img class="card-icon" src="img/thermal.svg">
           </div>
           <h3 class="card-title">Изменен климатический режим</h3>
         </div>
@@ -228,10 +210,7 @@
       <div class="card card_size_m critical">
         <div class="card-heading heading-critical">
           <div class="card-icon-wrap">
-            <svg class="card-icon sprite-icon" width="48" height="41">
-              <use xlink:href="img/sprite.svg#ac"></use>
-            </svg>
-<!--                        <img class="card-icon" src="img/ac.svg">-->
+            <img class="card-icon" src="img/ac.svg">
           </div>
           <h3 class="card-title">Невозможно включить кондиционер</h3>
         </div>
@@ -246,10 +225,7 @@
       <div class="card card_size_m">
         <div class="card-heading">
           <div class="card-icon-wrap">
-            <svg class="card-icon sprite-icon" width="40" height="48">
-              <use xlink:href="img/sprite.svg#music"></use>
-            </svg>
-<!--                        <img class="card-icon" src="img/music.svg">-->
+            <img class="card-icon" src="img/music.svg">
           </div>
           <h3 class="card-title">Музыка включена</h3>
         </div>
@@ -282,15 +258,9 @@
           <div class="player-controls">
             <button class="player-control player-control_prev">
               <img src="img/Prev.svg">
-<!--              <svg width="53" height="52">-->
-<!--                <use xlink:href="img/sprite.svg#Prev"></use>-->
-<!--              </svg>-->
             </button>
             <button class="player-control player-control_next">
               <img src="img/Prev.svg">
-<!--              <svg width="53" height="52">-->
-<!--                <use xlink:href="img/sprite.svg#Prev"></use>-->
-<!--              </svg>-->
             </button>
             
             <input type="range" class="volume-range" name="volume-range" min="0" max="100"
@@ -306,10 +276,7 @@
       <div class="card card_size_m">
         <div class="card-heading">
           <div class="card-icon-wrap">
-            <!--            <img class="card-icon" src="img/fridge.svg">-->
-            <svg class="card-icon sprite-icon" width="39" height="48">
-              <use xlink:href="img/sprite.svg#fridge"></use>
-            </svg>
+            <img class="card-icon" src="img/fridge.svg">
           </div>
           <h3 class="card-title">Заканчивается молоко</h3>
         </div>
@@ -336,9 +303,7 @@
       <div class="card card_size_s">
         <div class="card-heading">
           <div class="card-icon-wrap">
-            <svg class="card-icon sprite-icon" width="48" height="25">
-              <use xlink:href="img/sprite.svg#battery"></use>
-            </svg>
+            <img class="card-icon" src="img/battery.svg">
           </div>
           <h3 class="card-title">Зарядка завершена</h3>
         </div>
@@ -355,9 +320,7 @@
           <div class="card-icon-wrap">
             <div id="carousel" class="owl-carousel owl-theme" style="opacity: 1; display: block;">
               <div class="owl-wrapper-outer"><div class="owl-wrapper" style="width: 606px; left: 0px; display: block;"><div class="owl-item" style="width: 303px;"><div class="carousel-element">
-                <svg class="card-icon sprite-icon" width="48" height="36">
-                  <use xlink:href="img/sprite.svg#cam"></use>
-                </svg>
+                <img class="card-icon" src="img/cam.svg">
               </div></div></div></div>
               <div class="owl-controls clickable" style="display: none;"><div class="owl-pagination"><div class="owl-page active"><span class=""></span></div></div></div></div>
           </div>
@@ -380,10 +343,7 @@
       <div class="card card_size_s">
         <div class="card-heading">
           <div class="card-icon-wrap">
-            <svg class="card-icon sprite-icon" width="41" height="48">
-              <use xlink:href="img/sprite.svg#kettle"></use>
-            </svg>
-            <!--          <img class="card-icon" src="img/kettle.svg">-->
+            <img class="card-icon" src="img/kettle.svg">
           </div>
           <h3 class="card-title">Вода вскипела</h3>
         </div>
@@ -409,7 +369,7 @@
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       const buttonsContainer = document.querySelector('.buttons-wrap');
-      
+  
       buttonsContainer.innerHTML = '<button class="button button_yellow" type="button">Да</button>' +
         '<button class="button">Нет</button>';
       
