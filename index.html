@@ -97,7 +97,7 @@
   </div>
 </div>
 <header>
-  <img class="header-logo" src="img/yd2.png">
+  <img class="header-logo" src="img/yd2.png" width="108" height="27">
   <menu class="header-menu">
     <a class="header-menu__link" href="cam.html">Видеонаблюдение</a>
     <a class="header-menu__link header-menu__link_active " href="index.html">События</a>
@@ -235,8 +235,11 @@
           
           <div class="song-area">
             <div class="cover-wrap">
-              <img class="cover"
-                   src="img/avatar.jpg" width="53" height="53">
+              <picture>
+                <source srcset="img/avatar.webp" type="image/webp">
+                <img class="cover"
+                     src="img/avatar.jpg" width="53" height="53">
+              </picture>
             </div>
             
             <div class="song-data">
