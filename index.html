@@ -1,4 +1,3 @@
-<!doctype html>
 <html lang="ru" dir="ltr">
 <head>
   <meta charset="utf-8">
@@ -6,7 +5,6 @@
   <meta name="robots" content="noindex">
   <title>Yandex Performance</title>
   <link rel="shortcut icon" href="favicon.png">
-  <link rel="preconnect" href="https://unpkg.com"/>
   <template class="template">
     <div class="card">
       <div class="card-heading">
@@ -257,10 +255,14 @@
           </div>
           <div class="player-controls">
             <button class="player-control player-control_prev">
-              <img src="img/Prev.svg">
+              <svg width="53" height="52">
+                <use xlink:href="img/sprite.svg#Prev"></use>
+              </svg>
             </button>
             <button class="player-control player-control_next">
-              <img src="img/Prev.svg">
+              <svg width="53" height="52">
+                <use xlink:href="img/sprite.svg#Prev"></use>
+              </svg>
             </button>
             
             <input type="range" class="volume-range" name="volume-range" min="0" max="100"
@@ -276,7 +278,9 @@
       <div class="card card_size_m">
         <div class="card-heading">
           <div class="card-icon-wrap">
-            <img class="card-icon" src="img/fridge.svg">
+            <svg width="39" height="48" class="card-icon">
+              <use xlink:href="img/sprite.svg#fridge"></use>
+            </svg>
           </div>
           <h3 class="card-title">Заканчивается молоко</h3>
         </div>
@@ -303,7 +307,9 @@
       <div class="card card_size_s">
         <div class="card-heading">
           <div class="card-icon-wrap">
-            <img class="card-icon" src="img/battery.svg">
+            <svg width="48" height="25" class="card-icon">
+              <use xlink:href="img/sprite.svg#battery"></use>
+            </svg>
           </div>
           <h3 class="card-title">Зарядка завершена</h3>
         </div>
@@ -369,7 +375,7 @@
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       const buttonsContainer = document.querySelector('.buttons-wrap');
-  
+      
       buttonsContainer.innerHTML = '<button class="button button_yellow" type="button">Да</button>' +
         '<button class="button">Нет</button>';
       
