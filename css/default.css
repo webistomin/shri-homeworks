@@ -2017,7 +2017,6 @@ input[type="button"].btn-block {
   border-bottom-left-radius: 0;
 }
 
-
 .card {
   position: relative;
   flex-direction: column;
@@ -2027,8 +2026,6 @@ input[type="button"].btn-block {
   background-clip: border-box;
   border-radius: 0.25rem;
 }
-
-
 
 .card-title {
   margin-bottom: 0;
@@ -2040,7 +2037,6 @@ header {
   padding: 0 40px;
   border-bottom: 1px solid #f0f0f0
 }
-
 
 .purchase-list {
   padding: 0 40px;
