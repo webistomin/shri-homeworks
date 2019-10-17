@@ -1,4 +1,3 @@
-<!doctype html>
 <html lang="ru" dir="ltr">
 <head>
   <meta charset="utf-8">
@@ -367,6 +366,11 @@
 </footer>
 <script>
   document.addEventListener('DOMContentLoaded', function () {
+    const buttonsContainer = document.querySelector('.buttons-wrap');
+  
+    buttonsContainer.innerHTML = '<button class="button button_yellow" type="button">Да</button>' +
+      '<button class="button">Нет</button>';
+    
     var styles = ['./css/default.css', './css/main.css'];
     styles.forEach(function (path) {
       var link = document.createElement('link');
