@@ -1,11 +1,4 @@
-// $(document).ready(function(){
-//
-//   var carousel = $("#carousel");
-//
-//   // carousel.owlCarousel();
-// });
-
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener('DOMContentLoaded',() => {
   const buttonsContainer = document.querySelector(".buttons-wrap");
   buttonsContainer.innerHTML = '<button class="button button_yellow" type="button">Да</button>' +
     '<button class="button">Нет</button>';
@@ -36,7 +29,6 @@ document.addEventListener("DOMContentLoaded", function () {
     fridgeInfoContainer.replaceWith(purchaseListContainer);
     buttonsContainer.style.display = "none";
   };
-  
   
   document.getElementsByClassName("header-menu__switcher")[0].addEventListener("click", function () {
     document.getElementsByClassName("header-menu")[0].classList.toggle("header-menu_active")
