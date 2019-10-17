@@ -1,9 +1,9 @@
-$(document).ready(function(){
-  
-  var carousel = $("#carousel");
-  
-  carousel.owlCarousel();
-});
+// $(document).ready(function(){
+//
+//   var carousel = $("#carousel");
+//
+//   carousel.owlCarousel();
+// });
 
 document.addEventListener("DOMContentLoaded", function () {
   const buttonsContainer = document.querySelector(".buttons-wrap");
