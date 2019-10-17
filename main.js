@@ -2,7 +2,7 @@ $(document).ready(function(){
   
   var carousel = $("#carousel");
   
-  carousel.owlCarousel();
+  // carousel.owlCarousel();
 });
 
 document.addEventListener("DOMContentLoaded", function () {
