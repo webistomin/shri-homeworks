@@ -1218,13 +1218,13 @@ html {
   border-radius: 22px;
 }
 
-.card-icon_stats {
-  height: 16.77px;
-}
+/*.card-icon_stats {*/
+/*  height: 16.77px;*/
+/*}*/
 
-@media (min-width: 680px) {
-  .card-icon_stats {
-    height: 23px;
-  }
-}
+/*@media (min-width: 680px) {*/
+/*  .card-icon_stats {*/
+/*    height: 23px;*/
+/*  }*/
+/*}*/
 
