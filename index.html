@@ -209,13 +209,8 @@
           холодильнике заканчивается молоко. Вы хотите добавить его в список покупок?</p>
         
         <div class="buttons-wrap">
-          <button class="button  button_yellow">
-            Дa
-          </button>
-          
-          <button class="button">
-            Heт
-          </button>
+          <button class="button button_yellow" type="button">Да</button>
+          <button class="button">Нет</button>
         </div>
       </div>
       <div class="card card_size_s">
@@ -324,14 +319,6 @@
         document.getElementsByClassName("header-menu")[0].classList.toggle("header-menu_active")
       })
     }, !1);
-
-    window.addEventListener('DOMContentLoaded', () => {
-      const buttonsContainer = document.querySelector('.buttons-wrap');
-  
-      buttonsContainer.innerHTML = '<button class="button button_yellow" type="button">Да</button>' +
-        '<button class="button">Нет</button>';
-    });
-
   </script>
 </div>
 </body>
