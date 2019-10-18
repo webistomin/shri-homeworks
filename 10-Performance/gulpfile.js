@@ -3,7 +3,6 @@ const ghPages = require('gh-pages');
 const path = require('path');
 const htmlmin = require('gulp-html-minifier');
 
-
 gulp.task('deploy', (done) => {
   ghPages.publish(path.join(process.cwd(), './src'), done);
 });
