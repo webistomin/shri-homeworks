@@ -1,3 +1,10 @@
+// $(document).ready(function(){
+//
+//   var carousel = $("#carousel");
+//
+//   // carousel.owlCarousel();
+// });
+
 document.addEventListener("DOMContentLoaded", function () {
   const buttonsContainer = document.querySelector(".buttons-wrap");
   const fridgeInfoContainer = document.querySelector(".card_size_m:nth-child(8) .card-description");
