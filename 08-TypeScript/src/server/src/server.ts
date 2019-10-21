@@ -3,8 +3,7 @@ const cors = require('cors');
 const showBanner = require('node-banner');
 const router = require('./routes');
 
-// @ts-ignore
-const app = express();
+const application = express();
 app.use(cors());
 app.use(express.json());
 app.use(router);
@@ -13,4 +12,4 @@ app.use(router);
 //   showBanner('SHRI 2019', 'Simple node.js git client. Server available on localhost:8080');
 // });
 
-module.exports = app;
+module.exports = application;
