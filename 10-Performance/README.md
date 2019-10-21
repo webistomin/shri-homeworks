@@ -43,7 +43,7 @@
 
 ---
 
-Итого: **680.84**
+Итого: **683.28**
 
 Gh-pages: [http://webistomin.github.io/shri-homeworks/](http://webistomin.github.io/shri-homeworks/)
 
