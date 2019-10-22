@@ -1,0 +1,13 @@
+.root {
+    margin-bottom: 20px;
+    padding: 10px;
+
+    border-radius: 10px;
+    box-shadow: 1px 1px 12px 0 lightgrey;
+}
+
+.title {
+    color: #212121;
+
+    font-size: 18px;
+}

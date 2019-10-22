@@ -1,0 +1,27 @@
+.controls {
+    margin: 20px 0;
+    display: flex;
+}
+
+.control {
+    margin-right: 20px;
+}
+
+.illustration {
+    margin-bottom: 20px;
+}
+
+.illustrationImage {
+    max-height: 300px;
+}
+
+.result {
+    font-size: 18px;
+}
+
+.formula {
+    background-color: oldlace;
+    padding: 2px;
+    display: inline-block;
+    margin: 4px 5px;
+}
